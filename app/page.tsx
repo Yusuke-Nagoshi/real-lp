@@ -20,7 +20,7 @@ function CTAButton({ children, className = '' }: { children: React.ReactNode; cl
       href={FORM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-neutral-900 rounded-2xl hover:bg-neutral-800 transition-colors ${className}`}
+      className={`inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-sky-600 rounded-2xl hover:bg-sky-700 transition-colors shadow-lg shadow-sky-500/30 ${className}`}
     >
       {children}
     </a>
@@ -30,7 +30,7 @@ function CTAButton({ children, className = '' }: { children: React.ReactNode; cl
 // コンポーネント: バッジ
 function Badge({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <span className={`inline-flex items-center px-3 py-1 text-sm font-medium text-neutral-700 bg-neutral-100 rounded-full ${className}`}>
+    <span className={`inline-flex items-center px-3 py-1 text-sm font-medium text-sky-700 bg-sky-100 rounded-full ${className}`}>
       {children}
     </span>
   );
@@ -47,8 +47,8 @@ function ImagePlaceholder({
   className?: string;
 }) {
   return (
-    <div className={`${aspectRatio} bg-neutral-100 rounded-3xl flex items-center justify-center border-2 border-dashed border-neutral-300 ${className}`}>
-      <p className="text-neutral-400 text-sm font-medium">{label}</p>
+    <div className={`${aspectRatio} bg-sky-50 rounded-3xl flex items-center justify-center border-2 border-dashed border-sky-200 ${className}`}>
+      <p className="text-sky-400 text-sm font-medium">{label}</p>
     </div>
   );
 }
@@ -56,6 +56,7 @@ function ImagePlaceholder({
 // コンポーネント: ヘッダー
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,13 +72,25 @@ function Header() {
     }`}>
       <Container>
         <div className="flex items-center justify-between h-16 sm:h-20">
-          <div className="text-xl sm:text-2xl font-semibold text-neutral-900">
-            REAL
+          <div className="flex items-center">
+            {/* ロゴ画像があれば使用、なければテキストロゴ */}
+            {!logoError ? (
+              <img 
+                src="/logo.png" 
+                alt="REAL" 
+                className="h-8 sm:h-10 w-auto"
+                onError={() => setLogoError(true)}
+              />
+            ) : (
+              <div className="text-xl sm:text-2xl font-semibold bg-gradient-to-r from-sky-500 to-sky-600 bg-clip-text text-transparent">
+                Real
+              </div>
+            )}
           </div>
           <nav className="flex items-center gap-4 sm:gap-6">
             <a
               href="#faq"
-              className="hidden sm:inline-block text-sm font-medium text-neutral-700 hover:text-neutral-900 transition-colors"
+              className="hidden sm:inline-block text-sm font-medium text-sky-700 hover:text-sky-800 transition-colors"
             >
               FAQ
             </a>
@@ -94,16 +107,16 @@ function Header() {
 // コンポーネント: Heroセクション
 function HeroSection() {
   return (
-    <section className="pt-12 sm:pt-16 lg:pt-24 pb-16 sm:pb-24 lg:pb-32">
+    <section className="pt-12 sm:pt-16 lg:pt-24 pb-16 sm:pb-24 lg:pb-32 bg-gradient-to-b from-sky-50 via-white to-white">
       <Container>
         <div className="text-center max-w-4xl mx-auto">
           <Badge className="mb-6">開発中</Badge>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 sm:mb-8 leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-800 mb-6 sm:mb-8 leading-tight">
             写真詐欺に疲れた方へ
             <br />
-            <span className="text-neutral-600">誠実な出会いを、REALから</span>
+            <span className="text-sky-600">誠実な出会いを、REALから</span>
           </h1>
-          <p className="text-lg sm:text-xl text-neutral-600 mb-8 sm:mb-12 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-slate-600 mb-8 sm:mb-12 leading-relaxed max-w-2xl mx-auto">
             疑う前提を減らす設計で、安心して出会えるマッチングアプリを目指しています。
             <br className="hidden sm:block" />
             待機リストにご登録いただくと、リリース時に優先的にご案内いたします。
@@ -142,13 +155,13 @@ function ProblemSection() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-neutral-50">
+    <section className="py-16 sm:py-20 lg:py-24 bg-sky-50">
       <Container>
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">
             写真詐欺、あるある
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             多くの方が経験している、マッチングアプリでの課題です
           </p>
         </div>
@@ -156,12 +169,12 @@ function ProblemSection() {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className="bg-white p-6 sm:p-8 rounded-3xl shadow-sm"
+              className="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-sky-100"
             >
-              <h3 className="text-xl sm:text-2xl font-semibold text-neutral-900 mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-2xl font-semibold text-slate-800 mb-3 sm:mb-4">
                 {problem.title}
               </h3>
-              <p className="text-neutral-600 leading-relaxed">
+              <p className="text-slate-600 leading-relaxed">
                 {problem.description}
               </p>
             </div>
@@ -193,10 +206,10 @@ function SolutionSection() {
     <section className="py-16 sm:py-20 lg:py-24">
       <Container>
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">
             REALが目指す設計
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             写真詐欺の課題を解決するための、3つのポイント
           </p>
         </div>
@@ -204,15 +217,15 @@ function SolutionSection() {
           {solutions.map((solution, index) => (
             <div
               key={index}
-              className="bg-neutral-50 p-6 sm:p-8 rounded-3xl"
+              className="bg-sky-50 p-6 sm:p-8 rounded-3xl border border-sky-100"
             >
-              <div className="text-3xl sm:text-4xl font-bold text-neutral-300 mb-4">
+              <div className="text-3xl sm:text-4xl font-bold text-sky-300 mb-4">
                 {String(index + 1).padStart(2, '0')}
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-neutral-900 mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-2xl font-semibold text-slate-800 mb-3 sm:mb-4">
                 {solution.title}
               </h3>
-              <p className="text-neutral-600 leading-relaxed">
+              <p className="text-slate-600 leading-relaxed">
                 {solution.description}
               </p>
             </div>
@@ -246,13 +259,13 @@ function TrustSection() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-neutral-50">
+    <section className="py-16 sm:py-20 lg:py-24 bg-sky-50">
       <Container>
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">
             信頼とプライバシー
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             REALが大切にしている価値観
           </p>
         </div>
@@ -260,12 +273,12 @@ function TrustSection() {
           {trustPoints.map((point, index) => (
             <div
               key={index}
-              className="bg-white p-6 sm:p-8 rounded-3xl shadow-sm"
+              className="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-sky-100"
             >
-              <h3 className="text-xl sm:text-2xl font-semibold text-neutral-900 mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-2xl font-semibold text-slate-800 mb-3 sm:mb-4">
                 {point.title}
               </h3>
-              <p className="text-neutral-600 leading-relaxed">
+              <p className="text-slate-600 leading-relaxed">
                 {point.description}
               </p>
             </div>
@@ -297,10 +310,10 @@ function EarlyBenefitsSection() {
     <section className="py-16 sm:py-20 lg:py-24">
       <Container>
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">
             待機リスト特典
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             今ご登録いただくと、以下の特典をご用意しています
           </p>
         </div>
@@ -308,12 +321,12 @@ function EarlyBenefitsSection() {
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="bg-neutral-50 p-6 sm:p-8 rounded-3xl border-2 border-neutral-200"
+              className="bg-sky-50 p-6 sm:p-8 rounded-3xl border-2 border-sky-200"
             >
-              <h3 className="text-xl sm:text-2xl font-semibold text-neutral-900 mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-2xl font-semibold text-slate-800 mb-3 sm:mb-4">
                 {benefit.title}
               </h3>
-              <p className="text-neutral-600 leading-relaxed">
+              <p className="text-slate-600 leading-relaxed">
                 {benefit.description}
               </p>
             </div>
@@ -366,10 +379,10 @@ function FAQSection() {
   ];
 
   return (
-    <section id="faq" className="py-16 sm:py-20 lg:py-24 bg-neutral-50">
+    <section id="faq" className="py-16 sm:py-20 lg:py-24 bg-sky-50">
       <Container>
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">
             よくある質問
           </h2>
         </div>
@@ -377,12 +390,12 @@ function FAQSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white p-6 sm:p-8 rounded-3xl shadow-sm"
+              className="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-sky-100"
             >
-              <h3 className="text-lg sm:text-xl font-semibold text-neutral-900 mb-3 sm:mb-4">
+              <h3 className="text-lg sm:text-xl font-semibold text-slate-800 mb-3 sm:mb-4">
                 {faq.question}
               </h3>
-              <p className="text-neutral-600 leading-relaxed">
+              <p className="text-slate-600 leading-relaxed">
                 {faq.answer}
               </p>
             </div>
@@ -401,11 +414,11 @@ function FAQSection() {
 // コンポーネント: Footer
 function Footer() {
   return (
-    <footer className="py-12 sm:py-16 bg-neutral-900 text-neutral-300">
+    <footer className="py-12 sm:py-16 bg-slate-800 text-slate-300">
       <Container>
         <div className="text-center space-y-4 sm:space-y-6">
           <div className="text-2xl sm:text-3xl font-semibold text-white mb-4">
-            REAL
+            Real
           </div>
           <div className="text-sm sm:text-base space-y-2 max-w-2xl mx-auto leading-relaxed">
             <p>
@@ -417,7 +430,7 @@ function Footer() {
             <p>
               ※ 待機リストへの登録は、リリース時の優先案内を受けるためのものです。
             </p>
-            <p className="pt-4 text-neutral-400">
+            <p className="pt-4 text-slate-400">
               © 2024 REAL. All rights reserved.
             </p>
           </div>
