@@ -46,7 +46,18 @@ function Header() {
       <Container>
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-lg flex items-center justify-center">
+            <img 
+              src="/app-icon.png" 
+              alt="REAL" 
+              className="w-8 h-8 rounded-lg object-cover"
+              onError={(e) => {
+                // 画像が存在しない場合はフォールバック
+                e.currentTarget.style.display = 'none';
+                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                if (fallback) fallback.style.display = 'flex';
+              }}
+            />
+            <div className="hidden w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-lg items-center justify-center">
               <span className="text-white font-bold text-sm">R</span>
             </div>
             <div className="text-xl font-bold bg-gradient-to-r from-sky-500 to-sky-600 bg-clip-text text-transparent">
@@ -408,7 +419,18 @@ function Footer() {
       <Container>
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-lg flex items-center justify-center">
+            <img 
+              src="/app-icon.png" 
+              alt="REAL" 
+              className="w-8 h-8 rounded-lg object-cover"
+              onError={(e) => {
+                // 画像が存在しない場合はフォールバック
+                e.currentTarget.style.display = 'none';
+                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                if (fallback) fallback.style.display = 'flex';
+              }}
+            />
+            <div className="hidden w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-lg items-center justify-center">
               <span className="text-white font-bold text-sm">R</span>
             </div>
             <div className="text-xl font-bold text-white">
