@@ -56,6 +56,10 @@ html {
   animation-delay: 4s;
 }
 
+.animation-delay-6000 {
+  animation-delay: 6s;
+}
+
 /* モヤがかかるアニメーション */
 @keyframes blur-in {
   0% {
