@@ -72,7 +72,7 @@ function HeroSection() {
             開発中
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
-            写真詐欺、<span className="text-sky-600">ない</span>
+            写真詐欺、<span className="text-sky-600">ゼロ</span>
           </h1>
           <p className="text-xl sm:text-2xl text-slate-600 mb-8 max-w-2xl mx-auto font-medium">
             アプリ内カメラで撮影した写真だけが使える
@@ -100,7 +100,7 @@ function HeroSection() {
               <img 
                 src="/profile-match-image.jpg" 
                 alt="プロフィール写真と実際に会う人が同じ見た目"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
                 onError={(e) => {
                   // 画像が存在しない場合はプレースホルダーを表示
                   e.currentTarget.style.display = 'none';
