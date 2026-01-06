@@ -204,31 +204,89 @@ function HowItWorksSection() {
             仕組み
           </h2>
           <p className="text-lg text-slate-600">
-            アプリ内カメラで撮影するだけ
+            REAL独自の設計で、写真詐欺を防ぎます
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-sky-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-              1
+        <div className="max-w-4xl mx-auto space-y-8">
+          {/* ステップ1: プロフィール一覧 */}
+          <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border-2 border-slate-200">
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-sky-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                  1
+                </div>
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
+                  プロフィール一覧では写真にモヤがかかっている
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  プロフィール一覧を閲覧する際、本人写真には薄いモヤがかかっています。これにより、写真だけで判断せず、プロフィールやメッセージの内容で判断できます。
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-sky-200 to-sky-300 border-4 border-white shadow-lg relative overflow-hidden">
+                  <div className="absolute inset-0 bg-white/60 backdrop-blur-sm"></div>
+                </div>
+              </div>
             </div>
-            <h3 className="font-bold text-slate-900 mb-2">アプリを開く</h3>
-            <p className="text-sm text-slate-600">プロフィール写真を設定</p>
           </div>
-          <div className="text-center">
-            <div className="w-16 h-16 bg-sky-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-              2
+
+          {/* ステップ2: マッチング */}
+          <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border-2 border-slate-200">
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-sky-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                  2
+                </div>
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
+                  マッチングする
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  プロフィールやメッセージの内容で判断してマッチングします。写真に頼らず、本当の相性で出会えます。
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <div className="text-4xl">💬</div>
+              </div>
             </div>
-            <h3 className="font-bold text-slate-900 mb-2">アプリ内カメラで撮影</h3>
-            <p className="text-sm text-slate-600">アルバム選択は不可</p>
           </div>
-          <div className="text-center">
-            <div className="w-16 h-16 bg-sky-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-              3
+
+          {/* ステップ3: 3往復のメッセージ */}
+          <div className="bg-gradient-to-br from-sky-50 to-blue-50 p-6 sm:p-8 rounded-2xl shadow-lg border-2 border-sky-300 relative">
+            <div className="absolute -top-3 -right-3 bg-sky-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+              重要
             </div>
-            <h3 className="font-bold text-slate-900 mb-2">写真が設定される</h3>
-            <p className="text-sm text-slate-600">最新の写真のみ使用</p>
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-sky-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                  3
+                </div>
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
+                  3往復のメッセージをやり取りすると顔写真が開示される
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  マッチング後、3往復（合計6通）のメッセージのやり取りを行うと、顔写真のモヤが解除され、クリアな写真が表示されます。会う前に、お互いの顔を確認できます。
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-sky-200 to-sky-300 border-4 border-white shadow-lg"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 補足説明 */}
+        <div className="mt-12 text-center max-w-3xl mx-auto">
+          <div className="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+            <p className="text-slate-700 leading-relaxed">
+              <strong className="text-sky-600">この設計により、</strong>写真だけで判断せず、プロフィールやメッセージの内容で判断できるため、より深い出会いが生まれます。また、3往復のメッセージをやり取りすることで、お互いの顔を確認してから会うことができます。
+            </p>
           </div>
         </div>
       </Container>
@@ -282,7 +340,7 @@ function FAQSection() {
     },
     {
       question: "いつリリース？",
-      answer: "開発中です。準備が整い次第、事前登録者に優先的にご案内します。"
+      answer: "5月ごろのリリースの予定です、事前登録者に優先的にご案内します。"
     }
   ];
 
