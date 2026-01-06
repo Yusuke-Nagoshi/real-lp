@@ -226,8 +226,19 @@ function HowItWorksSection() {
                 </p>
               </div>
               <div className="flex-shrink-0">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-sky-200 to-sky-300 border-4 border-white shadow-lg relative overflow-hidden">
-                  <div className="absolute inset-0 bg-white/60 backdrop-blur-sm"></div>
+                {/* モヤがかかったプロフィール画像 */}
+                <div className="relative">
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-sky-200 to-sky-300 border-4 border-white shadow-lg relative overflow-hidden">
+                    {/* 顔の簡易的な表現 */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-4xl">😊</div>
+                    </div>
+                    {/* モヤのオーバーレイ */}
+                    <div className="absolute inset-0 bg-white/70 backdrop-blur-md animate-blur-in"></div>
+                  </div>
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-slate-700 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                    モヤがかかっている
+                  </div>
                 </div>
               </div>
             </div>
@@ -275,7 +286,20 @@ function HowItWorksSection() {
                 </p>
               </div>
               <div className="flex-shrink-0">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-sky-200 to-sky-300 border-4 border-white shadow-lg"></div>
+                {/* クリアなプロフィール画像 */}
+                <div className="relative">
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-sky-200 to-sky-300 border-4 border-white shadow-lg relative overflow-hidden">
+                    {/* 顔の簡易的な表現 */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-4xl animate-fade-in">😊</div>
+                    </div>
+                    {/* モヤが解除されるアニメーション */}
+                    <div className="absolute inset-0 bg-white/0 backdrop-blur-0 animate-blur-out"></div>
+                  </div>
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-sky-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                    クリアに！
+                  </div>
+                </div>
               </div>
             </div>
           </div>

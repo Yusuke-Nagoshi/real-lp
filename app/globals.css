@@ -55,3 +55,53 @@ html {
 .animation-delay-4000 {
   animation-delay: 4s;
 }
+
+/* モヤがかかるアニメーション */
+@keyframes blur-in {
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.animate-blur-in {
+  animation: blur-in 1s ease-in-out forwards;
+}
+
+/* モヤが解除されるアニメーション */
+@keyframes blur-out {
+  0% {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(0px);
+  }
+}
+
+.animate-blur-out {
+  animation: blur-out 1.5s ease-in-out forwards;
+  animation-delay: 0.5s;
+}
+
+/* フェードインアニメーション */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1.5s ease-in-out forwards;
+  animation-delay: 0.5s;
+}
