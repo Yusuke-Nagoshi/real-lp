@@ -21,7 +21,7 @@ function CTAButton({ children, className = '', variant = 'primary' }: { children
         href={FORM_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className={`inline-flex items-center justify-center px-6 py-3 text-base font-medium text-sky-600 bg-white border-2 border-sky-600 rounded-2xl hover:bg-sky-50 transition-colors ${className}`}
+        className={`inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-sky-600 bg-white border-2 border-sky-600 rounded-full hover:bg-sky-50 transition-all shadow-lg hover:shadow-xl ${className}`}
       >
         {children}
       </a>
@@ -32,7 +32,7 @@ function CTAButton({ children, className = '', variant = 'primary' }: { children
       href={FORM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-sky-500 to-sky-600 rounded-2xl hover:from-sky-600 hover:to-sky-700 transition-all shadow-xl shadow-sky-500/30 hover:shadow-2xl hover:shadow-sky-500/40 ${className}`}
+      className={`inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white bg-gradient-to-r from-sky-500 to-sky-600 rounded-full hover:from-sky-600 hover:to-sky-700 transition-all shadow-2xl shadow-sky-500/40 hover:shadow-3xl hover:shadow-sky-500/50 hover:scale-105 ${className}`}
     >
       {children}
     </a>
@@ -42,7 +42,7 @@ function CTAButton({ children, className = '', variant = 'primary' }: { children
 // コンポーネント: バッジ
 function Badge({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <span className={`inline-flex items-center px-4 py-1.5 text-sm font-semibold text-sky-700 bg-sky-100 rounded-full ${className}`}>
+    <span className={`inline-flex items-center px-5 py-2 text-sm font-bold text-sky-700 bg-sky-100 rounded-full border border-sky-200 ${className}`}>
       {children}
     </span>
   );
@@ -52,15 +52,22 @@ function Badge({ children, className = '' }: { children: React.ReactNode; classN
 function ImagePlaceholder({ 
   label, 
   aspectRatio = 'aspect-video',
-  className = '' 
+  className = '',
+  imageName = ''
 }: { 
   label: string; 
   aspectRatio?: string;
   className?: string;
+  imageName?: string;
 }) {
   return (
-    <div className={`${aspectRatio} bg-gradient-to-br from-sky-50 to-sky-100 rounded-3xl flex items-center justify-center border-2 border-dashed border-sky-300 ${className}`}>
-      <p className="text-sky-500 text-sm font-medium text-center px-4">{label}</p>
+    <div className={`${aspectRatio} bg-gradient-to-br from-sky-50 via-blue-50 to-cyan-50 rounded-3xl flex items-center justify-center border-2 border-dashed border-sky-300 relative overflow-hidden ${className}`}>
+      {imageName && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <p className="text-xs text-sky-400 font-medium absolute bottom-4 left-4">📸 {imageName}</p>
+        </div>
+      )}
+      <p className="text-sky-500 text-sm font-medium text-center px-4 z-10">{label}</p>
     </div>
   );
 }
@@ -79,29 +86,38 @@ function Header() {
 
   return (
     <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-      isScrolled ? 'bg-white/98 backdrop-blur-md shadow-lg' : 'bg-white'
+      isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-lg border-b border-slate-100' : 'bg-white'
     }`}>
       <Container>
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          <div className="flex items-center">
+        <div className="flex items-center justify-between h-20">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-sky-600 rounded-xl flex items-center justify-center shadow-lg">
+              <span className="text-white font-bold text-xl">R</span>
+            </div>
             <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-sky-500 to-sky-600 bg-clip-text text-transparent">
               Real
             </div>
           </div>
-          <nav className="flex items-center gap-4 sm:gap-6">
+          <nav className="flex items-center gap-6">
+            <a
+              href="#features"
+              className="hidden lg:inline-block text-sm font-semibold text-slate-700 hover:text-sky-600 transition-colors"
+            >
+              特徴
+            </a>
             <a
               href="#how-it-works"
-              className="hidden sm:inline-block text-sm font-medium text-slate-700 hover:text-sky-600 transition-colors"
+              className="hidden lg:inline-block text-sm font-semibold text-slate-700 hover:text-sky-600 transition-colors"
             >
               仕組み
             </a>
             <a
               href="#faq"
-              className="hidden sm:inline-block text-sm font-medium text-slate-700 hover:text-sky-600 transition-colors"
+              className="hidden lg:inline-block text-sm font-semibold text-slate-700 hover:text-sky-600 transition-colors"
             >
               FAQ
             </a>
-            <CTAButton className="text-sm sm:text-base px-5 sm:px-6 py-2.5 sm:py-3">
+            <CTAButton className="text-sm px-6 py-3">
               待機リストに登録
             </CTAButton>
           </nav>
@@ -114,52 +130,78 @@ function Header() {
 // コンポーネント: Heroセクション
 function HeroSection() {
   return (
-    <section className="pt-20 sm:pt-28 lg:pt-32 pb-20 sm:pb-28 lg:pb-32 bg-gradient-to-b from-sky-50 via-white to-white relative overflow-hidden">
+    <section className="pt-24 sm:pt-32 lg:pt-40 pb-20 sm:pb-32 bg-gradient-to-b from-white via-sky-50/30 to-white relative overflow-hidden">
       {/* 装飾的な背景要素 */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-sky-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-40 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-sky-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
       </div>
       
       <Container className="relative z-10">
-        <div className="text-center max-w-5xl mx-auto">
-          <Badge className="mb-6 text-base">開発中</Badge>
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 sm:mb-8 leading-tight">
-            写真詐欺、<span className="text-sky-600">ゼロ</span>
-            <br />
-            <span className="text-4xl sm:text-5xl lg:text-6xl">アプリ内カメラで撮影した写真だけ</span>
-          </h1>
-          <p className="text-xl sm:text-2xl text-slate-600 mb-10 sm:mb-12 leading-relaxed max-w-3xl mx-auto font-medium">
-            REALは、プロフィール写真に<span className="text-sky-600 font-semibold">アプリ内のノーマルカメラで撮影した写真のみ</span>を使用できます。
-            <br className="hidden sm:block" />
-            これにより、写真詐欺を根本から防ぎます。
-          </p>
-          <div className="mb-16 sm:mb-20">
-            <CTAButton className="text-xl sm:text-2xl px-10 sm:px-12 py-5 sm:py-6">
-              待機リストに登録する
-            </CTAButton>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* 左側: テキストコンテンツ */}
+          <div className="text-center lg:text-left">
+            <Badge className="mb-6">開発中</Badge>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 mb-6 leading-tight">
+              写真詐欺、
+              <br />
+              <span className="text-sky-600">ゼロ</span>
+            </h1>
+            <p className="text-xl sm:text-2xl text-slate-600 mb-8 leading-relaxed">
+              <span className="font-bold text-sky-600">アプリ内カメラで撮影した写真だけ</span>が使える。
+              <br />
+              これが、写真詐欺を防ぐ唯一の方法です。
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+              <CTAButton className="text-lg px-10 py-5">
+                待機リストに登録する
+              </CTAButton>
+              <a
+                href="#how-it-works"
+                className="inline-flex items-center justify-center px-8 py-5 text-lg font-semibold text-slate-700 hover:text-sky-600 transition-colors"
+              >
+                仕組みを見る →
+              </a>
+            </div>
+            {/* 統計 */}
+            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200">
+              <div>
+                <div className="text-3xl sm:text-4xl font-bold text-sky-600">100%</div>
+                <div className="text-sm text-slate-600 mt-1">アプリ内カメラのみ</div>
+              </div>
+              <div>
+                <div className="text-3xl sm:text-4xl font-bold text-sky-600">0件</div>
+                <div className="text-sm text-slate-600 mt-1">写真詐欺のリスク</div>
+              </div>
+              <div>
+                <div className="text-3xl sm:text-4xl font-bold text-sky-600">∞</div>
+                <div className="text-sm text-slate-600 mt-1">安心できる出会い</div>
+              </div>
+            </div>
           </div>
-          
-          {/* アプリ内カメラの説明カード */}
-          <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-2xl border-2 border-sky-100 max-w-4xl mx-auto">
-            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
-              <div className="flex-shrink-0">
-                <div className="w-24 h-24 bg-gradient-to-br from-sky-400 to-sky-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
+
+          {/* 右側: スマートフォンモックアップ */}
+          <div className="relative">
+            <div className="relative mx-auto max-w-sm">
+              {/* スマートフォンのフレーム */}
+              <div className="relative bg-slate-900 rounded-[3rem] p-4 shadow-2xl">
+                <div className="bg-white rounded-[2.5rem] overflow-hidden">
+                  {/* ノッチ */}
+                  <div className="h-8 bg-slate-900 rounded-b-3xl"></div>
+                  {/* 画面コンテンツ */}
+                  <div className="aspect-[9/19.5] bg-gradient-to-br from-sky-50 to-blue-100 flex items-center justify-center">
+                    <ImagePlaceholder 
+                      label="スマートフォンアプリのモックアップ（アプリ内カメラ画面）"
+                      aspectRatio="aspect-[9/19.5]"
+                      className="rounded-none border-0"
+                      imageName="hero-app-mockup.png"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="text-left flex-1">
-                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
-                  アプリ内カメラのみ使用可能
-                </h3>
-                <p className="text-lg sm:text-xl text-slate-600 leading-relaxed">
-                  外部の写真やアルバムから選択することはできません。アプリ内のカメラで撮影した写真だけがプロフィール写真として使用できます。これにより、古い写真や加工された写真の使用を防ぎます。
-                </p>
-              </div>
+              {/* 装飾的な要素 */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-sky-400 rounded-full opacity-20 blur-2xl"></div>
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-400 rounded-full opacity-20 blur-2xl"></div>
             </div>
           </div>
         </div>
@@ -168,49 +210,64 @@ function HeroSection() {
   );
 }
 
-// コンポーネント: Problemセクション
-function ProblemSection() {
-  const problems = [
+// コンポーネント: Featuresセクション
+function FeaturesSection() {
+  const features = [
     {
       icon: "📸",
-      title: "古い写真を使い回す",
-      description: "何年も前の写真をプロフィールに使っている人がいます。実際に会うと、写真と本人が全く違うことも。"
+      title: "アプリ内カメラのみ",
+      description: "プロフィール写真は、アプリ内のカメラで撮影したものだけが使用可能。アルバムや外部写真は選択できません。",
+      highlight: true
+    },
+    {
+      icon: "🛡️",
+      title: "写真詐欺ゼロ",
+      description: "古い写真や加工された写真の使用を根本から防ぎます。会う前から安心です。",
+      highlight: false
     },
     {
       icon: "✨",
-      title: "過度な加工・フィルター",
-      description: "美顔アプリやフィルターで加工された写真が多く、実際の見た目とのギャップが大きいです。"
+      title: "最新の写真のみ",
+      description: "その場で撮影するため、必ず最新の写真が使われます。写真と本人が一致します。",
+      highlight: false
     },
     {
-      icon: "📱",
-      title: "外部写真の使用",
-      description: "アルバムから選んだ写真や、SNSから保存した写真を使えるため、本人確認ができません。"
+      icon: "🔒",
+      title: "本人確認",
+      description: "その場で撮影することで、写真が本人のものであることを確認できます。",
+      highlight: false
     }
   ];
 
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-slate-50">
+    <section id="features" className="py-24 sm:py-32 bg-white">
       <Container>
         <div className="text-center mb-16 sm:mb-20">
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
-            なぜ写真詐欺が起きるのか？
+          <Badge className="mb-6">REALの特徴</Badge>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6">
+            なぜ写真詐欺が起きないのか
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            従来のマッチングアプリでは、写真の出所を制限できていません
+          <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto">
+            アプリ内カメラのみ使用可能という仕組みが、すべての答えです
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
-          {problems.map((problem, index) => (
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-slate-200 hover:shadow-xl transition-shadow"
+              className={`p-8 sm:p-10 rounded-3xl transition-all hover:shadow-2xl ${
+                feature.highlight
+                  ? 'bg-gradient-to-br from-sky-50 to-blue-50 border-2 border-sky-200 shadow-xl'
+                  : 'bg-slate-50 border border-slate-200 hover:border-sky-200'
+              }`}
             >
-              <div className="text-5xl mb-6">{problem.icon}</div>
+              <div className="text-5xl mb-6">{feature.icon}</div>
               <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
-                {problem.title}
+                {feature.title}
               </h3>
-              <p className="text-slate-600 leading-relaxed text-lg">
-                {problem.description}
+              <p className="text-lg text-slate-600 leading-relaxed">
+                {feature.description}
               </p>
             </div>
           ))}
@@ -220,84 +277,169 @@ function ProblemSection() {
   );
 }
 
-// コンポーネント: Solutionセクション（アプリ内カメラの仕組み）
-function SolutionSection() {
+// コンポーネント: Comparisonセクション
+function ComparisonSection() {
   return (
-    <section id="how-it-works" className="py-20 sm:py-24 lg:py-28 bg-white">
+    <section className="py-24 sm:py-32 bg-slate-50">
       <Container>
         <div className="text-center mb-16 sm:mb-20">
-          <Badge className="mb-6 text-base">REALの解決策</Badge>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
-            アプリ内カメラで撮影した写真<span className="text-sky-600">だけ</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6">
+            従来のアプリ vs REAL
           </h2>
           <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto">
-            これが、写真詐欺を防ぐ唯一の方法です
+            違いは明確です
           </p>
         </div>
 
-        {/* 仕組みの説明 */}
-        <div className="max-w-5xl mx-auto mb-16">
-          <div className="bg-gradient-to-br from-sky-50 to-blue-50 rounded-3xl p-8 sm:p-12 border-2 border-sky-200">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">
-                  どうやって防ぐの？
-                </h3>
-                <ul className="space-y-4 text-lg text-slate-700">
-                  <li className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-sky-600 text-white rounded-full flex items-center justify-center font-bold">1</span>
-                    <span>アプリを開いて、プロフィール写真を設定</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-sky-600 text-white rounded-full flex items-center justify-center font-bold">2</span>
-                    <span>アプリ内のカメラで<strong className="text-sky-600">その場で撮影</strong></span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-sky-600 text-white rounded-full flex items-center justify-center font-bold">3</span>
-                    <span>アルバムや外部写真は<strong className="text-sky-600">選択不可</strong></span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <ImagePlaceholder 
-                  label="アプリ内カメラのUIモック"
-                  aspectRatio="aspect-[4/5]"
-                  className="rounded-2xl"
-                />
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+          {/* 従来のアプリ */}
+          <div className="bg-white p-8 sm:p-10 rounded-3xl border-2 border-red-200 shadow-lg">
+            <div className="text-center mb-8">
+              <div className="text-4xl mb-4">❌</div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">従来のアプリ</h3>
+              <p className="text-slate-600">アルバムから写真を選択可能</p>
+            </div>
+            <ul className="space-y-4 text-slate-700">
+              <li className="flex items-start gap-3">
+                <span className="text-red-500">✗</span>
+                <span>古い写真を使い回せる</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-red-500">✗</span>
+                <span>加工された写真が使える</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-red-500">✗</span>
+                <span>写真詐欺のリスクがある</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-red-500">✗</span>
+                <span>会う前から不安</span>
+              </li>
+            </ul>
+            <div className="mt-8">
+              <ImagePlaceholder 
+                label="従来のアプリのUI（アルバム選択画面）"
+                aspectRatio="aspect-video"
+                imageName="traditional-app.png"
+              />
+            </div>
+          </div>
+
+          {/* REAL */}
+          <div className="bg-gradient-to-br from-sky-50 to-blue-50 p-8 sm:p-10 rounded-3xl border-2 border-sky-300 shadow-xl relative">
+            <div className="absolute -top-4 -right-4 bg-sky-600 text-white px-4 py-2 rounded-full text-sm font-bold">
+              REAL
+            </div>
+            <div className="text-center mb-8">
+              <div className="text-4xl mb-4">✅</div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">REAL</h3>
+              <p className="text-slate-600">アプリ内カメラのみ使用可能</p>
+            </div>
+            <ul className="space-y-4 text-slate-700">
+              <li className="flex items-start gap-3">
+                <span className="text-sky-600 font-bold">✓</span>
+                <span>最新の写真のみ使用</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-sky-600 font-bold">✓</span>
+                <span>加工された写真は使用不可</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-sky-600 font-bold">✓</span>
+                <span>写真詐欺のリスクゼロ</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-sky-600 font-bold">✓</span>
+                <span>安心して会える</span>
+              </li>
+            </ul>
+            <div className="mt-8">
+              <ImagePlaceholder 
+                label="REALのアプリUI（アプリ内カメラ画面）"
+                aspectRatio="aspect-video"
+                imageName="real-app-camera.png"
+              />
             </div>
           </div>
         </div>
+      </Container>
+    </section>
+  );
+}
 
-        {/* メリット */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-sky-50 p-8 rounded-3xl border-2 border-sky-200">
-            <div className="text-4xl mb-4">✅</div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-3">
-              最新の写真のみ
-            </h3>
-            <p className="text-slate-600 leading-relaxed">
-              その場で撮影するため、必ず最新の写真が使われます。古い写真を使い回すことができません。
-            </p>
-          </div>
-          <div className="bg-sky-50 p-8 rounded-3xl border-2 border-sky-200">
-            <div className="text-4xl mb-4">🛡️</div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-3">
-              加工の防止
-            </h3>
-            <p className="text-slate-600 leading-relaxed">
-              アプリ内カメラで撮影するため、事前に加工された写真やフィルターをかけた写真の使用を防げます。
-            </p>
-          </div>
-          <div className="bg-sky-50 p-8 rounded-3xl border-2 border-sky-200">
-            <div className="text-4xl mb-4">🔒</div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-3">
-              本人確認
-            </h3>
-            <p className="text-slate-600 leading-relaxed">
-              その場で撮影することで、写真が本人のものであることを確認できます。
-            </p>
-          </div>
+// コンポーネント: How It Worksセクション
+function HowItWorksSection() {
+  const steps = [
+    {
+      number: "01",
+      title: "アプリを開く",
+      description: "REALアプリを開いて、プロフィール写真を設定します。",
+      image: "step1.png"
+    },
+    {
+      number: "02",
+      title: "アプリ内カメラで撮影",
+      description: "アルバムから選択することはできません。アプリ内のカメラでその場で撮影します。",
+      image: "step2-camera.png",
+      highlight: true
+    },
+    {
+      number: "03",
+      title: "写真が設定される",
+      description: "撮影した写真がプロフィール写真として設定されます。古い写真に戻すことはできません。",
+      image: "step3-profile.png"
+    }
+  ];
+
+  return (
+    <section id="how-it-works" className="py-24 sm:py-32 bg-white">
+      <Container>
+        <div className="text-center mb-16 sm:mb-20">
+          <Badge className="mb-6">仕組み</Badge>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6">
+            3ステップで始まる
+          </h2>
+          <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto">
+            シンプルで、確実な仕組み
+          </p>
+        </div>
+
+        <div className="space-y-16 sm:space-y-24">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+                index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+              }`}
+            >
+              <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold ${
+                    step.highlight
+                      ? 'bg-gradient-to-br from-sky-500 to-sky-600 text-white shadow-lg'
+                      : 'bg-slate-100 text-slate-700'
+                  }`}>
+                    {step.number}
+                  </div>
+                  <h3 className="text-3xl sm:text-4xl font-bold text-slate-900">
+                    {step.title}
+                  </h3>
+                </div>
+                <p className="text-xl text-slate-600 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+              <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+                <ImagePlaceholder 
+                  label={step.title}
+                  aspectRatio="aspect-[9/16]"
+                  imageName={step.image}
+                  className="max-w-sm mx-auto"
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </Container>
     </section>
@@ -308,27 +450,30 @@ function SolutionSection() {
 function BenefitsSection() {
   const benefits = [
     {
+      icon: "💙",
       title: "安心して会える",
       description: "写真と本人が一致するため、会う前の不安がありません。期待通りの出会いができます。"
     },
     {
+      icon: "⏰",
       title: "時間の無駄がない",
       description: "写真と違う人に会ってがっかりすることがなくなります。お互いの時間を大切にできます。"
     },
     {
+      icon: "🤝",
       title: "誠実なコミュニケーション",
       description: "写真から始まる信頼関係。最初から誠実に向き合える環境です。"
     }
   ];
 
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-gradient-to-b from-white to-sky-50">
+    <section className="py-24 sm:py-32 bg-gradient-to-b from-white to-sky-50">
       <Container>
         <div className="text-center mb-16 sm:mb-20">
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6">
             アプリ内カメラがもたらす安心
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto">
             写真詐欺のない環境で、本当の出会いを
           </p>
         </div>
@@ -336,9 +481,9 @@ function BenefitsSection() {
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-slate-200 hover:shadow-2xl transition-shadow"
+              className="bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-slate-200 hover:shadow-2xl transition-all hover:scale-105"
             >
-              <div className="text-5xl mb-6">💙</div>
+              <div className="text-5xl mb-6">{benefit.icon}</div>
               <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
                 {benefit.title}
               </h3>
@@ -357,24 +502,33 @@ function BenefitsSection() {
 function EarlyBenefitsSection() {
   const benefits = [
     {
+      icon: "🚀",
       title: "先行アクセス",
       description: "リリース時に、待機リスト登録者を優先的にご案内します。"
     },
     {
+      icon: "⭐",
       title: "初期ブースト",
       description: "サービス開始時から、より多くの方と出会える機会を提供します。"
     },
     {
+      icon: "💬",
       title: "フィードバック参加",
       description: "開発中の機能や改善点について、ご意見をいただく機会を設けます。"
     }
   ];
 
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-sky-600 text-white">
-      <Container>
+    <section className="py-24 sm:py-32 bg-gradient-to-br from-sky-600 via-sky-500 to-blue-600 text-white relative overflow-hidden">
+      {/* 装飾的な背景要素 */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full filter blur-3xl"></div>
+      </div>
+      
+      <Container className="relative z-10">
         <div className="text-center mb-16 sm:mb-20">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6">
             待機リスト特典
           </h2>
           <p className="text-xl sm:text-2xl text-sky-100 max-w-3xl mx-auto">
@@ -385,9 +539,9 @@ function EarlyBenefitsSection() {
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="bg-white/10 backdrop-blur-sm p-8 sm:p-10 rounded-3xl border-2 border-white/20"
+              className="bg-white/10 backdrop-blur-md p-8 sm:p-10 rounded-3xl border-2 border-white/20 hover:bg-white/20 transition-all"
             >
-              <div className="text-4xl mb-4">🎁</div>
+              <div className="text-5xl mb-6">{benefit.icon}</div>
               <h3 className="text-2xl sm:text-3xl font-bold mb-4">
                 {benefit.title}
               </h3>
@@ -398,7 +552,7 @@ function EarlyBenefitsSection() {
           ))}
         </div>
         <div className="text-center">
-          <CTAButton variant="secondary" className="bg-white text-sky-600 border-white hover:bg-sky-50 text-xl sm:text-2xl px-10 sm:px-12 py-5 sm:py-6">
+          <CTAButton variant="secondary" className="bg-white text-sky-600 border-white hover:bg-sky-50 text-xl px-12 py-6">
             待機リストに登録する
           </CTAButton>
         </div>
@@ -429,18 +583,14 @@ function FAQSection() {
     {
       question: "写真詐欺を完全に防げますか？",
       answer: "アプリ内カメラのみを使用することで、古い写真や加工された写真の使用を防ぐことができます。ただし、撮影時の角度や照明などによる見た目の違いは完全には防げない可能性があります。それでも、従来のマッチングアプリと比べて、写真詐欺のリスクを大幅に減らすことができます。"
-    },
-    {
-      question: "待機リストに登録すると、必ず使えますか？",
-      answer: "待機リストへの登録は、リリース時の優先案内を受けるためのものです。サービス開始時には、登録者を優先的にご案内する予定です。"
     }
   ];
 
   return (
-    <section id="faq" className="py-20 sm:py-24 lg:py-28 bg-slate-50">
+    <section id="faq" className="py-24 sm:py-32 bg-slate-50">
       <Container>
         <div className="text-center mb-16 sm:mb-20">
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6">
             よくある質問
           </h2>
         </div>
@@ -448,7 +598,7 @@ function FAQSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-slate-200"
+              className="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-slate-200 hover:shadow-xl transition-shadow"
             >
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4">
                 {faq.question}
@@ -460,7 +610,7 @@ function FAQSection() {
           ))}
         </div>
         <div className="text-center mt-16 sm:mt-20">
-          <CTAButton className="text-xl sm:text-2xl px-10 sm:px-12 py-5 sm:py-6">
+          <CTAButton className="text-xl px-12 py-6">
             待機リストに登録する
           </CTAButton>
         </div>
@@ -472,11 +622,16 @@ function FAQSection() {
 // コンポーネント: Footer
 function Footer() {
   return (
-    <footer className="py-12 sm:py-16 bg-slate-900 text-slate-300">
+    <footer className="py-16 sm:py-20 bg-slate-900 text-slate-300">
       <Container>
-        <div className="text-center space-y-6">
-          <div className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Real
+        <div className="text-center space-y-8">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-12 bg-gradient-to-br from-sky-400 to-sky-600 rounded-xl flex items-center justify-center shadow-lg">
+              <span className="text-white font-bold text-2xl">R</span>
+            </div>
+            <div className="text-3xl sm:text-4xl font-bold text-white">
+              Real
+            </div>
           </div>
           <div className="text-sm sm:text-base space-y-3 max-w-3xl mx-auto leading-relaxed">
             <p>
@@ -508,8 +663,9 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <ProblemSection />
-        <SolutionSection />
+        <FeaturesSection />
+        <ComparisonSection />
+        <HowItWorksSection />
         <BenefitsSection />
         <EarlyBenefitsSection />
         <FAQSection />
