@@ -20,7 +20,7 @@ function CTAButton({ children, className = '' }: { children: React.ReactNode; cl
       href={FORM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-sky-500 to-sky-600 rounded-full hover:from-sky-600 hover:to-sky-700 transition-all shadow-xl shadow-sky-500/40 hover:shadow-2xl hover:scale-105 ${className}`}
+      className={`inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 rounded-full hover:from-indigo-700 hover:via-blue-700 hover:to-indigo-800 transition-all shadow-xl shadow-indigo-500/50 hover:shadow-2xl hover:scale-105 ${className}`}
     >
       {children}
     </a>
@@ -41,7 +41,7 @@ function Header() {
 
   return (
     <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-      isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-md' : 'bg-white'
+      isScrolled ? 'bg-white/98 backdrop-blur-xl shadow-lg border-b border-indigo-100/50' : 'bg-white/95 backdrop-blur-sm'
     }`}>
       <Container>
         <div className="flex items-center justify-between h-16">
@@ -57,10 +57,10 @@ function Header() {
                 if (fallback) fallback.style.display = 'flex';
               }}
             />
-            <div className="hidden w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-lg items-center justify-center">
+            <div className="hidden w-8 h-8 bg-gradient-to-br from-indigo-500 via-blue-500 to-indigo-600 rounded-lg items-center justify-center">
               <span className="text-white font-bold text-sm">R</span>
             </div>
-            <div className="text-xl font-bold bg-gradient-to-r from-sky-500 to-sky-600 bg-clip-text text-transparent">
+            <div className="text-xl font-bold bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 bg-clip-text text-transparent">
               Real
             </div>
           </div>
@@ -76,16 +76,23 @@ function Header() {
 // コンポーネント: Heroセクション
 function HeroSection() {
   return (
-    <section className="pt-12 pb-16 sm:pt-20 sm:pb-24 bg-gradient-to-b from-white to-sky-50/30">
-      <Container>
+    <section className="pt-12 pb-16 sm:pt-20 sm:pb-24 bg-gradient-to-b from-white via-indigo-50/40 to-blue-50/60 relative overflow-hidden">
+      {/* 水彩画風の背景装飾 */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-200/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+        <div className="absolute top-20 left-0 w-96 h-96 bg-blue-200/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-0 right-20 w-96 h-96 bg-cyan-200/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+      </div>
+      
+      <Container className="relative z-10">
         <div className="text-center mb-12">
-          <div className="inline-block px-4 py-1.5 bg-sky-100 text-sky-700 text-sm font-bold rounded-full mb-6">
+          <div className="inline-block px-4 py-1.5 bg-indigo-100/80 text-indigo-700 text-sm font-bold rounded-full mb-6 backdrop-blur-sm border border-indigo-200/50">
             開発中
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
-            写真詐欺、<span className="text-sky-600">ゼロ</span>
+            写真詐欺、<span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 bg-clip-text text-transparent">ゼロ</span>
           </h1>
-          <p className="text-xl sm:text-2xl text-slate-600 mb-8 max-w-2xl mx-auto font-medium">
+          <p className="text-xl sm:text-2xl text-slate-700 mb-8 max-w-2xl mx-auto font-medium">
             アプリ内カメラで撮影した写真だけが使える
             <br />
             マッチングアプリ
@@ -95,11 +102,11 @@ function HeroSection() {
           </CTAButton>
           
           {/* 料金表示 */}
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-md border border-slate-200">
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-indigo-100/50">
             <span className="text-slate-600 text-sm">料金:</span>
             <span className="text-slate-900 font-bold">男性 ¥2,970/月</span>
-            <span className="text-slate-400">|</span>
-            <span className="text-sky-600 font-bold">女性 無料</span>
+            <span className="text-slate-300">|</span>
+            <span className="text-indigo-600 font-bold">女性 無料</span>
           </div>
         </div>
 
@@ -129,7 +136,7 @@ function HeroSection() {
             </div>
             {/* 説明テキスト */}
             <div className="mt-6 text-center">
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-lg border-2 border-sky-200">
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border-2 border-indigo-200/50">
                 <span className="text-2xl">✓</span>
                 <span className="text-slate-900 font-bold">プロフィール写真と実際に会う人が同じ見た目</span>
               </div>
@@ -144,8 +151,14 @@ function HeroSection() {
 // コンポーネント: Differenceセクション（通常のアプリとの違い）
 function DifferenceSection() {
   return (
-    <section className="py-16 sm:py-20 bg-white">
-      <Container>
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-white to-indigo-50/30 relative overflow-hidden">
+      {/* 水彩画風の背景装飾 */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 right-10 w-72 h-72 bg-blue-200/20 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-72 h-72 bg-indigo-200/20 rounded-full mix-blend-multiply filter blur-3xl"></div>
+      </div>
+      
+      <Container className="relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
             通常のアプリとの違い
@@ -154,7 +167,7 @@ function DifferenceSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {/* 通常のアプリ */}
-          <div className="bg-slate-50 p-8 rounded-2xl border-2 border-slate-200">
+          <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border-2 border-slate-200/50 shadow-lg">
             <div className="text-center mb-6">
               <div className="text-3xl mb-3">❌</div>
               <h3 className="text-xl font-bold text-slate-900">通常のアプリ</h3>
@@ -176,8 +189,8 @@ function DifferenceSection() {
           </div>
 
           {/* REAL */}
-          <div className="bg-gradient-to-br from-sky-50 to-blue-50 p-8 rounded-2xl border-2 border-sky-300 relative">
-            <div className="absolute -top-3 -right-3 bg-sky-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+          <div className="bg-gradient-to-br from-indigo-50/80 via-blue-50/80 to-indigo-100/60 backdrop-blur-sm p-8 rounded-2xl border-2 border-indigo-300/50 relative shadow-lg">
+            <div className="absolute -top-3 -right-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
               REAL
             </div>
             <div className="text-center mb-6">
@@ -186,15 +199,15 @@ function DifferenceSection() {
             </div>
             <ul className="space-y-3 text-slate-700 text-sm">
               <li className="flex items-start gap-2">
-                <span className="text-sky-600 font-bold mt-1">✓</span>
+                <span className="text-indigo-600 font-bold mt-1">✓</span>
                 <span><strong>アプリ内カメラで撮影した写真のみ</strong></span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-sky-600 font-bold mt-1">✓</span>
+                <span className="text-indigo-600 font-bold mt-1">✓</span>
                 <span>最新の写真が使われる</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-sky-600 font-bold mt-1">✓</span>
+                <span className="text-indigo-600 font-bold mt-1">✓</span>
                 <span>写真詐欺のリスクを大幅に削減</span>
               </li>
             </ul>
@@ -208,8 +221,14 @@ function DifferenceSection() {
 // コンポーネント: How It Worksセクション（簡潔に）
 function HowItWorksSection() {
   return (
-    <section className="py-16 sm:py-20 bg-sky-50">
-      <Container>
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-indigo-50/40 via-blue-50/50 to-indigo-50/40 relative overflow-hidden">
+      {/* 水彩画風の背景装飾 */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-20 w-80 h-80 bg-indigo-200/20 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-200/20 rounded-full mix-blend-multiply filter blur-3xl"></div>
+      </div>
+      
+      <Container className="relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
             仕組み
@@ -221,10 +240,10 @@ function HowItWorksSection() {
 
         <div className="max-w-4xl mx-auto space-y-8">
           {/* ステップ1: プロフィール一覧 */}
-          <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border-2 border-slate-200">
+          <div className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-lg border-2 border-indigo-100/50">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-sky-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                <div className="w-16 h-16 bg-gradient-to-br from-indigo-600 to-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
                   1
                 </div>
               </div>
@@ -239,7 +258,7 @@ function HowItWorksSection() {
               <div className="flex-shrink-0">
                 {/* モヤがかかったプロフィール画像 */}
                 <div className="relative">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-sky-200 to-sky-300 border-4 border-white shadow-lg relative overflow-hidden">
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-200 to-blue-200 border-4 border-white shadow-lg relative overflow-hidden">
                     {/* 顔の簡易的な表現 */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-4xl">😊</div>
@@ -256,10 +275,10 @@ function HowItWorksSection() {
           </div>
 
           {/* ステップ2: マッチング */}
-          <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border-2 border-slate-200">
+          <div className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-lg border-2 border-indigo-100/50">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-sky-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                <div className="w-16 h-16 bg-gradient-to-br from-indigo-600 to-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
                   2
                 </div>
               </div>
@@ -278,13 +297,13 @@ function HowItWorksSection() {
           </div>
 
           {/* ステップ3: 3往復のメッセージ */}
-          <div className="bg-gradient-to-br from-sky-50 to-blue-50 p-6 sm:p-8 rounded-2xl shadow-lg border-2 border-sky-300 relative">
-            <div className="absolute -top-3 -right-3 bg-sky-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+          <div className="bg-gradient-to-br from-indigo-50/90 via-blue-50/90 to-indigo-100/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-lg border-2 border-indigo-300/50 relative">
+            <div className="absolute -top-3 -right-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
               重要
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-sky-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                <div className="w-16 h-16 bg-gradient-to-br from-indigo-600 to-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
                   3
                 </div>
               </div>
@@ -299,7 +318,7 @@ function HowItWorksSection() {
               <div className="flex-shrink-0">
                 {/* クリアなプロフィール画像 */}
                 <div className="relative">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-sky-200 to-sky-300 border-4 border-white shadow-lg relative overflow-hidden">
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-200 to-blue-200 border-4 border-white shadow-lg relative overflow-hidden">
                     {/* 顔の簡易的な表現 */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-4xl animate-fade-in">😊</div>
@@ -307,7 +326,7 @@ function HowItWorksSection() {
                     {/* モヤが解除されるアニメーション */}
                     <div className="absolute inset-0 bg-white/0 backdrop-blur-0 animate-blur-out"></div>
                   </div>
-                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-sky-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-indigo-600 to-blue-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap shadow-md">
                     クリアに！
                   </div>
                 </div>
@@ -318,9 +337,9 @@ function HowItWorksSection() {
 
         {/* 補足説明 */}
         <div className="mt-12 text-center max-w-3xl mx-auto">
-          <div className="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+          <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-md border border-indigo-100/50">
             <p className="text-slate-700 leading-relaxed">
-              <strong className="text-sky-600">この設計により、</strong>写真だけで判断せず、プロフィールやメッセージの内容で判断できるため、より深い出会いが生まれます。また、3往復のメッセージをやり取りすることで、お互いの顔を確認してから会うことができます。
+              <strong className="bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">この設計により、</strong>写真だけで判断せず、プロフィールやメッセージの内容で判断できるため、より深い出会いが生まれます。また、3往復のメッセージをやり取りすることで、お互いの顔を確認してから会うことができます。
             </p>
           </div>
         </div>
@@ -332,24 +351,30 @@ function HowItWorksSection() {
 // コンポーネント: Pricingセクション
 function PricingSection() {
   return (
-    <section className="py-16 sm:py-20 bg-white">
-      <Container>
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-white to-indigo-50/30 relative overflow-hidden">
+      {/* 水彩画風の背景装飾 */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 right-10 w-96 h-96 bg-blue-200/20 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-96 h-96 bg-indigo-200/20 rounded-full mix-blend-multiply filter blur-3xl"></div>
+      </div>
+      
+      <Container className="relative z-10">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-gradient-to-br from-sky-50 to-blue-50 p-8 sm:p-12 rounded-3xl border-2 border-sky-200 text-center">
+          <div className="bg-gradient-to-br from-indigo-50/90 via-blue-50/90 to-indigo-100/70 backdrop-blur-sm p-8 sm:p-12 rounded-3xl border-2 border-indigo-200/50 text-center shadow-xl">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-8">
               料金
             </h2>
             <div className="space-y-6">
-              <div className="bg-white p-6 rounded-2xl shadow-md">
+              <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-md border border-indigo-100/50">
                 <div className="text-slate-600 text-sm mb-2">男性</div>
                 <div className="text-4xl font-extrabold text-slate-900 mb-1">
                   ¥2,970
                 </div>
                 <div className="text-slate-500 text-sm">/月</div>
               </div>
-              <div className="bg-white p-6 rounded-2xl shadow-md border-2 border-sky-300">
+              <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-md border-2 border-indigo-300/50">
                 <div className="text-slate-600 text-sm mb-2">女性</div>
-                <div className="text-4xl font-extrabold text-sky-600 mb-1">
+                <div className="text-4xl font-extrabold bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent mb-1">
                   無料
                 </div>
                 <div className="text-slate-500 text-sm">ずっと</div>
@@ -380,8 +405,14 @@ function FAQSection() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-slate-50">
-      <Container>
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-indigo-50/40 to-white relative overflow-hidden">
+      {/* 水彩画風の背景装飾 */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-20 w-80 h-80 bg-blue-200/15 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-indigo-200/15 rounded-full mix-blend-multiply filter blur-3xl"></div>
+      </div>
+      
+      <Container className="relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
             よくある質問
@@ -391,7 +422,7 @@ function FAQSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-2xl shadow-md border border-slate-200"
+              className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-md border border-indigo-100/50"
             >
               <h3 className="font-bold text-slate-900 mb-3">
                 {faq.question}
@@ -415,8 +446,14 @@ function FAQSection() {
 // コンポーネント: Footer
 function Footer() {
   return (
-    <footer className="py-12 bg-slate-900 text-slate-300">
-      <Container>
+    <footer className="py-12 bg-gradient-to-b from-indigo-900 via-indigo-800 to-slate-900 text-slate-300 relative overflow-hidden">
+      {/* 水彩画風の背景装飾 */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-600/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
+      </div>
+      
+      <Container className="relative z-10">
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center gap-2 mb-4">
             <img 
@@ -430,7 +467,7 @@ function Footer() {
                 if (fallback) fallback.style.display = 'flex';
               }}
             />
-            <div className="hidden w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-lg items-center justify-center">
+            <div className="hidden w-8 h-8 bg-gradient-to-br from-indigo-400 to-blue-500 rounded-lg items-center justify-center">
               <span className="text-white font-bold text-sm">R</span>
             </div>
             <div className="text-xl font-bold text-white">
