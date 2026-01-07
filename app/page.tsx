@@ -453,6 +453,58 @@ function FAQSection() {
   );
 }
 
+// コンポーネント: Messageセクション（開発チームの想い）
+function MessageSection() {
+  return (
+    <section className="py-16 sm:py-20 bg-white relative overflow-hidden">
+      {/* 水彩画風の背景装飾 - 白を中心に、周りに薄い青、紫、ピンク */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-20 w-[600px] h-[600px] bg-sky-100/30 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-blue-100/25 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute top-40 right-40 w-[450px] h-[450px] bg-purple-100/15 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute bottom-40 left-40 w-[400px] h-[400px] bg-pink-100/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
+      </div>
+      
+      <Container className="relative z-10">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-white/90 backdrop-blur-sm p-8 sm:p-12 rounded-3xl shadow-xl border-2 border-sky-100/50">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
+                開発チームの想い
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-sky-400 via-blue-400 to-cyan-400 mx-auto rounded-full"></div>
+            </div>
+            
+            <div className="space-y-6 text-slate-700 leading-relaxed">
+              <p className="text-lg">
+                開発・運営を担当している私も、マッチングアプリに<strong className="text-slate-900">3年以上どっぷりつかった経験</strong>があります。そこで数多くの「写真と違う」を経験してきました。
+              </p>
+              
+              <p className="text-lg">
+                貴重な休みが無駄になる。もし、詐欺のない本当の自分を最初から出してくれれば、<strong className="text-slate-900">お互いにとって無駄の少ない時間になるのになあ</strong>と思うことが度々ありました。
+              </p>
+              
+              <p className="text-lg">
+                そこで、<span className="bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent font-bold">誠実で安心な出会い</span>のために、<strong className="text-slate-900">無加工で自撮りの写真しか使用できない</strong>マッチングアプリを開発しています。
+              </p>
+              
+              <p className="text-lg">
+                とは言っても、いきなり自撮り全開は抵抗のある人も多いと思うので、<strong className="text-slate-900">マッチして会話をするまでは薄いぼかしを入れよう</strong>と思っています。
+              </p>
+              
+              <div className="pt-6 mt-8 border-t border-sky-100">
+                <p className="text-xl font-bold text-center bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                  お互いがお互いのことを思う誠実なマッチングアプリをよろしくお願いします。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 // コンポーネント: Footer
 function Footer() {
   return (
@@ -507,6 +559,7 @@ export default function Home() {
         <HowItWorksSection />
         <PricingSection />
         <FAQSection />
+        <MessageSection />
       </main>
       <Footer />
     </div>
