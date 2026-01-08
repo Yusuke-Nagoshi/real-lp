@@ -98,7 +98,7 @@ function HeroSection() {
             写真詐欺、<span className="bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">ゼロ</span>
           </h1>
           <p className="text-xl sm:text-2xl text-slate-700 mb-8 max-w-2xl mx-auto font-medium">
-            アプリ内カメラで撮影した写真だけが使える
+            アプリ内カメラで撮影した写真のみ使える
             <br />
             マッチングアプリ
           </p>
