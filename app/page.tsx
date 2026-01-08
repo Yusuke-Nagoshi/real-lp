@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSedmR_BbRrFlYi7mbY2W08RIJmimYWsq03BEgsuRS_JTrZn3Q/viewform?usp=dialog';
+const FORM_URL = '/go/form';
 
 // コンポーネント: コンテナ
 function Container({ children, className = '' }: { children: React.ReactNode; className?: string }) {
