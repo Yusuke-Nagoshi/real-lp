@@ -105,7 +105,7 @@ function HeroSection() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-sky-100/80 text-sky-700 text-sm font-bold rounded-full mb-4 backdrop-blur-sm border border-sky-200/50">
             <span>🚀</span>
-            <span>5月リリース予定</span>
+            <span>3月リリース予定</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
             写真詐欺、<span className="bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">ゼロ</span>
@@ -449,7 +449,7 @@ function FAQSection() {
     },
     {
       question: "いつリリース？",
-      answer: "5月ごろのリリースの予定です、事前登録者に優先的にご案内します。"
+      answer: "3月ごろのリリースの予定です、事前登録者に優先的にご案内します。"
     }
   ];
 
