@@ -14,13 +14,25 @@ function Container({ children, className = '' }: { children: React.ReactNode; cl
 }
 
 // コンポーネント: CTAボタン
-function CTAButton({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+function CTAButton({ children, className = '', variant = 'primary' }: { children: React.ReactNode; className?: string; variant?: 'primary' | 'secondary' }) {
+  if (variant === 'secondary') {
+    return (
+      <a
+        href={FORM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`inline-flex items-center justify-center px-6 py-3 text-base font-bold text-sky-600 bg-white border-2 border-sky-400 rounded-full hover:bg-sky-50 transition-all shadow-lg hover:shadow-xl ${className}`}
+      >
+        {children}
+      </a>
+    );
+  }
   return (
     <a
       href={FORM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-sky-400 via-blue-400 to-cyan-400 rounded-full hover:from-sky-500 hover:via-blue-500 hover:to-cyan-500 transition-all shadow-xl shadow-sky-400/40 hover:shadow-2xl hover:scale-105 ${className}`}
+      className={`inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-gradient-to-r from-sky-400 via-blue-400 to-cyan-400 rounded-full hover:from-sky-500 hover:via-blue-500 hover:to-cyan-500 transition-all shadow-2xl shadow-sky-400/50 hover:shadow-3xl hover:scale-110 ${className}`}
     >
       {children}
     </a>
@@ -64,8 +76,8 @@ function Header() {
               Real
             </div>
           </div>
-          <CTAButton className="text-sm px-6 py-3">
-            事前登録
+          <CTAButton className="text-sm px-5 py-2.5">
+            無料で先行案内
           </CTAButton>
         </div>
       </Container>
@@ -91,27 +103,30 @@ function HeroSection() {
       
       <Container className="relative z-10">
         <div className="text-center mb-12">
-          <div className="inline-block px-4 py-1.5 bg-sky-100/80 text-sky-700 text-sm font-bold rounded-full mb-6 backdrop-blur-sm border border-sky-200/50">
-            開発中
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-sky-100/80 text-sky-700 text-sm font-bold rounded-full mb-4 backdrop-blur-sm border border-sky-200/50">
+            <span>🚀</span>
+            <span>5月リリース予定</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
             写真詐欺、<span className="bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">ゼロ</span>
           </h1>
-          <p className="text-xl sm:text-2xl text-slate-700 mb-8 max-w-2xl mx-auto font-medium">
+          <p className="text-xl sm:text-2xl text-slate-700 mb-3 max-w-2xl mx-auto font-medium">
             アプリ内カメラで撮影した写真のみ使える
             <br />
             マッチングアプリ
           </p>
-          <CTAButton className="mb-8">
-            事前登録する
+          <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+            アプリ内カメラ限定＋一定のやりとり後にクリア表示で、写真詐欺を防ぎます
+          </p>
+          
+          <CTAButton className="mb-4">
+            無料で先行案内を受け取る（30秒）
           </CTAButton>
           
-          {/* 料金表示 */}
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-sky-100/50">
-            <span className="text-slate-600 text-sm">料金:</span>
-            <span className="text-slate-900 font-bold">男性 ¥2,970/月</span>
-            <span className="text-slate-300">|</span>
-            <span className="text-sky-600 font-bold">女性 無料</span>
+          <div className="mb-6 text-xs sm:text-sm text-slate-500 space-y-1">
+            <p>✓ 登録は無料 / メールアドレスだけ / いつでも解除OK</p>
+            <p>✓ 事前登録者にβ版の優先招待を送ります</p>
+            <p className="text-slate-400 mt-2">※ 事前登録は無料です。リリース時に優先的にご案内します。</p>
           </div>
         </div>
 
@@ -135,7 +150,6 @@ function HeroSection() {
                 <div className="text-center">
                   <div className="text-4xl mb-4">📸</div>
                   <p className="text-sky-600 font-bold text-lg">プロフィールと実物が同じ</p>
-                  <p className="text-sky-500 text-sm mt-2">画像を配置: /public/profile-match-image.jpg</p>
                 </div>
               </div>
             </div>
@@ -171,7 +185,7 @@ function DifferenceSection() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
           {/* 通常のアプリ */}
           <div className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl border-2 border-slate-200/50 shadow-lg">
             <div className="text-center mb-6">
@@ -218,6 +232,18 @@ function DifferenceSection() {
               </li>
             </ul>
           </div>
+        </div>
+        
+        {/* 中間CTA */}
+        <div className="text-center">
+          <p className="text-sm text-slate-600 mb-4">
+            <span className="font-semibold text-sky-600">30秒で完了</span>
+            <span className="mx-2">・</span>
+            <span className="font-semibold text-sky-600">完全無料</span>
+          </p>
+          <CTAButton>
+            無料で先行案内を受け取る（30秒）
+          </CTAButton>
         </div>
       </Container>
     </section>
@@ -344,12 +370,26 @@ function HowItWorksSection() {
         </div>
 
         {/* 補足説明 */}
-        <div className="mt-12 text-center max-w-3xl mx-auto">
+        <div className="mt-12 text-center max-w-3xl mx-auto mb-12">
           <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-md border border-sky-100/50">
             <p className="text-slate-700 leading-relaxed">
               <strong className="bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">この設計により、</strong>写真だけで判断せず、プロフィールやメッセージの内容で判断できるため、より深い出会いが生まれます。また、3往復のメッセージをやり取りすることで、お互いの顔を確認してから会うことができます。
             </p>
           </div>
+        </div>
+        
+        {/* 中盤CTA */}
+        <div className="text-center">
+          <p className="text-sm text-slate-600 mb-4">
+            <span className="font-semibold text-sky-600">30秒で完了</span>
+            <span className="mx-2">・</span>
+            <span className="font-semibold text-sky-600">完全無料</span>
+            <span className="mx-2">・</span>
+            <span className="font-semibold text-sky-600">メールアドレスのみ</span>
+          </p>
+          <CTAButton>
+            無料で先行案内を受け取る（30秒）
+          </CTAButton>
         </div>
       </Container>
     </section>
@@ -444,8 +484,15 @@ function FAQSection() {
           ))}
         </div>
         <div className="text-center mt-12">
+          <div className="mb-4">
+            <p className="text-sm text-slate-600 mb-2">
+              <span className="font-semibold text-sky-600">30秒で完了</span>
+              <span className="mx-2">・</span>
+              <span className="font-semibold text-sky-600">完全無料</span>
+            </p>
+          </div>
           <CTAButton>
-            事前登録する
+            無料で先行案内を受け取る（30秒）
           </CTAButton>
         </div>
       </Container>
@@ -540,11 +587,52 @@ function Footer() {
             <p>※ 開発中のため、仕様は変更される可能性があります</p>
             <p>※ 18歳以上の方のみご利用いただけます</p>
             <p>※ プロフィール写真はアプリ内カメラで撮影したもののみ使用可能です</p>
+            
+            {/* フッターリンク */}
+            <div className="pt-6 border-t border-slate-600/30 mt-6">
+              <div className="flex flex-wrap items-center justify-center gap-4 text-slate-400">
+                <a href="/privacy" className="hover:text-slate-200 transition-colors underline">
+                  プライバシーポリシー
+                </a>
+                <span className="text-slate-600">|</span>
+                <a href="/terms" className="hover:text-slate-200 transition-colors underline">
+                  利用規約
+                </a>
+                <span className="text-slate-600">|</span>
+                <a href="/company" className="hover:text-slate-200 transition-colors underline">
+                  運営者情報
+                </a>
+              </div>
+            </div>
+            
             <p className="pt-4 text-slate-400">© 2024 REAL. All rights reserved.</p>
           </div>
         </div>
       </Container>
     </footer>
+  );
+}
+
+// コンポーネント: モバイル下部固定CTA（Sticky bottom CTA）
+function MobileStickyCTA() {
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden safe-area-bottom">
+      <div className="bg-white/98 backdrop-blur-lg border-t-2 border-sky-200/50 shadow-2xl">
+        <div className="px-4 py-3 pb-safe">
+          <a
+            href={FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full inline-flex items-center justify-center px-6 py-4 text-lg font-bold text-white bg-gradient-to-r from-sky-400 via-blue-400 to-cyan-400 rounded-full hover:from-sky-500 hover:via-blue-500 hover:to-cyan-500 transition-all shadow-xl shadow-sky-400/40 active:scale-95"
+          >
+            無料で先行案内を受け取る（30秒）
+          </a>
+          <p className="text-xs text-slate-500 text-center mt-2">
+            登録無料 / メールだけ / いつでも解除OK
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -562,6 +650,7 @@ export default function Home() {
         <MessageSection />
       </main>
       <Footer />
+      <MobileStickyCTA />
     </div>
   );
 }
