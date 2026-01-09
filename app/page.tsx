@@ -120,7 +120,7 @@ function HeroSection() {
           </p>
           
           <CTAButton className="mb-4">
-            無料で先行案内を受け取る（30秒）
+            無料で先行案内を受け取る
           </CTAButton>
           
           <div className="mb-6 text-xs sm:text-sm text-slate-500 space-y-1">
