@@ -32,7 +32,7 @@ function CTAButton({ children, className = '', variant = 'primary' }: { children
       href={FORM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-slate-700 rounded-lg hover:bg-slate-800 transition-colors shadow-sm hover:shadow-md ${className}`}
+      className={`inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-sky-600 rounded-lg hover:bg-sky-700 transition-colors shadow-sm hover:shadow-md ${className}`}
     >
       {children}
     </a>
@@ -602,28 +602,6 @@ function Footer() {
   );
 }
 
-// コンポーネント: モバイル下部固定CTA（Sticky bottom CTA）
-function MobileStickyCTA() {
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden safe-area-bottom">
-      <div className="bg-white/98 backdrop-blur-lg border-t-2 border-sky-200/50 shadow-2xl">
-        <div className="px-4 py-3 pb-safe">
-          <a
-            href={FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full inline-flex items-center justify-center px-6 py-4 text-base font-semibold text-white bg-slate-700 rounded-lg hover:bg-slate-800 transition-colors shadow-sm active:opacity-90"
-          >
-            事前登録する
-          </a>
-          <p className="text-xs text-slate-500 text-center mt-2">
-            登録は無料です。メールアドレスのみで完了します。
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // メインコンポーネント
 export default function Home() {
@@ -639,7 +617,6 @@ export default function Home() {
         <MessageSection />
       </main>
       <Footer />
-      <MobileStickyCTA />
     </div>
   );
 }
