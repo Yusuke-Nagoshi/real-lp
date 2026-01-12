@@ -13,7 +13,7 @@ function Container({ children, className = '' }: { children: React.ReactNode; cl
   );
 }
 
-// コンポーネント: CTAボタン
+// コンポーネント: CTAボタン（誠実で安心感のあるデザイン）
 function CTAButton({ children, className = '', variant = 'primary' }: { children: React.ReactNode; className?: string; variant?: 'primary' | 'secondary' }) {
   if (variant === 'secondary') {
     return (
@@ -21,7 +21,7 @@ function CTAButton({ children, className = '', variant = 'primary' }: { children
         href={FORM_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className={`inline-flex items-center justify-center px-6 py-3 text-base font-bold text-sky-600 bg-white border-2 border-sky-400 rounded-full hover:bg-sky-50 transition-all shadow-lg hover:shadow-xl ${className}`}
+        className={`inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors ${className}`}
       >
         {children}
       </a>
@@ -32,7 +32,7 @@ function CTAButton({ children, className = '', variant = 'primary' }: { children
       href={FORM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-gradient-to-r from-sky-400 via-blue-400 to-cyan-400 rounded-full hover:from-sky-500 hover:via-blue-500 hover:to-cyan-500 transition-all shadow-2xl shadow-sky-400/50 hover:shadow-3xl hover:scale-110 ${className}`}
+      className={`inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-slate-700 rounded-lg hover:bg-slate-800 transition-colors shadow-sm hover:shadow-md ${className}`}
     >
       {children}
     </a>
@@ -76,8 +76,8 @@ function Header() {
               Real
             </div>
           </div>
-          <CTAButton className="text-sm px-5 py-2.5">
-            無料で先行案内
+          <CTAButton className="text-sm px-4 py-1.5">
+            事前登録
           </CTAButton>
         </div>
       </Container>
@@ -120,13 +120,12 @@ function HeroSection() {
           </p>
           
           <CTAButton className="mb-4">
-            無料で先行案内を受け取る
+            事前登録する
           </CTAButton>
           
-          <div className="mb-6 text-xs sm:text-sm text-slate-500 space-y-1">
-            <p>✓ 登録は無料 / メールアドレスだけ / いつでも解除OK</p>
-            <p>✓ 事前登録者にβ版の優先招待を送ります</p>
-            <p className="text-slate-400 mt-2">※ 事前登録は無料です。リリース時に優先的にご案内します。</p>
+          <div className="mb-6 text-xs sm:text-sm text-slate-600 space-y-1">
+            <p>登録は無料です。メールアドレスのみで完了します。</p>
+            <p>リリース時に優先的にご案内いたします。</p>
           </div>
         </div>
 
@@ -237,12 +236,10 @@ function DifferenceSection() {
         {/* 中間CTA */}
         <div className="text-center">
           <p className="text-sm text-slate-600 mb-4">
-            <span className="font-semibold text-sky-600">30秒で完了</span>
-            <span className="mx-2">・</span>
-            <span className="font-semibold text-sky-600">完全無料</span>
+            登録は無料です。メールアドレスのみで完了します。
           </p>
           <CTAButton>
-            無料で先行案内を受け取る（30秒）
+            事前登録する
           </CTAButton>
         </div>
       </Container>
@@ -381,14 +378,10 @@ function HowItWorksSection() {
         {/* 中盤CTA */}
         <div className="text-center">
           <p className="text-sm text-slate-600 mb-4">
-            <span className="font-semibold text-sky-600">30秒で完了</span>
-            <span className="mx-2">・</span>
-            <span className="font-semibold text-sky-600">完全無料</span>
-            <span className="mx-2">・</span>
-            <span className="font-semibold text-sky-600">メールアドレスのみ</span>
+            登録は無料です。メールアドレスのみで完了します。
           </p>
           <CTAButton>
-            無料で先行案内を受け取る（30秒）
+            事前登録する
           </CTAButton>
         </div>
       </Container>
@@ -484,15 +477,11 @@ function FAQSection() {
           ))}
         </div>
         <div className="text-center mt-12">
-          <div className="mb-4">
-            <p className="text-sm text-slate-600 mb-2">
-              <span className="font-semibold text-sky-600">30秒で完了</span>
-              <span className="mx-2">・</span>
-              <span className="font-semibold text-sky-600">完全無料</span>
-            </p>
-          </div>
+          <p className="text-sm text-slate-600 mb-4">
+            登録は無料です。メールアドレスのみで完了します。
+          </p>
           <CTAButton>
-            無料で先行案内を受け取る（30秒）
+            事前登録する
           </CTAButton>
         </div>
       </Container>
@@ -623,12 +612,12 @@ function MobileStickyCTA() {
             href={FORM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full inline-flex items-center justify-center px-6 py-4 text-lg font-bold text-white bg-gradient-to-r from-sky-400 via-blue-400 to-cyan-400 rounded-full hover:from-sky-500 hover:via-blue-500 hover:to-cyan-500 transition-all shadow-xl shadow-sky-400/40 active:scale-95"
+            className="w-full inline-flex items-center justify-center px-6 py-4 text-base font-semibold text-white bg-slate-700 rounded-lg hover:bg-slate-800 transition-colors shadow-sm active:opacity-90"
           >
-            無料で先行案内を受け取る（30秒）
+            事前登録する
           </a>
           <p className="text-xs text-slate-500 text-center mt-2">
-            登録無料 / メールだけ / いつでも解除OK
+            登録は無料です。メールアドレスのみで完了します。
           </p>
         </div>
       </div>
