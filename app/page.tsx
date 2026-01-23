@@ -105,7 +105,7 @@ function HeroSection() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-sky-100/80 text-sky-700 text-sm font-bold rounded-full mb-4 backdrop-blur-sm border border-sky-200/50">
             <span>🚀</span>
-            <span>3月リリース予定</span>
+            <span>βテスト参加者募集中</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
             写真詐欺、<span className="bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">ゼロ</span>
@@ -115,9 +115,21 @@ function HeroSection() {
             <br />
             マッチングアプリ
           </p>
-          <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-600 mb-6 max-w-2xl mx-auto">
             アプリ内カメラ限定＋一定のやりとり後にクリア表示で、写真詐欺を防ぎます
           </p>
+          
+          {/* βテストの説明 */}
+          <div className="mb-8 max-w-2xl mx-auto">
+            <div className="bg-sky-50/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-sky-200/50 shadow-md">
+              <p className="text-base sm:text-lg text-slate-700 font-semibold mb-2">
+                βテスト期間中は<strong className="text-sky-600">完全無料</strong>でご利用いただけます
+              </p>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                現在、初期ユーザー（βテスト参加者）を募集しています。β期間中は男女ともに完全無料です。1万ユーザーを超えた時点で正式リリースとなります。
+              </p>
+            </div>
+          </div>
           
           <CTAButton className="mb-4">
             事前登録する
@@ -125,7 +137,7 @@ function HeroSection() {
           
           <div className="mb-6 text-xs sm:text-sm text-slate-600 space-y-1">
             <p>登録は無料です。メールアドレスのみで完了します。</p>
-            <p>リリース時に優先的にご案内いたします。</p>
+            <p>βテスト開始時に優先的にご案内いたします。</p>
           </div>
         </div>
 
@@ -403,24 +415,60 @@ function PricingSection() {
       <Container className="relative z-10">
         <div className="max-w-2xl mx-auto">
           <div className="bg-gradient-to-br from-sky-50/90 via-blue-50/90 to-cyan-50/70 backdrop-blur-sm p-8 sm:p-12 rounded-3xl border-2 border-sky-200/50 text-center shadow-xl">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-8">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
               料金
             </h2>
-            <div className="space-y-6">
-              <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-md border border-sky-100/50">
-                <div className="text-slate-600 text-sm mb-2">男性</div>
-                <div className="text-4xl font-extrabold text-slate-900 mb-1">
-                  ¥2,970
-                </div>
-                <div className="text-slate-500 text-sm">/月</div>
+            
+            {/* βテスト期間の料金 */}
+            <div className="mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-sky-600 text-white text-sm font-bold rounded-full mb-6">
+                <span>🎉</span>
+                <span>βテスト期間中</span>
               </div>
-              <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-md border-2 border-sky-300/50">
-                <div className="text-slate-600 text-sm mb-2">女性</div>
-                <div className="text-4xl font-extrabold bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent mb-1">
-                  無料
+              <div className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg border-2 border-sky-300/50">
+                <div className="text-5xl font-extrabold bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent mb-2">
+                  完全無料
                 </div>
-                <div className="text-slate-500 text-sm">ずっと</div>
+                <div className="text-slate-700 font-semibold mb-1">男女ともに</div>
+                <div className="text-sm text-slate-600 mt-4">
+                  βテスト期間中は、すべての機能を無料でご利用いただけます
+                </div>
               </div>
+            </div>
+            
+            {/* 正式リリース後の料金（参考情報） */}
+            <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/50">
+              <div className="text-slate-500 text-sm font-semibold mb-3">
+                正式リリース後（1万ユーザー超え時）の予定
+              </div>
+              <div className="space-y-4 text-left">
+                <div className="flex items-center justify-between py-2 border-b border-slate-200/50">
+                  <div className="text-slate-600 text-sm">男性</div>
+                  <div className="text-slate-700 font-semibold">有料予定</div>
+                </div>
+                <div className="flex items-center justify-between py-2">
+                  <div className="text-slate-600 text-sm">女性</div>
+                  <div className="text-sky-600 font-semibold">無料予定</div>
+                </div>
+              </div>
+              <p className="text-xs text-slate-500 mt-4 text-center">
+                ※ 正式リリース後の料金は変更される可能性があります
+              </p>
+            </div>
+            
+            {/* 説明 */}
+            <div className="mt-8 text-center">
+              <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                現在、<strong className="text-slate-900">初期ユーザー（βテスト参加者）</strong>を募集しています。<br />
+                β期間中は<strong className="text-sky-600">完全無料</strong>でご利用いただけます。<br />
+                1万ユーザーを超えた時点で正式リリースとなります。
+              </p>
+              <CTAButton>
+                事前登録する
+              </CTAButton>
+              <p className="text-xs text-slate-500 mt-4">
+                ※ 事前登録は完全無料です。メールアドレスのみで完了します。
+              </p>
             </div>
           </div>
         </div>
@@ -433,6 +481,14 @@ function PricingSection() {
 function FAQSection() {
   const faqs = [
     {
+      question: "βテストとは何ですか？",
+      answer: "βテストは、正式リリース前に初期ユーザーにご利用いただく期間です。β期間中は男女ともに完全無料でご利用いただけます。1万ユーザーを超えた時点で正式リリースとなります。"
+    },
+    {
+      question: "βテスト期間中は本当に無料ですか？",
+      answer: "はい、βテスト期間中は男女ともに完全無料です。すべての機能を無料でご利用いただけます。"
+    },
+    {
       question: "アプリ内カメラで撮影した写真だけしか使えない？",
       answer: "はい。アルバムや外部から写真を選択することはできません。アプリ内のカメラで撮影した写真のみ使用可能です。"
     },
@@ -441,8 +497,8 @@ function FAQSection() {
       answer: "可能です。ただし、変更時もアプリ内カメラで撮影した写真のみ使用できます。"
     },
     {
-      question: "いつリリース？",
-      answer: "3月ごろのリリースの予定です、事前登録者に優先的にご案内します。"
+      question: "いつβテストが始まりますか？",
+      answer: "3月ごろの開始を予定しています。事前登録者に優先的にご案内します。"
     }
   ];
 
