@@ -105,7 +105,7 @@ function HeroSection() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-sky-100/80 text-sky-700 text-sm font-bold rounded-full mb-4 backdrop-blur-sm border border-sky-200/50">
             <span>🚀</span>
-            <span>βテスト参加者募集中</span>
+            <span>初期ユーザー募集中</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
             写真詐欺、<span className="bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">ゼロ</span>
@@ -115,18 +115,16 @@ function HeroSection() {
             <br />
             マッチングアプリ
           </p>
-          <p className="text-base sm:text-lg text-slate-600 mb-6 max-w-2xl mx-auto">
-            アプリ内カメラ限定＋一定のやりとり後にクリア表示で、写真詐欺を防ぎます
-          </p>
+         
           
-          {/* βテストの説明 */}
+          {/* 初期ユーザー募集の説明 */}
           <div className="mb-8 max-w-2xl mx-auto">
             <div className="bg-sky-50/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-sky-200/50 shadow-md">
               <p className="text-base sm:text-lg text-slate-700 font-semibold mb-2">
-                βテスト期間中は<strong className="text-sky-600">完全無料</strong>でご利用いただけます
+                現在、<strong className="text-sky-600">完全無料</strong>でご利用いただけます
               </p>
               <p className="text-sm text-slate-600 leading-relaxed">
-                現在、初期ユーザー（βテスト参加者）を募集しています。β期間中は男女ともに完全無料です。1万ユーザーを超えた時点で正式リリースとなります。
+                初期ユーザーを募集しています。現在は男女ともに完全無料です。1万ユーザーに到達した時点で、サービス拡大のためマネタイズを開始する予定です。
               </p>
             </div>
           </div>
@@ -137,7 +135,7 @@ function HeroSection() {
           
           <div className="mb-6 text-xs sm:text-sm text-slate-600 space-y-1">
             <p>登録は無料です。メールアドレスのみで完了します。</p>
-            <p>βテスト開始時に優先的にご案内いたします。</p>
+            <p>サービス開始時に優先的にご案内いたします。</p>
           </div>
         </div>
 
@@ -295,7 +293,7 @@ function HowItWorksSection() {
                   プロフィール一覧では写真にモヤがかかっている
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                  プロフィール一覧を閲覧する際、本人写真には薄いモヤがかかっています。これにより、写真だけで判断せず、プロフィールやメッセージの内容で判断できます。
+                  プロフィール一覧を閲覧する際、本人写真には薄いモヤがかかっています。<strong className="text-slate-900">アプリ内で無加工で撮影した写真のみしか使用できません。</strong>アルバムや外部から写真を選択することはできません。
                 </p>
               </div>
               <div className="flex-shrink-0">
@@ -382,7 +380,7 @@ function HowItWorksSection() {
         <div className="mt-12 text-center max-w-3xl mx-auto mb-12">
           <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-md border border-sky-100/50">
             <p className="text-slate-700 leading-relaxed">
-              <strong className="bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">この設計により、</strong>写真だけで判断せず、プロフィールやメッセージの内容で判断できるため、より深い出会いが生まれます。また、3往復のメッセージをやり取りすることで、お互いの顔を確認してから会うことができます。
+              3往復のメッセージをやり取りすることで、お互いの顔を確認してから会うことができます。
             </p>
           </div>
         </div>
@@ -419,11 +417,11 @@ function PricingSection() {
               料金
             </h2>
             
-            {/* βテスト期間の料金 */}
+            {/* 現在の料金 */}
             <div className="mb-8">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-sky-600 text-white text-sm font-bold rounded-full mb-6">
                 <span>🎉</span>
-                <span>βテスト期間中</span>
+                <span>現在</span>
               </div>
               <div className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg border-2 border-sky-300/50">
                 <div className="text-5xl font-extrabold bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent mb-2">
@@ -431,15 +429,15 @@ function PricingSection() {
                 </div>
                 <div className="text-slate-700 font-semibold mb-1">男女ともに</div>
                 <div className="text-sm text-slate-600 mt-4">
-                  βテスト期間中は、すべての機能を無料でご利用いただけます
+                  すべての機能を無料でご利用いただけます
                 </div>
               </div>
             </div>
             
-            {/* 正式リリース後の料金（参考情報） */}
+            {/* サービス拡大時の料金（参考情報） */}
             <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/50">
               <div className="text-slate-500 text-sm font-semibold mb-3">
-                正式リリース後（1万ユーザー超え時）の予定
+                サービス拡大時（1万ユーザー到達後）の予定
               </div>
               <div className="space-y-4 text-left">
                 <div className="flex items-center justify-between py-2 border-b border-slate-200/50">
@@ -452,16 +450,16 @@ function PricingSection() {
                 </div>
               </div>
               <p className="text-xs text-slate-500 mt-4 text-center">
-                ※ 正式リリース後の料金は変更される可能性があります
+                ※ サービス拡大時の料金は変更される可能性があります
               </p>
             </div>
             
             {/* 説明 */}
             <div className="mt-8 text-center">
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                現在、<strong className="text-slate-900">初期ユーザー（βテスト参加者）</strong>を募集しています。<br />
-                β期間中は<strong className="text-sky-600">完全無料</strong>でご利用いただけます。<br />
-                1万ユーザーを超えた時点で正式リリースとなります。
+                現在、<strong className="text-slate-900">初期ユーザー</strong>を募集しています。<br />
+                現在は<strong className="text-sky-600">完全無料</strong>でご利用いただけます。<br />
+                1万ユーザーに到達した時点で、<strong className="text-slate-900">サービス拡大のためマネタイズを開始</strong>する予定です。
               </p>
               <CTAButton>
                 事前登録する
@@ -481,12 +479,12 @@ function PricingSection() {
 function FAQSection() {
   const faqs = [
     {
-      question: "βテストとは何ですか？",
-      answer: "βテストは、正式リリース前に初期ユーザーにご利用いただく期間です。β期間中は男女ともに完全無料でご利用いただけます。1万ユーザーを超えた時点で正式リリースとなります。"
+      question: "現在は無料ですが、いつから有料になりますか？",
+      answer: "現在は初期ユーザーを募集しており、男女ともに完全無料でご利用いただけます。1万ユーザーに到達した時点で、サービス拡大のためマネタイズを開始する予定です。それまでは完全無料でご利用いただけます。"
     },
     {
-      question: "βテスト期間中は本当に無料ですか？",
-      answer: "はい、βテスト期間中は男女ともに完全無料です。すべての機能を無料でご利用いただけます。"
+      question: "現在は本当に無料ですか？",
+      answer: "はい、現在は男女ともに完全無料です。すべての機能を無料でご利用いただけます。"
     },
     {
       question: "アプリ内カメラで撮影した写真だけしか使えない？",
@@ -497,7 +495,7 @@ function FAQSection() {
       answer: "可能です。ただし、変更時もアプリ内カメラで撮影した写真のみ使用できます。"
     },
     {
-      question: "いつβテストが始まりますか？",
+      question: "いつサービスが始まりますか？",
       answer: "3月ごろの開始を予定しています。事前登録者に優先的にご案内します。"
     }
   ];
