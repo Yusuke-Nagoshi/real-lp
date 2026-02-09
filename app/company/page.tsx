@@ -24,10 +24,16 @@ export default function CompanyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">連絡先</h2>
-              <p className="text-slate-700 leading-relaxed">
-                お問い合わせは、事前登録フォームよりご連絡ください。
+              <h2 className="text-xl font-bold text-slate-900 mb-3">サポート・お問い合わせ</h2>
+              <p className="text-slate-700 leading-relaxed mb-3">
+                ご質問やサポートのご要望は、サポートページよりお問い合わせください。
               </p>
+              <a
+                href="/support"
+                className="inline-flex items-center justify-center px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors font-medium text-sm"
+              >
+                サポート・お問い合わせページへ
+              </a>
             </section>
 
             <section>
@@ -46,11 +52,11 @@ export default function CompanyPage() {
             </section>
           </div>
 
-          <div className="mt-12 text-center">
-            <a
-              href="/"
-              className="text-sky-600 hover:text-sky-700 underline"
-            >
+          <div className="mt-12 flex flex-wrap justify-center gap-4">
+            <a href="/support" className="text-sky-600 hover:text-sky-700 underline">
+              サポート・お問い合わせ
+            </a>
+            <a href="/" className="text-sky-600 hover:text-sky-700 underline">
               ← トップページに戻る
             </a>
           </div>

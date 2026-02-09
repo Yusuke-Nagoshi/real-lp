@@ -634,6 +634,10 @@ function Footer() {
             {/* フッターリンク */}
             <div className="pt-6 border-t border-slate-600/30 mt-6">
               <div className="flex flex-wrap items-center justify-center gap-4 text-slate-400">
+                <a href="/support" className="hover:text-slate-200 transition-colors underline">
+                  サポート
+                </a>
+                <span className="text-slate-600">|</span>
                 <a href="/privacy" className="hover:text-slate-200 transition-colors underline">
                   プライバシーポリシー
                 </a>
