@@ -16,25 +16,25 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://real-lp.vercel.app'),
-  title: "REAL - 写真詐欺のない誠実な出会い",
-  description: "写真詐欺に疲れた方へ。REALは、疑う前提を減らす設計で、誠実な出会いを目指すマッチングアプリです。待機リストにご登録ください。",
+  title: "恋さんぽ - 位置情報ゲーム専用マッチングアプリ",
+  description: "恋さんぽは、位置情報ゲーム好きのためのマッチングアプリです。好きなゲーム・距離で探して、お散歩デート募集で自然につながる恋活を。",
   openGraph: {
-    title: "REAL - 写真詐欺のない誠実な出会い",
-    description: "写真詐欺に疲れた方へ。REALは、疑う前提を減らす設計で、誠実な出会いを目指すマッチングアプリです。",
+    title: "恋さんぽ - 位置情報ゲーム専用マッチングアプリ",
+    description: "位置情報ゲーム好きとつながる恋活。ゲームで出会って、街を歩きながら自然に距離が縮まる。",
     type: "website",
     images: [
       {
         url: '/og-image.png?v=2',
         width: 1200,
         height: 630,
-        alt: 'REAL - 写真詐欺のない誠実な出会い',
+        alt: '恋さんぽ - 位置情報ゲーム専用マッチングアプリ',
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "REAL - 写真詐欺のない誠実な出会い",
-    description: "写真詐欺に疲れた方へ。REALは、疑う前提を減らす設計で、誠実な出会いを目指すマッチングアプリです。",
+    title: "恋さんぽ - 位置情報ゲーム専用マッチングアプリ",
+    description: "位置情報ゲーム好きとつながる恋活。好きなゲームと距離で相手を探せる。",
     images: ['/og-image.png?v=2'],
   },
 };

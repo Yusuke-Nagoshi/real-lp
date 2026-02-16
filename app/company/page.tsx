@@ -19,7 +19,7 @@ export default function CompanyPage() {
             <section>
               <h2 className="text-xl font-bold text-slate-900 mb-3">運営者名</h2>
               <p className="text-slate-700 leading-relaxed">
-                REAL運営チーム
+                恋さんぽ運営チーム
               </p>
             </section>
 
@@ -46,8 +46,8 @@ export default function CompanyPage() {
             <section>
               <h2 className="text-xl font-bold text-slate-900 mb-3">サービスについて</h2>
               <p className="text-slate-700 leading-relaxed">
-                REALは、写真詐欺のない誠実な出会いを目指すマッチングアプリです。
-                アプリ内カメラで撮影した写真のみを使用できる設計により、写真詐欺のリスクを大幅に削減します。
+                恋さんぽは、位置情報ゲーム好き同士が出会えるマッチングアプリです。
+                好きなゲームや距離で相手を探し、お散歩デート募集機能を通じて自然な出会いをサポートします。
               </p>
             </section>
           </div>
