@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
-const FORM_URL = '/go/form';
-const LINE_URL = '#';
+const FORM_URL = 'https://lin.ee/Jec31vm';
+const LINE_URL = 'https://lin.ee/Jec31vm';
 
 const GAMES = [
   'Pokemon GO',
@@ -317,7 +317,7 @@ function Footer() {
             <span className="text-slate-600">|</span>
             <a href="/company" className="underline hover:text-white">運営者情報</a>
             <span className="text-slate-600">|</span>
-            <a href={LINE_URL} className="underline hover:text-white">公式LINE（準備中）</a>
+            <a href={LINE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">公式LINE</a>
           </div>
 
           <p className="mt-6 text-xs text-slate-500">※ 18歳以上の方のみご利用いただけます</p>
