@@ -86,31 +86,25 @@ function Header() {
 
 function HeroSection() {
   return (
-    <section className="relative bg-white pt-12 pb-16 sm:pt-16 sm:pb-20 md:pt-20 md:pb-24">
-      <Container className="relative z-10">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="mb-6 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl md:text-5xl">
-            旅先や休日、
-            <br className="sm:hidden" />
-            どんな場面でも
-            <br />
-            一緒にゲームを楽しめる出会いを
-          </h1>
-          <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+    <section className="relative bg-white">
+      {/* キャッチコピー入りヒーロー画像を最上部にどんと表示 */}
+      <div className="relative w-full min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh]">
+        <img
+          src="/hero-catchphrase.png"
+          alt="どんな場面でも一緒にゲームを楽しめる出会いを"
+          className="w-full h-full object-cover object-center"
+        />
+      </div>
+      <Container className="relative z-10 pt-10 pb-14 sm:pt-12 sm:pb-16 md:pt-14 md:pb-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="mx-auto mb-6 text-base leading-relaxed text-slate-600 sm:text-lg">
             Pokemon GO、モンハンNow、ドラゴンクエストウォークなど、位置情報ゲームが好きな人同士が出会えるマッチングアプリです。
             同じゲームで絞り込んで、レイドやお散歩デートの募集から、自然につながれます。
           </p>
-          <div className="mb-6">
+          <div className="mb-4">
             <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
           </div>
           <p className="text-sm text-slate-500">登録無料・いつでも解除OK</p>
-        </div>
-
-        {/* メインビジュアル枠（画像差し替え用） */}
-        <div className="mx-auto mt-14 max-w-4xl">
-          <div className="aspect-video rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center">
-            <p className="text-slate-400 text-sm">メインビジュアル画像をここに配置</p>
-          </div>
         </div>
       </Container>
     </section>
