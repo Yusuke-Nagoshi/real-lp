@@ -305,9 +305,9 @@ export default function Home() {
       <main>
         <HeroSection />
         <RecommendSection />
+        <GamesSection />
         <FlowSection />
         <EarlyUserSection />
-        <GamesSection />
         <FAQSection />
       </main>
       <Footer />
