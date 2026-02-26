@@ -88,14 +88,14 @@ function HeroSection() {
   return (
     <section className="relative bg-white">
       {/* キャッチコピー入りヒーロー画像を最上部にどんと表示 */}
-      <div className="relative w-full min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh]">
+      <div className="relative w-full">
         <img
           src="/hero-catchphrase.png"
           alt="どんな場面でも一緒にゲームを楽しめる出会いを"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-auto block"
         />
       </div>
-      <Container className="relative z-10 pt-10 pb-14 sm:pt-12 sm:pb-16 md:pt-14 md:pb-20">
+      <Container className="relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14">
         <div className="mx-auto max-w-2xl text-center">
           <p className="mx-auto mb-6 text-base leading-relaxed text-slate-600 sm:text-lg">
             Pokemon GO、モンハンNow、ドラゴンクエストウォークなど、位置情報ゲームが好きな人同士が出会えるマッチングアプリです。
