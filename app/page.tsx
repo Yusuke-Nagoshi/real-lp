@@ -97,6 +97,21 @@ function HeroSection() {
       </div>
       <Container className="relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14">
         <div className="mx-auto max-w-2xl text-center">
+          <p className="mb-4 text-xl font-bold leading-relaxed text-slate-900 sm:text-2xl md:text-3xl">
+            「またスマホ？」を、
+            <br />
+            <span className="text-emerald-600">「次どこ周る？」</span>
+            に変える出会い。
+          </p>
+          <p className="mb-3 text-base leading-relaxed text-slate-600 sm:text-lg">
+            旅先や休日の過ごし方が共通点になる。
+          </p>
+          <p className="mb-6 text-base leading-relaxed text-slate-600 sm:text-lg">
+            １人でのイベントやレイドの寂しい時間とおさらば。
+          </p>
+          <p className="mb-8 text-lg font-bold text-emerald-600 sm:text-xl">
+            恋さんぽで、そんな機会をぜひ提供させてください！！
+          </p>
           <p className="mx-auto mb-6 text-base leading-relaxed text-slate-600 sm:text-lg">
             Pokemon GO、モンハンNow、ドラゴンクエストウォークなど、位置情報ゲームが好きな人同士が出会えるマッチングアプリです。
             同じゲームで絞り込んで、レイドやお散歩デートの募集から、自然につながれます。
