@@ -113,8 +113,8 @@ function HeroSection() {
             恋さんぽで、そんな機会をぜひ提供させてください！！
           </p>
           <p className="mx-auto mb-6 text-base leading-relaxed text-slate-600 sm:text-lg">
-            Pokemon GO、モンハンNow、ドラゴンクエストウォークなど、位置情報ゲームが好きな人同士が出会えるマッチングアプリです。
-            同じゲームで絞り込んで、レイドやお散歩デートの募集から、自然につながれます。
+            恋さんぽは、Pokemon GO、モンハンNow、ドラゴンクエストウォークなど、位置情報ゲームが好きな人同士が出会えるマッチングアプリです！
+            事前登録は下の公式LINE追加から可能です！
           </p>
           <div className="mb-4">
             <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
