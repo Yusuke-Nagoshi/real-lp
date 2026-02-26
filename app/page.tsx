@@ -112,9 +112,19 @@ function HeroSection() {
           <p className="mb-8 text-lg font-bold text-emerald-600 sm:text-xl">
             恋さんぽで、そんな機会をぜひ提供させてください！！
           </p>
-          <p className="mx-auto mb-6 text-base leading-relaxed text-slate-600 sm:text-lg">
-            恋さんぽは、Pokemon GO、モンハンNow、ドラゴンクエストウォークなど、位置情報ゲームが好きな人同士が出会えるマッチングアプリです！
-            事前登録は下の公式LINE追加から可能です！
+          <p className="mx-auto mb-6 text-base leading-relaxed text-slate-700 sm:text-lg">
+            <span className="font-medium text-slate-900">恋さんぽ</span>
+            は、
+            <span className="font-semibold text-emerald-600">Pokemon GO</span>
+            、
+            <span className="font-semibold text-emerald-600">モンハンNow</span>
+            、
+            <span className="font-semibold text-emerald-600">ドラゴンクエストウォーク</span>
+            などの位置情報ゲームが好きな人同士が出会える
+            <br className="hidden sm:block" />
+            マッチングアプリです。
+            <br />
+            <span className="text-slate-600">事前登録は下の公式LINE追加から可能です！</span>
           </p>
           <div className="mb-4">
             <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
@@ -162,15 +172,23 @@ function AboutSection() {
           恋さんぽについて
         </h2>
         <p className="mx-auto max-w-2xl text-center text-slate-600 leading-relaxed">
-          位置情報ゲーム専用のマッチングアプリです。好きなゲームを複数選んでプロフィールに設定し、
-          ゲーム別・距離順で検索。お散歩デート募集で「〇時から〇〇でレイドしませんか？」と気軽に誘いやすく、
-          旅先や休日も含めて、どんな場面でも一緒にゲームを楽しめる相手と出会えます。
+          位置情報ゲーム専用のマッチングアプリです。
+          <br className="hidden sm:block" />
+          好きなゲームを複数選んでプロフィールに設定し、
+          <br className="sm:hidden" />ゲーム別・距離順で検索。
+          <br />
+          お散歩デート募集で
+          <span className="font-semibold text-slate-800">「〇時から〇〇でレイドしませんか？」</span>
+          と気軽に誘いやすく、
+          <br />
+          旅先や休日も含めて、一緒にゲームを楽しめる相手と出会えます。
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-2">
+        <p className="mt-6 text-center text-sm text-slate-500">対応ゲーム例</p>
+        <div className="mt-4 flex flex-wrap justify-center gap-2 sm:gap-3">
           {GAMES.map((game) => (
             <span
               key={game}
-              className="rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700"
+              className="rounded-full border border-emerald-200 bg-emerald-50/80 px-4 py-2 text-sm font-semibold text-emerald-700"
             >
               {game}
             </span>
