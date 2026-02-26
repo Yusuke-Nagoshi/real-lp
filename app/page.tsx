@@ -141,7 +141,7 @@ function RecommendSection() {
     <section className="bg-slate-50 py-14 sm:py-16 md:py-20">
       <Container>
         <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-          こんな方におすすめ
+          こんなお悩み、ありませんか？
         </h2>
         <ul className="mx-auto grid max-w-2xl gap-3 sm:gap-4">
           {RECOMMEND_LIST.map((text, i) => (
@@ -164,35 +164,46 @@ function RecommendSection() {
   );
 }
 
-function AboutSection() {
+function GamesSection() {
   return (
     <section className="bg-white py-14 sm:py-16 md:py-20">
       <Container>
-        <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-          恋さんぽについて
+        <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+          こんなゲームをきっかけに繋がれます
         </h2>
-        <p className="mx-auto max-w-2xl text-center text-slate-600 leading-relaxed">
-          位置情報ゲーム専用のマッチングアプリです。
-          <br className="hidden sm:block" />
-          好きなゲームを複数選んでプロフィールに設定し、
-          <br className="sm:hidden" />ゲーム別・距離順で検索。
-          <br />
-          お散歩デート募集で
-          <span className="font-semibold text-slate-800">「〇時から〇〇でレイドしませんか？」</span>
-          と気軽に誘いやすく、
-          <br />
-          旅先や休日も含めて、一緒にゲームを楽しめる相手と出会えます。
-        </p>
-        <p className="mt-6 text-center text-sm text-slate-500">対応ゲーム例</p>
-        <div className="mt-4 flex flex-wrap justify-center gap-2 sm:gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
           {GAMES.map((game) => (
-            <span
+            <div
               key={game}
-              className="rounded-full border border-emerald-200 bg-emerald-50/80 px-4 py-2 text-sm font-semibold text-emerald-700"
+              className="flex flex-col items-center rounded-2xl border border-slate-200 bg-slate-50/50 p-4 sm:p-5 hover:border-emerald-200 hover:bg-emerald-50/50 transition-colors"
             >
-              {game}
-            </span>
+              <div className="mb-3 flex h-14 w-14 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 text-2xl sm:text-3xl">
+                🎮
+              </div>
+              <p className="text-center text-sm font-semibold text-slate-800 sm:text-base">{game}</p>
+            </div>
           ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+function EarlyUserSection() {
+  return (
+    <section className="bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 py-14 sm:py-16 md:py-20 border-y border-emerald-100">
+      <Container>
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="mb-3 inline-block rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">
+            現在募集中
+          </p>
+          <h2 className="mb-4 text-2xl font-bold text-slate-900 sm:text-3xl">
+            初期ユーザー先行予約受付中
+          </h2>
+          <p className="mb-8 text-slate-600 leading-relaxed">
+            サービスリリース時に優先的にご案内します。友だち追加は無料、いつでも解除OKです。
+          </p>
+          <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
         </div>
       </Container>
     </section>
@@ -294,8 +305,9 @@ export default function Home() {
       <main>
         <HeroSection />
         <RecommendSection />
-        <AboutSection />
         <FlowSection />
+        <EarlyUserSection />
+        <GamesSection />
         <FAQSection />
       </main>
       <Footer />
