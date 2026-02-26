@@ -88,7 +88,7 @@ function HeroSection() {
   return (
     <section className="relative bg-white">
       {/* キャッチコピー入りヒーロー画像を最上部にどんと表示 */}
-      <div className="relative w-full">
+      <div className="relative w-full md:max-w-5xl md:mx-auto md:px-4 lg:px-6">
         <img
           src="/hero-catchphrase.png"
           alt="どんな場面でも一緒にゲームを楽しめる出会いを"
