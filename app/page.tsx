@@ -139,26 +139,43 @@ function HeroSection() {
 
 function RecommendSection() {
   return (
-    <section className="bg-slate-50 py-14 sm:py-16 md:py-20">
-      <Container>
-        <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-          こんなお悩み、ありませんか？
-        </h2>
-        <ul className="mx-auto grid max-w-2xl gap-3 sm:gap-4">
-          {RECOMMEND_LIST.map((text, i) => (
-            <li
-              key={i}
-              className="flex items-start gap-3 rounded-xl bg-white px-5 py-4 text-left text-slate-700 shadow-sm border border-slate-100"
-            >
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-xs font-bold">
-                {i + 1}
-              </span>
-              <span className="text-sm leading-relaxed sm:text-base">{text}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-10 text-center">
-          <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
+    <section className="relative min-h-[600px] overflow-hidden py-14 sm:py-16 md:py-20">
+      {/* 背景画像 + グラデーションオーバーレイ */}
+      <div className="absolute inset-0">
+        <img
+          src="/recommend-bg.png"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-800/60 to-slate-900/80"
+          aria-hidden
+        />
+      </div>
+      {/* 上に重ねるコンテンツ */}
+      <Container className="relative z-10">
+        <div className="mx-auto max-w-2xl">
+          <div className="rounded-2xl bg-white/95 px-6 py-8 shadow-xl backdrop-blur-sm sm:px-8 sm:py-10 md:px-10 md:py-12">
+            <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+              こんなお悩み、ありませんか？
+            </h2>
+            <ul className="space-y-3 sm:space-y-4">
+              {RECOMMEND_LIST.map((text, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 rounded-xl bg-slate-50/80 px-5 py-4 text-left"
+                >
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-xs font-bold">
+                    {i + 1}
+                  </span>
+                  <span className="text-sm leading-relaxed text-slate-700 sm:text-base">{text}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10 text-center">
+              <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
+            </div>
+          </div>
         </div>
       </Container>
     </section>
