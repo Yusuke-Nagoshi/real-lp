@@ -135,7 +135,7 @@ function HeroSection() {
 
 function RecommendSection() {
   return (
-    <section className="bg-white py-14 sm:py-16 md:py-20">
+    <section className="bg-slate-50 py-14 sm:py-16 md:py-20">
       <Container>
         {/* 見出し：画像より上側 */}
         <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
