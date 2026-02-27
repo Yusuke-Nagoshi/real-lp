@@ -97,9 +97,6 @@ function HeroSection() {
       </div>
       <Container className="relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="mb-4 inline-block rounded-full border border-emerald-200 bg-emerald-50/80 px-4 py-1.5 text-sm font-medium text-emerald-800">
-            恋さんぽからあるこへ。趣旨が変わりました：位置情報ゲーム好きの友達探しサービスです
-          </p>
           <p className="mb-4 text-xl font-bold leading-relaxed text-slate-900 sm:text-2xl md:text-3xl">
             「またスマホ？」を、
             <br />
