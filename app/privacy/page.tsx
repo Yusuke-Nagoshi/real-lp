@@ -12,12 +12,12 @@ export default function PrivacyPage() {
       <Container className="py-12 sm:py-16">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
-            プライバシーポリシー（REAL）
+            プライバシーポリシー（あるこ）
           </h1>
           
           <div className="text-sm text-slate-500 mb-8 space-y-1">
-            <p>最終更新日：2026-01-29</p>
-            <p>運営者：REAL運営（以下「運営者」）</p>
+            <p>最終更新日：2026-02-26</p>
+            <p>運営者：あるこ運営（以下「運営者」）</p>
             <p>連絡先：<a href="mailto:nagoshiyusuke@gmail.com" className="text-sky-600 hover:text-sky-700 underline">nagoshiyusuke@gmail.com</a></p>
           </div>
           
@@ -93,7 +93,7 @@ export default function PrivacyPage() {
               </p>
               <ul className="list-disc list-inside text-slate-700 space-y-2 ml-4">
                 <li>本サービスの提供、本人の識別、ログイン管理</li>
-                <li>マッチング、チャット、プロフィール表示等の機能提供</li>
+                <li>仲間検索、チャット、プロフィール表示等の機能提供</li>
                 <li>不正利用・迷惑行為の検知、通報対応、BAN等の安全対策</li>
                 <li>写真の審査（安心マーク付与を含む）および品質・安全性向上</li>
                 <li>通知の送信（マッチ、メッセージ、運営からのお知らせ等）</li>

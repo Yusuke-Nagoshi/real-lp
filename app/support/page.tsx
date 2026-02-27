@@ -9,8 +9,8 @@ function Container({ children, className = '' }: { children: React.ReactNode; cl
 }
 
 export const metadata = {
-  title: 'サポート・お問い合わせ | 恋さんぽ',
-  description: '恋さんぽアプリに関するお問い合わせ・サポート窓口です。ご質問や不具合の報告はこちらからお願いします。',
+  title: 'サポート・お問い合わせ | あるこ',
+  description: 'あるこに関するお問い合わせ・サポート窓口です。ご質問や不具合の報告はこちらからお願いします。',
 };
 
 export default function SupportPage() {
@@ -22,7 +22,7 @@ export default function SupportPage() {
             サポート・お問い合わせ
           </h1>
           <p className="text-slate-600 mb-8">
-            恋さんぽアプリについてのご質問、不具合の報告、その他のお問い合わせは下記よりご連絡ください。
+            あるこについてのご質問、不具合の報告、その他のお問い合わせは下記よりご連絡ください。
           </p>
 
           {/* お問い合わせ方法 */}

@@ -19,10 +19,10 @@ const RECOMMEND_LIST = [
   'レイドなどの孤独な闘いに、ちょっと寂しさを覚えることがある人へ',
   '近くに同じゲームをやってる人がいるか分からず、仲間を探しづらい人へ',
   'レイドやコミュニティデイを「誰かと一緒にやりたい」と思っている人へ',
-  'ゲームの話が通じる相手と、出会いたい人へ',
+  'ゲームの話が通じる友達と、出会いたい人へ',
   '休日のお出かけ先を「ポケストップ巡り」「レイド」で決めたい人へ',
   '1人でウォーク系ゲームを歩くのが、少し寂しいと感じる人へ',
-  '同じゲームをやってる人と自然に会話したい・恋愛に発展させたい人へ',
+  '同じゲームをやってる人と気軽に会話したり、一緒にプレイできる仲間が欲しい人へ',
   'レイドに参加したいけど知り合いがおらず、行きづらい人へ',
   '旅先や新しい街でも、一緒にプレイできる相手が欲しい人へ',
 ];
@@ -64,7 +64,7 @@ function Header() {
           <div className="flex items-center gap-3">
             <img
               src="/app-icon.png"
-              alt="恋さんぽ"
+              alt="あるこ"
               className="h-9 w-9 rounded-xl object-cover"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
@@ -73,9 +73,9 @@ function Header() {
               }}
             />
             <div className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white text-sm font-bold">
-              恋
+              あ
             </div>
-            <span className="text-lg font-bold text-slate-900">恋さんぽ</span>
+            <span className="text-lg font-bold text-slate-900">あるこ</span>
           </div>
           <CTAButton className="px-5 py-2.5 text-sm">友だち追加で先行登録</CTAButton>
         </div>
@@ -97,6 +97,9 @@ function HeroSection() {
       </div>
       <Container className="relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14">
         <div className="mx-auto max-w-2xl text-center">
+          <p className="mb-4 inline-block rounded-full border border-emerald-200 bg-emerald-50/80 px-4 py-1.5 text-sm font-medium text-emerald-800">
+            恋さんぽからあるこへ。趣旨が変わりました：位置情報ゲーム好きの友達探しサービスです
+          </p>
           <p className="mb-4 text-xl font-bold leading-relaxed text-slate-900 sm:text-2xl md:text-3xl">
             「またスマホ？」を、
             <br />
@@ -110,19 +113,20 @@ function HeroSection() {
             １人でのイベントやレイドの寂しい時間とおさらば。
           </p>
           <p className="mb-8 text-lg font-bold text-emerald-600 sm:text-xl">
-            恋さんぽで、そんな機会をぜひ提供させてください！！
+            あるこで、そんな機会をぜひ提供させてください！！
           </p>
           <p className="mx-auto mb-6 text-base leading-relaxed text-slate-700 sm:text-lg">
-            <span className="font-medium text-slate-900">恋さんぽ</span>
+            <span className="font-medium text-slate-900">あるこ</span>
             は、
             <span className="font-semibold text-emerald-600">Pokemon GO</span>
             、
             <span className="font-semibold text-emerald-600">モンハンNow</span>
             、
             <span className="font-semibold text-emerald-600">ドラゴンクエストウォーク</span>
-            などの位置情報ゲームが好きな人同士が出会える
+            などの位置情報ゲームが好きな人同士が
             <br className="hidden sm:block" />
-            マッチングアプリです。
+            <span className="font-semibold text-slate-900">友達を見つけられる</span>
+            サービスです。
             <br />
             <span className="text-slate-600">事前登録は下の公式LINE追加から可能です！</span>
           </p>
@@ -212,9 +216,9 @@ function EarlyUserSection() {
 
 function FlowSection() {
   const steps = [
-    { num: '01', title: '好きな位置情報ゲームを選択', desc: 'プロフィールで複数選択可能。同じゲーム好きとマッチしやすくします。' },
+    { num: '01', title: '好きな位置情報ゲームを選択', desc: 'プロフィールで複数選択可能。同じゲーム好きの仲間を見つけやすくします。' },
     { num: '02', title: 'プロフィール・写真を登録', desc: '名前や生年月日、写真を登録してプロフィールを完成させます。' },
-    { num: '03', title: '相手を探して、お散歩募集でつながる', desc: 'フィードで相手を探し、「〇時から〇〇でレイド」など募集で自然に会話をスタート。' },
+    { num: '03', title: '仲間を探して、お散歩募集でつながる', desc: 'フィードで仲間を探し、「〇時から〇〇でレイド」など募集で自然に会話をスタート。' },
   ];
 
   return (
@@ -277,8 +281,8 @@ function Footer() {
     <footer className="bg-slate-800 py-10 text-slate-300">
       <Container>
         <div className="text-center">
-          <p className="text-lg font-bold text-white">恋さんぽ</p>
-          <p className="mt-1 text-sm text-slate-400">位置情報ゲーム専用マッチングアプリ</p>
+          <p className="text-lg font-bold text-white">あるこ</p>
+          <p className="mt-1 text-sm text-slate-400">位置情報ゲーム好きの友達探し</p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">
             <a href="/support" className="underline hover:text-white">サポート</a>
             <span className="text-slate-500">|</span>
@@ -291,7 +295,7 @@ function Footer() {
             <a href={LINE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">公式LINE</a>
           </div>
           <p className="mt-6 text-xs text-slate-500">※18歳以上の方のみご利用いただけます</p>
-          <p className="mt-2 text-xs text-slate-500">© 2026 恋さんぽ</p>
+          <p className="mt-2 text-xs text-slate-500">© 2026 あるこ</p>
         </div>
       </Container>
     </footer>

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "REAL - 写真詐欺のない誠実な出会い | 事前登録",
-  description: "写真詐欺に疲れた方へ。REALは、疑う前提を減らす設計で、誠実な出会いを目指すマッチングアプリです。事前登録は無料、30秒で完了します。",
+  title: "あるこ - 位置情報ゲーム好きの友達探し | 事前登録",
+  description: "あるこは、位置情報ゲーム好き同士が友達を見つけられるサービスです。友だち追加で事前登録、無料・いつでも解除OK。",
   openGraph: {
-    title: "REAL - 写真詐欺のない誠実な出会い | 事前登録",
-    description: "写真詐欺に疲れた方へ。REALは、疑う前提を減らす設計で、誠実な出会いを目指すマッチングアプリです。事前登録は無料、30秒で完了します。",
+    title: "あるこ - 位置情報ゲーム好きの友達探し | 事前登録",
+    description: "あるこは、位置情報ゲーム好き同士が友達を見つけられるサービスです。友だち追加で事前登録、無料・いつでも解除OK。",
     type: "website",
     url: "https://real-lp.vercel.app/go/form",
     images: [
@@ -13,14 +13,14 @@ export const metadata: Metadata = {
         url: '/og-image.png?v=2',
         width: 1200,
         height: 630,
-        alt: 'REAL - 写真詐欺のない誠実な出会い',
+        alt: 'あるこ - 位置情報ゲーム好きの友達探し',
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "REAL - 写真詐欺のない誠実な出会い | 事前登録",
-    description: "写真詐欺に疲れた方へ。REALは、疑う前提を減らす設計で、誠実な出会いを目指すマッチングアプリです。事前登録は無料、30秒で完了します。",
+    title: "あるこ - 位置情報ゲーム好きの友達探し | 事前登録",
+    description: "あるこは、位置情報ゲーム好き同士が友達を見つけられるサービスです。友だち追加で事前登録、無料・いつでも解除OK。",
     images: ['/og-image.png?v=2'],
   },
 };

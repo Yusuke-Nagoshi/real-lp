@@ -12,12 +12,12 @@ export default function TermsPage() {
       <Container className="py-12 sm:py-16">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
-            利用規約（REAL）
+            利用規約（あるこ）
           </h1>
           
           <div className="text-sm text-slate-500 mb-8 space-y-1">
-            <p>最終更新日：2026-01-29</p>
-            <p>運営者：REAL運営（以下「運営者」）</p>
+            <p>最終更新日：2026-02-26</p>
+            <p>運営者：あるこ運営（以下「運営者」）</p>
             <p>連絡先：<a href="mailto:nagoshiyusuke@gmail.com" className="text-sky-600 hover:text-sky-700 underline">nagoshiyusuke@gmail.com</a></p>
           </div>
           
@@ -25,7 +25,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold text-slate-900 mb-4">1. はじめに</h2>
               <p className="text-slate-700 leading-relaxed">
-                本利用規約（以下「本規約」）は、運営者が提供するマッチングアプリ「REAL」（以下「本サービス」）の利用条件を定めます。ユーザーは、本規約に同意のうえ本サービスを利用するものとします。
+                本利用規約（以下「本規約」）は、運営者が提供する位置情報ゲーム好きの友達探しサービス「あるこ」（以下「本サービス」）の利用条件を定めます。ユーザーは、本規約に同意のうえ本サービスを利用するものとします。
               </p>
             </section>
 
@@ -124,7 +124,7 @@ export default function TermsPage() {
               <h2 className="text-2xl font-bold text-slate-900 mb-4">10. 免責</h2>
               <ol className="list-decimal list-inside text-slate-700 space-y-3 ml-4">
                 <li>運営者は、本サービスが常に安全・正確・完全に提供されることを保証しません。</li>
-                <li>本サービスは出会いの結果を保証しません。ユーザー間のトラブルは当事者間で解決するものとします。ただし運営者は、必要に応じて合理的な範囲で調査・対応を行います。</li>
+                <li>本サービスは友達探しの結果を保証しません。ユーザー間のトラブルは当事者間で解決するものとします。ただし運営者は、必要に応じて合理的な範囲で調査・対応を行います。</li>
               </ol>
             </section>
 
