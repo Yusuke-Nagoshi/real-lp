@@ -19,11 +19,7 @@ const RECOMMEND_LIST = [
   'レイドなどの孤独な闘いに、ちょっと寂しさを覚えることがある人へ',
   '近くに同じゲームをやってる人がいるか分からず、仲間を探しづらい人へ',
   'レイドやコミュニティデイを「誰かと一緒にやりたい」と思っている人へ',
-  'ゲームの話が通じる友達と、出会いたい人へ',
-  '休日のお出かけ先を「ポケストップ巡り」「レイド」で決めたい人へ',
   '1人でウォーク系ゲームを歩くのが、少し寂しいと感じる人へ',
-  '同じゲームをやってる人と気軽に会話したり、一緒にプレイできる仲間が欲しい人へ',
-  'レイドに参加したいけど知り合いがおらず、行きづらい人へ',
   '旅先や新しい街でも、一緒にプレイできる相手が欲しい人へ',
 ];
 
@@ -139,42 +135,37 @@ function HeroSection() {
 
 function RecommendSection() {
   return (
-    <section className="relative min-h-[600px] overflow-hidden py-14 sm:py-16 md:py-20">
-      {/* 背景画像 + グラデーションオーバーレイ */}
-      <div className="absolute inset-0">
-        <img
-          src="/recommend-bg.png"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-800/60 to-slate-900/80"
-          aria-hidden
-        />
-      </div>
-      {/* 上に重ねるコンテンツ */}
-      <Container className="relative z-10">
-        <div className="mx-auto max-w-2xl">
-          <div className="rounded-2xl bg-white/95 px-6 py-8 shadow-xl backdrop-blur-sm sm:px-8 sm:py-10 md:px-10 md:py-12">
-            <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-              こんなお悩み、ありませんか？
-            </h2>
-            <ul className="space-y-3 sm:space-y-4">
-              {RECOMMEND_LIST.map((text, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-3 rounded-xl bg-slate-50/80 px-5 py-4 text-left"
-                >
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-xs font-bold">
-                    {i + 1}
-                  </span>
-                  <span className="text-sm leading-relaxed text-slate-700 sm:text-base">{text}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10 text-center">
-              <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
-            </div>
+    <section className="bg-white py-14 sm:py-16 md:py-20">
+      <Container>
+        {/* 見出し：画像より上側 */}
+        <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+          こんなお悩み、ありませんか？
+        </h2>
+        {/* 画像：横幅に合わせて表示（縦伸ばしなし） */}
+        <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl">
+          <img
+            src="/recommend-bg.png"
+            alt=""
+            className="block w-full h-auto object-contain"
+          />
+        </div>
+        {/* 悩みのボックス：画像より下側 */}
+        <div className="mx-auto mt-10 max-w-2xl">
+          <ul className="space-y-3 sm:space-y-4">
+            {RECOMMEND_LIST.map((text, i) => (
+              <li
+                key={i}
+                className="flex items-start gap-3 rounded-xl bg-slate-50 px-5 py-4 text-left shadow-sm border border-slate-100"
+              >
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-xs font-bold">
+                  {i + 1}
+                </span>
+                <span className="text-sm leading-relaxed text-slate-700 sm:text-base">{text}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-10 text-center">
+            <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
           </div>
         </div>
       </Container>
