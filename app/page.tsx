@@ -5,14 +5,14 @@ import { useEffect, useState } from 'react';
 const FORM_URL = 'https://lin.ee/Jec31vm';
 const LINE_URL = 'https://lin.ee/Jec31vm';
 
-const GAMES = [
-  'Pokemon GO',
-  'モンスターハンターNow',
-  'ドラゴンクエストウォーク',
-  '信長の野望 出陣',
-  'ピクミン ブルーム',
-  'Ingress',
-  'その他',
+const GAMES: { name: string; icon: string }[] = [
+  { name: 'Pokemon GO', icon: '⚡' },
+  { name: 'モンスターハンターNow', icon: '⚔️' },
+  { name: 'ドラゴンクエストウォーク', icon: '🐉' },
+  { name: '信長の野望 出陣', icon: '🏯' },
+  { name: 'ピクミン ブルーム', icon: '🌸' },
+  { name: 'Ingress', icon: '🔮' },
+  { name: 'その他', icon: '🎮' },
 ];
 
 const RECOMMEND_LIST = [
@@ -183,13 +183,13 @@ function GamesSection() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
           {GAMES.map((game) => (
             <div
-              key={game}
+              key={game.name}
               className="flex flex-col items-center rounded-2xl border border-slate-200 bg-slate-50/50 p-4 sm:p-5 hover:border-emerald-200 hover:bg-emerald-50/50 transition-colors"
             >
               <div className="mb-3 flex h-14 w-14 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 text-2xl sm:text-3xl">
-                🎮
+                {game.icon}
               </div>
-              <p className="text-center text-sm font-semibold text-slate-800 sm:text-base">{game}</p>
+              <p className="text-center text-sm font-semibold text-slate-800 sm:text-base">{game.name}</p>
             </div>
           ))}
         </div>
@@ -199,53 +199,63 @@ function GamesSection() {
 }
 
 function EarlyUserSection() {
-  return (
-    <section className="bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 py-14 sm:py-16 md:py-20 border-y border-emerald-100">
-      <Container>
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="mb-3 inline-block rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">
-            現在募集中
-          </p>
-          <h2 className="mb-4 text-2xl font-bold text-slate-900 sm:text-3xl">
-            初期ユーザー先行予約受付中
-          </h2>
-          <p className="mb-8 text-slate-600 leading-relaxed">
-            サービスリリース時に優先的にご案内します。友だち追加は無料、いつでも解除OKです。
-          </p>
-          <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function FlowSection() {
-  const steps = [
-    { num: '01', title: '好きな位置情報ゲームを選択', desc: 'プロフィールで複数選択可能。同じゲーム好きの仲間を見つけやすくします。' },
-    { num: '02', title: 'プロフィール・写真を登録', desc: '名前や生年月日、写真を登録してプロフィールを完成させます。' },
-    { num: '03', title: '仲間を探して、お散歩募集でつながる', desc: 'フィードで仲間を探し、「〇時から〇〇でレイド」など募集で自然に会話をスタート。' },
+  const benefits = [
+    { label: '300いいね', desc: '無料配布' },
+    { label: 'リリース優先案内', desc: '先行登録者にいち早くお知らせ' },
+    { label: '友だち追加', desc: '無料・いつでも解除OK' },
   ];
 
   return (
-    <section className="bg-slate-50 py-14 sm:py-16 md:py-20">
+    <section className="bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 py-14 sm:py-16 md:py-20 border-y border-emerald-100">
       <Container>
-        <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-          利用の流れ
-        </h2>
-        <div className="grid gap-6 md:grid-cols-3">
-          {steps.map((step) => (
-            <div
-              key={step.num}
-              className="rounded-2xl bg-white p-6 shadow-sm border border-slate-100"
-            >
-              <p className="mb-3 text-2xl font-bold text-emerald-600">{step.num}</p>
-              <h3 className="mb-2 text-lg font-bold text-slate-900">{step.title}</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-10 text-center">
-          <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
+        <div className="mx-auto max-w-3xl">
+          <p className="mb-3 text-center">
+            <span className="inline-block rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">
+              現在募集中
+            </span>
+          </p>
+          <h2 className="mb-6 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            初期ユーザー事前登録受付中
+          </h2>
+          <p className="mb-10 text-center text-slate-600 leading-relaxed">
+            サービスリリース時に優先的にご案内します。友だち追加は無料、いつでも解除OKです。
+          </p>
+
+          {/* メリット */}
+          <div className="mb-10 grid gap-4 sm:grid-cols-3">
+            {benefits.map((b) => (
+              <div
+                key={b.label}
+                className="rounded-2xl bg-white px-5 py-6 text-center shadow-sm border border-emerald-100"
+              >
+                <p className="text-xl font-bold text-emerald-600 sm:text-2xl">{b.label}</p>
+                <p className="mt-1 text-sm text-slate-600">{b.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* 料金体系 */}
+          <div className="mb-10 rounded-2xl bg-white p-6 shadow-sm border border-emerald-100">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">料金体系</h3>
+            <ul className="space-y-3 text-slate-700">
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-600 font-bold">✓</span>
+                <span>基本無料</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-600 font-bold">✓</span>
+                <span>ログインで1日1いいね配布</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-600 font-bold">✓</span>
+                <span>10いいね 500円で購入可能</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="text-center">
+            <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
+          </div>
         </div>
       </Container>
     </section>
@@ -255,7 +265,7 @@ function FlowSection() {
 function FAQSection() {
   const faqs = [
     { q: 'どのゲームに対応していますか？', a: 'Pokemon GO、モンハンNow、ドラゴンクエストウォークなどを想定しています。順次対応タイトルを増やしていきます。' },
-    { q: '本当に無料ですか？', a: '友だち追加・先行登録は無料です。リリース後の利用料金はアプリ内でご案内します。' },
+    { q: '本当に無料ですか？', a: '基本無料で利用できます。ログインで1日1いいねがもらえます。追加で10いいね500円の購入も可能です。' },
     { q: '問い合わせ先はありますか？', a: 'サポートページからメールでお問い合わせいただけます。' },
   ];
 
@@ -315,7 +325,6 @@ export default function Home() {
         <HeroSection />
         <RecommendSection />
         <GamesSection />
-        <FlowSection />
         <EarlyUserSection />
         <FAQSection />
       </main>
