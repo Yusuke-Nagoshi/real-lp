@@ -70,7 +70,10 @@ function Header() {
             <div className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white text-sm font-bold">
               あ
             </div>
-            <span className="text-lg font-bold text-slate-900">あるこ</span>
+            <div>
+              <span className="text-lg font-bold text-slate-900">あるこ</span>
+              <p className="text-[11px] text-slate-500 -mt-0.5 hidden sm:block">一緒に歩いて遊べるゲーム仲間が見つかるアプリ</p>
+            </div>
           </div>
           <CTAButton className="px-5 py-2.5 text-sm">友だち追加で先行登録</CTAButton>
         </div>
@@ -82,12 +85,12 @@ function Header() {
 function HeroSection() {
   return (
     <section className="relative bg-white">
-      {/* キャッチコピー入りヒーロー画像を最上部にどんと表示 */}
-      <div className="relative w-full md:max-w-5xl md:mx-auto md:px-4 lg:px-6">
+      {/* キャッチコピー入りヒーロー画像を最上部にどんと表示（PCでは小さめ） */}
+      <div className="relative w-full md:mx-auto md:max-w-xl md:px-4 lg:max-w-2xl lg:px-6">
         <img
           src="/hero-catchphrase.png"
           alt="どんな場面でも一緒にゲームを楽しめる出会いを"
-          className="w-full h-auto block"
+          className="block h-auto w-full"
         />
       </div>
       <Container className="relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14">
@@ -312,7 +315,7 @@ function Footer() {
       <Container>
         <div className="text-center">
           <p className="text-lg font-bold text-white">あるこ</p>
-          <p className="mt-1 text-sm text-slate-400">位置情報ゲーム好きの友達探し</p>
+          <p className="mt-1 text-sm text-slate-400">一緒に歩いて遊べるゲーム仲間が見つかるアプリ</p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">
             <a href="/support" className="underline hover:text-white">サポート</a>
             <span className="text-slate-500">|</span>

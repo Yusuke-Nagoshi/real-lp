@@ -16,10 +16,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://real-lp.vercel.app'),
-  title: "あるこ - 位置情報ゲーム好きの友達探し",
+  title: "あるこ - 一緒に歩いて遊べるゲーム仲間が見つかるアプリ",
   description: "あるこは、位置情報ゲーム好き同士が友達を見つけられるサービスです。好きなゲーム・距離で探して、お散歩募集で自然に仲間とつながれます。",
   openGraph: {
-    title: "あるこ - 位置情報ゲーム好きの友達探し",
+    title: "あるこ - 一緒に歩いて遊べるゲーム仲間が見つかるアプリ",
     description: "位置情報ゲーム好きの友達探し。ゲームでつながって、街を歩きながら一緒にプレイできる仲間を見つけよう。",
     type: "website",
     images: [
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
         url: '/og-image.png?v=2',
         width: 1200,
         height: 630,
-        alt: 'あるこ - 位置情報ゲーム好きの友達探し',
+        alt: 'あるこ - 一緒に歩いて遊べるゲーム仲間が見つかるアプリ',
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "あるこ - 位置情報ゲーム好きの友達探し",
+    title: "あるこ - 一緒に歩いて遊べるゲーム仲間が見つかるアプリ",
     description: "位置情報ゲーム好きの友達探し。好きなゲームと距離で仲間を探せる。",
     images: ['/og-image.png?v=2'],
   },
