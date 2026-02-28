@@ -125,10 +125,14 @@ function HeroSection() {
             <br />
             <span className="text-slate-600">事前登録は下の公式LINE追加から可能です！</span>
           </p>
+          <div className="mb-3 flex flex-wrap justify-center gap-2">
+            <span className="inline-flex items-center rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">基本無料</span>
+            <span className="inline-flex items-center rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">事前登録も無料</span>
+          </div>
           <div className="mb-4">
             <CTAButton>友だち追加で事前登録</CTAButton>
           </div>
-          <p className="text-sm text-slate-500">登録無料・いつでも解除OK</p>
+          <p className="text-sm font-medium text-slate-600">いつでも解除OK</p>
         </div>
       </Container>
     </section>
@@ -167,6 +171,7 @@ function RecommendSection() {
             ))}
           </ul>
           <div className="mt-10 text-center">
+            <p className="mb-3 text-sm font-medium text-slate-600">基本無料・事前登録も無料</p>
             <CTAButton>友だち追加で事前登録</CTAButton>
           </div>
         </div>
@@ -204,22 +209,17 @@ function GamesSection() {
 }
 
 function EarlyUserSection() {
-  const benefits = [
-    { label: 'リリース優先案内', desc: '先行登録者にいち早くお知らせ' },
-    { label: '友達追加', desc: '無料・いつでも解除OK' },
-  ];
-
   return (
     <section className="bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 py-14 sm:py-16 md:py-20 border-y border-emerald-100">
       <Container>
         <div className="mx-auto max-w-3xl">
-          <p className="mb-3 text-center">
-            <span className="inline-block rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">
-              現在募集中
-            </span>
-          </p>
+          <div className="mb-4 flex flex-wrap justify-center gap-2">
+            <span className="inline-block rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">現在募集中</span>
+            <span className="inline-block rounded-full bg-emerald-600 px-4 py-1.5 text-sm font-bold text-white">基本無料</span>
+            <span className="inline-block rounded-full bg-emerald-600 px-4 py-1.5 text-sm font-bold text-white">事前登録も無料</span>
+          </div>
           <h2 className="mb-6 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            初期ユーザー事前登録受付中
+            初期ユーザー受付中！
           </h2>
 
           {/* 300いいね特典：大々的に強調 */}
@@ -235,30 +235,20 @@ function EarlyUserSection() {
             </p>
           </div>
 
-          <p className="mb-8 text-center text-slate-600 leading-relaxed">
-            サービスリリース時に優先的にご案内します。友達追加は無料、いつでも解除OKです。
+          <p className="mb-10 text-center text-slate-600 leading-relaxed">
+            サービスリリース時に優先的にご案内します。<strong className="text-slate-800">基本無料</strong>・<strong className="text-slate-800">事前登録も無料</strong>。友達追加はいつでも解除OKです。
           </p>
 
-          {/* その他メリット */}
-          <div className="mb-10 grid gap-4 sm:grid-cols-2">
-            {benefits.map((b) => (
-              <div
-                key={b.label}
-                className="rounded-2xl bg-white px-5 py-6 text-center shadow-sm border border-emerald-100"
-              >
-                <p className="text-xl font-bold text-emerald-600 sm:text-2xl">{b.label}</p>
-                <p className="mt-1 text-sm text-slate-600">{b.desc}</p>
-              </div>
-            ))}
-          </div>
-
           {/* 料金体系 */}
-          <div className="mb-10 rounded-2xl bg-white p-6 shadow-sm border border-emerald-100">
+          <div className="mb-10 rounded-2xl bg-white p-6 shadow-sm border-2 border-emerald-200">
             <h3 className="mb-4 text-lg font-bold text-slate-900">料金体系</h3>
+            <div className="mb-4 rounded-xl bg-emerald-50 px-4 py-3 text-center">
+              <p className="text-xl font-bold text-emerald-700">基本無料・事前登録も無料</p>
+            </div>
             <ul className="space-y-3 text-slate-700">
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600 font-bold">✓</span>
-                <span>基本無料</span>
+                <span><strong className="text-slate-900">基本無料</strong>で利用できます</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600 font-bold">✓</span>
@@ -283,7 +273,7 @@ function EarlyUserSection() {
 function FAQSection() {
   const faqs = [
     { q: 'どのゲームに対応していますか？', a: 'Pokemon GO、モンハンNow、ドラゴンクエストウォークなどを想定しています。順次対応タイトルを増やしていきます。' },
-    { q: '本当に無料ですか？', a: '基本無料で利用できます。ログインで1日1いいねがもらえます。追加で10いいね500円の購入も可能です。' },
+    { q: '本当に無料ですか？', a: 'はい。基本無料で、事前登録も無料です。アプリはログインで1日1いいねがもらえ、追加で10いいね500円の購入も可能です。' },
     { q: '問い合わせ先はありますか？', a: 'サポートページからメールでお問い合わせいただけます。' },
   ];
 
@@ -302,6 +292,7 @@ function FAQSection() {
           ))}
         </div>
         <div className="mt-10 text-center">
+          <p className="mb-3 text-sm font-medium text-slate-600">基本無料・事前登録も無料</p>
           <CTAButton>友だち追加で事前登録</CTAButton>
         </div>
       </Container>
