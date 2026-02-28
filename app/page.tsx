@@ -126,7 +126,7 @@ function HeroSection() {
             <span className="text-slate-600">事前登録は下の公式LINE追加から可能です！</span>
           </p>
           <div className="mb-4">
-            <CTAButton>公式LINEで友達追加（無料）</CTAButton>
+            <CTAButton>友だち追加で事前登録</CTAButton>
           </div>
           <p className="text-sm text-slate-500">登録無料・いつでも解除OK</p>
         </div>
@@ -167,7 +167,7 @@ function RecommendSection() {
             ))}
           </ul>
           <div className="mt-10 text-center">
-            <CTAButton>公式LINEで友達追加（無料）</CTAButton>
+            <CTAButton>友だち追加で事前登録</CTAButton>
           </div>
         </div>
       </Container>
@@ -272,7 +272,7 @@ function EarlyUserSection() {
           </div>
 
           <div className="text-center">
-            <CTAButton>公式LINEで友達追加（無料）</CTAButton>
+            <CTAButton>友だち追加で事前登録</CTAButton>
           </div>
         </div>
       </Container>
@@ -302,7 +302,7 @@ function FAQSection() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <CTAButton>公式LINEで友達追加（無料）</CTAButton>
+          <CTAButton>友だち追加で事前登録</CTAButton>
         </div>
       </Container>
     </section>
