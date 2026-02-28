@@ -46,8 +46,8 @@ export default function CompanyPage() {
             <section>
               <h2 className="text-xl font-bold text-slate-900 mb-3">サービスについて</h2>
               <p className="text-slate-700 leading-relaxed">
-                あるこは、位置情報ゲーム好き同士が友達を見つけられるサービスです。
-                好きなゲームや距離で仲間を探し、お散歩募集機能を通じて自然につながれるようサポートします。
+                あるこは、本人確認をしている安心できる友達探しサービスです。
+                位置情報ゲーム好き同士が友達を見つけられ、好きなゲームや距離で仲間を探し、お散歩募集機能を通じて自然につながれるようサポートします。
               </p>
             </section>
           </div>

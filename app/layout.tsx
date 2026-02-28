@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://real-lp.vercel.app'),
   title: "あるこ - 歩く系ゲーム仲間が見つかるアプリ",
-  description: "あるこは、位置情報ゲーム好き同士が友達を見つけられるサービスです。好きなゲーム・距離で探して、お散歩募集で自然に仲間とつながれます。",
+  description: "あるこは、本人確認済みの安心できる友達探しアプリ。位置情報ゲーム好き同士が友達を見つけられます。男女ともに基本無料、事前登録も無料。",
   openGraph: {
     title: "あるこ - 歩く系ゲーム仲間が見つかるアプリ",
     description: "位置情報ゲーム好きの友達探し。ゲームでつながって、街を歩きながら一緒にプレイできる仲間を見つけよう。",

@@ -15,7 +15,7 @@ const GAMES: { name: string; icon: string }[] = [
 ];
 
 const RECOMMEND_LIST = [
-  'レイド周回中にちょっとした孤独感や虚しさを感じる人へ',
+  'レイド周回中にちょっとした寂しさを覚える人へ',
   '近くに同じゲームやってる人いそうなのに、出会えなくてもどかしい人へ',
   'ゲームは楽しいけど、1人だと少し物足りないと思う人へ',
   '一緒に休日や旅先でもゲームのできる友達が欲しい人へ',
@@ -122,9 +122,13 @@ function HeroSection() {
             <span className="font-semibold text-slate-900">友達を見つけられる</span>
             サービスです。
             <br />
+            <span className="font-semibold text-emerald-600">本人確認をしている</span>
+            から、安心して仲間を探せます。
+            <br />
             <span className="text-slate-600">事前登録は下の公式LINE追加から可能です！</span>
           </p>
           <div className="mb-3 flex flex-wrap justify-center gap-2">
+            <span className="inline-flex items-center rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">本人確認済み</span>
             <span className="inline-flex items-center rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">基本無料</span>
             <span className="inline-flex items-center rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">事前登録も無料</span>
           </div>
@@ -221,10 +225,10 @@ function EarlyUserSection() {
             初期ユーザー受付中！
           </h2>
 
-          {/* 300いいね特典：大々的に強調 */}
+          {/* 300いいね特典：事前登録者限定を大々的に強調 */}
           <div className="mb-10 rounded-3xl border-2 border-emerald-400 bg-gradient-to-br from-emerald-500 to-teal-500 px-6 py-8 shadow-xl sm:px-10 sm:py-10">
             <p className="mb-2 text-center text-sm font-bold text-emerald-100 sm:text-base">
-              事前登録をしてくれた方だけの特別な特典として
+              ★ 事前登録をしてくれた方だけの特別な特典 ★
             </p>
             <p className="text-center text-4xl font-extrabold text-white drop-shadow-md sm:text-5xl md:text-6xl">
               300いいね
@@ -242,12 +246,12 @@ function EarlyUserSection() {
           <div className="mb-10 rounded-2xl bg-white p-6 shadow-sm border-2 border-emerald-200">
             <h3 className="mb-4 text-lg font-bold text-slate-900">料金体系</h3>
             <div className="mb-4 rounded-xl bg-emerald-50 px-4 py-3 text-center">
-              <p className="text-xl font-bold text-emerald-700">基本無料・事前登録も無料</p>
+              <p className="text-xl font-bold text-emerald-700">男女ともに基本無料・事前登録も無料</p>
             </div>
             <ul className="space-y-3 text-slate-700">
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600 font-bold">✓</span>
-                <span><strong className="text-slate-900">基本無料</strong>で利用できます</span>
+                <span><strong className="text-slate-900">男女ともに基本無料</strong>で利用できます</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600 font-bold">✓</span>
@@ -272,7 +276,7 @@ function EarlyUserSection() {
 function FAQSection() {
   const faqs = [
     { q: 'どのゲームに対応していますか？', a: 'Pokemon GO、モンハンNow、ドラゴンクエストウォークなどを想定しています。順次対応タイトルを増やしていきます。' },
-    { q: '本当に無料ですか？', a: 'はい。基本無料で、事前登録も無料です。アプリはログインで1日1いいねがもらえ、追加で10いいね500円の購入も可能です。' },
+    { q: '本当に無料ですか？', a: 'はい。男女ともに基本無料で、事前登録も無料です。アプリはログインで1日1いいねがもらえ、追加で10いいね500円の購入も可能です。' },
     { q: '問い合わせ先はありますか？', a: 'サポートページからメールでお問い合わせいただけます。' },
   ];
 
