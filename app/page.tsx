@@ -126,7 +126,7 @@ function HeroSection() {
             <span className="text-slate-600">事前登録は下の公式LINE追加から可能です！</span>
           </p>
           <div className="mb-4">
-            <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
+            <CTAButton>公式LINEで友達追加（無料）</CTAButton>
           </div>
           <p className="text-sm text-slate-500">登録無料・いつでも解除OK</p>
         </div>
@@ -167,7 +167,7 @@ function RecommendSection() {
             ))}
           </ul>
           <div className="mt-10 text-center">
-            <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
+            <CTAButton>公式LINEで友達追加（無料）</CTAButton>
           </div>
         </div>
       </Container>
@@ -206,7 +206,7 @@ function GamesSection() {
 function EarlyUserSection() {
   const benefits = [
     { label: 'リリース優先案内', desc: '先行登録者にいち早くお知らせ' },
-    { label: '友だち追加', desc: '無料・いつでも解除OK' },
+    { label: '友達追加', desc: '無料・いつでも解除OK' },
   ];
 
   return (
@@ -236,7 +236,7 @@ function EarlyUserSection() {
           </div>
 
           <p className="mb-8 text-center text-slate-600 leading-relaxed">
-            サービスリリース時に優先的にご案内します。友だち追加は無料、いつでも解除OKです。
+            サービスリリース時に優先的にご案内します。友達追加は無料、いつでも解除OKです。
           </p>
 
           {/* その他メリット */}
@@ -272,7 +272,7 @@ function EarlyUserSection() {
           </div>
 
           <div className="text-center">
-            <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
+            <CTAButton>公式LINEで友達追加（無料）</CTAButton>
           </div>
         </div>
       </Container>
@@ -302,7 +302,7 @@ function FAQSection() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <CTAButton>公式LINEで友だち追加（無料）</CTAButton>
+          <CTAButton>公式LINEで友達追加（無料）</CTAButton>
         </div>
       </Container>
     </section>
