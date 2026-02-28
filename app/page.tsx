@@ -12,7 +12,6 @@ const GAMES: { name: string; icon: string }[] = [
   { name: '信長の野望 出陣', icon: '🏯' },
   { name: 'ピクミン ブルーム', icon: '🌸' },
   { name: 'Ingress', icon: '🔮' },
-  { name: 'その他', icon: '🎮' },
 ];
 
 const RECOMMEND_LIST = [
@@ -180,7 +179,7 @@ function GamesSection() {
         <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
           こんなゲームをきっかけに繋がれます
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
           {GAMES.map((game) => (
             <div
               key={game.name}
@@ -193,6 +192,9 @@ function GamesSection() {
             </div>
           ))}
         </div>
+        <p className="mt-8 text-center text-base font-bold text-slate-700 sm:text-lg">
+          他にも様々なウォーク系アプリでご利用いただけます！！
+        </p>
       </Container>
     </section>
   );
@@ -200,7 +202,6 @@ function GamesSection() {
 
 function EarlyUserSection() {
   const benefits = [
-    { label: '300いいね', desc: '無料配布' },
     { label: 'リリース優先案内', desc: '先行登録者にいち早くお知らせ' },
     { label: '友だち追加', desc: '無料・いつでも解除OK' },
   ];
@@ -217,12 +218,26 @@ function EarlyUserSection() {
           <h2 className="mb-6 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
             初期ユーザー事前登録受付中
           </h2>
-          <p className="mb-10 text-center text-slate-600 leading-relaxed">
+
+          {/* 300いいね特典：大々的に強調 */}
+          <div className="mb-10 rounded-3xl border-2 border-emerald-400 bg-gradient-to-br from-emerald-500 to-teal-500 px-6 py-8 shadow-xl sm:px-10 sm:py-10">
+            <p className="mb-2 text-center text-sm font-bold text-emerald-100 sm:text-base">
+              事前登録をしてくれた方だけの特別な特典として
+            </p>
+            <p className="text-center text-4xl font-extrabold text-white drop-shadow-md sm:text-5xl md:text-6xl">
+              300いいね
+            </p>
+            <p className="mt-2 text-center text-2xl font-bold text-white sm:text-3xl">
+              が無料で配布！！
+            </p>
+          </div>
+
+          <p className="mb-8 text-center text-slate-600 leading-relaxed">
             サービスリリース時に優先的にご案内します。友だち追加は無料、いつでも解除OKです。
           </p>
 
-          {/* メリット */}
-          <div className="mb-10 grid gap-4 sm:grid-cols-3">
+          {/* その他メリット */}
+          <div className="mb-10 grid gap-4 sm:grid-cols-2">
             {benefits.map((b) => (
               <div
                 key={b.label}
