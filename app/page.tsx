@@ -75,7 +75,7 @@ function Header() {
               <p className="text-[11px] text-slate-500 -mt-0.5 hidden sm:block">歩く系ゲーム仲間が見つかるアプリ</p>
             </div>
           </div>
-          <CTAButton className="px-5 py-2.5 text-sm">友だち追加で先行登録</CTAButton>
+          <CTAButton className="px-5 py-2.5 text-sm">友達追加で事前登録</CTAButton>
         </div>
       </Container>
     </header>
