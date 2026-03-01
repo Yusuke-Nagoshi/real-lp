@@ -127,11 +127,6 @@ function HeroSection() {
             <br />
             <span className="text-slate-600">事前登録は下の公式LINE追加から可能です！</span>
           </p>
-          <div className="mb-3 flex flex-wrap justify-center gap-2">
-            <span className="inline-flex items-center rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">本人確認済み</span>
-            <span className="inline-flex items-center rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">基本無料</span>
-            <span className="inline-flex items-center rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">事前登録も無料</span>
-          </div>
           <div className="mb-4">
             <CTAButton>友だち追加で事前登録</CTAButton>
           </div>
@@ -174,7 +169,6 @@ function RecommendSection() {
             ))}
           </ul>
           <div className="mt-10 text-center">
-            <p className="mb-3 text-sm font-medium text-slate-600">基本無料・事前登録も無料</p>
             <CTAButton>友だち追加で事前登録</CTAButton>
           </div>
         </div>
@@ -216,25 +210,23 @@ function EarlyUserSection() {
     <section className="bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 py-14 sm:py-16 md:py-20 border-y border-emerald-100">
       <Container>
         <div className="mx-auto max-w-3xl">
-          <div className="mb-4 flex flex-wrap justify-center gap-2">
-            <span className="inline-block rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">現在募集中</span>
-            <span className="inline-block rounded-full bg-emerald-600 px-4 py-1.5 text-sm font-bold text-white">基本無料</span>
-            <span className="inline-block rounded-full bg-emerald-600 px-4 py-1.5 text-sm font-bold text-white">事前登録も無料</span>
-          </div>
-          <h2 className="mb-6 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+          <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
             初期ユーザー受付中！
           </h2>
 
-          {/* 300いいね特典：事前登録者限定を大々的に強調 */}
-          <div className="mb-10 rounded-3xl border-2 border-emerald-400 bg-gradient-to-br from-emerald-500 to-teal-500 px-6 py-8 shadow-xl sm:px-10 sm:py-10">
-            <p className="mb-2 text-center text-sm font-bold text-emerald-100 sm:text-base">
-              ★ 事前登録をしてくれた方だけの特別な特典 ★
+          {/* 先着500名様限定1000いいね：かなり強調 */}
+          <div className="mb-10 rounded-3xl border-4 border-amber-400 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 px-6 py-10 shadow-2xl sm:px-12 sm:py-12 ring-4 ring-amber-200/50">
+            <p className="mb-4 text-center text-base font-extrabold text-amber-100 sm:text-lg">
+              ★★★★★ 事前登録先着500名様限定 ★★★★★
             </p>
-            <p className="text-center text-4xl font-extrabold text-white drop-shadow-md sm:text-5xl md:text-6xl">
-              300いいね
+            <p className="text-center text-5xl font-black text-white drop-shadow-lg sm:text-6xl md:text-7xl">
+              1000いいね
             </p>
-            <p className="mt-2 text-center text-2xl font-bold text-white sm:text-3xl">
-              が無料で配布！！
+            <p className="mt-3 text-center text-2xl font-bold text-white sm:text-3xl md:text-4xl">
+              をプレゼント！！
+            </p>
+            <p className="mt-6 text-center text-sm font-bold text-amber-100">
+              事前登録いただいた先着500名様に、リリース後1000いいねを無料でお届けします
             </p>
           </div>
 
@@ -295,7 +287,6 @@ function FAQSection() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <p className="mb-3 text-sm font-medium text-slate-600">基本無料・事前登録も無料</p>
           <CTAButton>友だち追加で事前登録</CTAButton>
         </div>
       </Container>
