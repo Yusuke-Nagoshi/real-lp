@@ -215,9 +215,18 @@ function EarlyUserSection() {
           </h2>
 
           {/* 先着500名様限定1000いいね：かなり強調 */}
-          <div className="mb-10 rounded-3xl border-4 border-amber-400 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 px-6 py-10 shadow-2xl sm:px-12 sm:py-12 ring-4 ring-amber-200/50">
-            <p className="mb-4 text-center text-base font-extrabold text-amber-100 sm:text-lg">
-              ★★★★★ 事前登録先着500名様限定 ★★★★★
+          <div className="mb-10 rounded-3xl border-4 border-amber-400 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 px-6 py-10 shadow-2xl sm:px-12 sm:py-12 ring-4 ring-amber-200/50 relative overflow-hidden">
+            {/* 先着500名様限定：最上部で大きく目立たせる */}
+            <div className="mb-6 rounded-2xl bg-red-600 px-4 py-5 text-center shadow-xl ring-4 ring-white/40">
+              <p className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight drop-shadow-md">
+                先着500名様限定！！
+              </p>
+              <p className="mt-1 text-sm sm:text-base font-bold text-amber-100">
+                枠が埋まり次第終了
+              </p>
+            </div>
+            <p className="mb-3 text-center text-base font-extrabold text-amber-100 sm:text-lg">
+              ★ 事前登録いただいた方だけの特別特典 ★
             </p>
             <p className="text-center text-5xl font-black text-white drop-shadow-lg sm:text-6xl md:text-7xl">
               1000いいね
@@ -225,8 +234,8 @@ function EarlyUserSection() {
             <p className="mt-3 text-center text-2xl font-bold text-white sm:text-3xl md:text-4xl">
               をプレゼント！！
             </p>
-            <p className="mt-6 text-center text-sm font-bold text-amber-100">
-              事前登録いただいた先着500名様に、リリース後1000いいねを無料でお届けします
+            <p className="mt-6 text-center text-lg font-bold text-amber-50">
+              事前登録の<span className="text-yellow-300 underline decoration-4 decoration-yellow-300 underline-offset-2">先着500名様</span>に、リリース後1000いいねを無料でお届け
             </p>
           </div>
 
