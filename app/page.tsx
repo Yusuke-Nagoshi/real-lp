@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
-const FORM_URL = 'https://lin.ee/Jec31vm';
-const LINE_URL = 'https://lin.ee/Jec31vm';
+const FORM_URL = 'https://lin.ee/sjoYeq5';
+const LINE_URL = 'https://lin.ee/sjoYeq5';
 
 const GAMES: { name: string; icon: string }[] = [
   { name: 'Pokemon GO', icon: '⚡' },
