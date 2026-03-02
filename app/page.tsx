@@ -1,88 +1,8 @@
 'use client';
 
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const LINE_URL = 'https://lin.ee/sjoYeq5';
-
-/** X（旧Twitter）アプリ内ブラウザかどうかをUserAgentで判定 */
-function isXInAppBrowser(): boolean {
-  if (typeof navigator === 'undefined') return false;
-  const ua = navigator.userAgent;
-  return (
-    ua.includes('Twitter') ||
-    ua.includes('Twitter for iPhone') ||
-    ua.includes('Twitter for Android') ||
-    ua.includes('TwitterAndroid') ||
-    ua.includes('X for iPhone') ||
-    ua.includes('X for Android')
-  );
-}
-
-/** スマホかどうか（PCの場合は従来通り） */
-function isMobile(): boolean {
-  if (typeof window === 'undefined') return false;
-  return (
-    /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-    window.innerWidth <= 768
-  );
-}
-
-/** X内ブラウザかつスマホの場合、LINEボタン押下でモーダルを表示するか */
-function shouldShowLineModal(): boolean {
-  return isXInAppBrowser() && isMobile();
-}
-
-const LineModalContext = React.createContext<{
-  showLineModal: boolean;
-  setShowLineModal: (show: boolean) => void;
-} | null>(null);
-
-function LineModalProvider({ children }: { children: React.ReactNode }) {
-  const [showLineModal, setShowLineModal] = useState(false);
-  return (
-    <LineModalContext.Provider value={{ showLineModal, setShowLineModal }}>
-      {children}
-      {showLineModal && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4"
-          onClick={() => setShowLineModal(false)}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="line-modal-title"
-        >
-          <div
-            className="max-w-sm rounded-2xl bg-white p-6 shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2 id="line-modal-title" className="mb-4 text-center text-lg font-bold text-slate-900">
-              📩 LINE登録について
-            </h2>
-            <p className="mb-4 text-sm leading-relaxed text-slate-700">
-              Xアプリ内ではLINEが開けません。
-            </p>
-            <ol className="mb-6 list-decimal list-inside space-y-2 text-sm leading-relaxed text-slate-700">
-              <li>画面右上の「︙」をタップ</li>
-              <li>「Safariで開く」を選択</li>
-              <li>再度LINE登録ボタンを押してください</li>
-            </ol>
-            <button
-              onClick={() => setShowLineModal(false)}
-              className="w-full rounded-full bg-emerald-500 px-6 py-3 text-base font-bold text-white shadow-lg transition-colors hover:bg-emerald-600"
-            >
-              OK
-            </button>
-          </div>
-        </div>
-      )}
-    </LineModalContext.Provider>
-  );
-}
-
-function useLineModal() {
-  const ctx = useContext(LineModalContext);
-  if (!ctx) throw new Error('useLineModal must be used within LineModalProvider');
-  return ctx;
-}
 
 const GAMES: { name: string; icon: string }[] = [
   { name: 'Pokemon GO', icon: '⚡' },
@@ -105,24 +25,11 @@ function Container({ children, className = '' }: { children: React.ReactNode; cl
 }
 
 function CTAButton({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  const { setShowLineModal } = useLineModal();
-
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (shouldShowLineModal()) {
-        e.preventDefault();
-        setShowLineModal(true);
-      }
-    },
-    [setShowLineModal]
-  );
-
   return (
     <a
       href={LINE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={handleClick}
       className={`inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold text-white shadow-lg transition-all bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 ${className}`}
     >
       {children}
@@ -396,18 +303,6 @@ function FAQSection() {
 }
 
 function Footer() {
-  const { setShowLineModal } = useLineModal();
-
-  const handleLineClick = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (shouldShowLineModal()) {
-        e.preventDefault();
-        setShowLineModal(true);
-      }
-    },
-    [setShowLineModal]
-  );
-
   return (
     <footer className="bg-slate-800 py-10 text-slate-300">
       <Container>
@@ -423,7 +318,7 @@ function Footer() {
             <span className="text-slate-500">|</span>
             <a href="/company" className="underline hover:text-white">運営者情報</a>
             <span className="text-slate-500">|</span>
-            <a href={LINE_URL} target="_blank" rel="noopener noreferrer" onClick={handleLineClick} className="underline hover:text-white">公式LINE</a>
+            <a href={LINE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">公式LINE</a>
           </div>
           <p className="mt-6 text-xs text-slate-500">※18歳以上の方のみご利用いただけます</p>
           <p className="mt-2 text-xs text-slate-500">© 2026 あるこ</p>
@@ -435,18 +330,16 @@ function Footer() {
 
 export default function Home() {
   return (
-    <LineModalProvider>
-      <div className="min-h-screen bg-white">
-        <Header />
-        <main>
-          <HeroSection />
-          <RecommendSection />
-          <GamesSection />
-          <EarlyUserSection />
-          <FAQSection />
-        </main>
-        <Footer />
-      </div>
-    </LineModalProvider>
+    <div className="min-h-screen bg-white">
+      <Header />
+      <main>
+        <HeroSection />
+        <RecommendSection />
+        <GamesSection />
+        <EarlyUserSection />
+        <FAQSection />
+      </main>
+      <Footer />
+    </div>
   );
 }
