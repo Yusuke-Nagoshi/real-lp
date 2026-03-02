@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
-const LINE_URL = 'https://lin.ee/sjoYeq5';
+// line.me直接URL（lin.eeリダイレクトを避け、Universal Linkの確実な発火を優先）
+const LINE_URL = 'https://line.me/R/ti/p/sjoYeq5';
 
 const GAMES: { name: string; icon: string }[] = [
   { name: 'Pokemon GO', icon: '⚡' },
@@ -24,12 +25,23 @@ function Container({ children, className = '' }: { children: React.ReactNode; cl
   return <div className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>;
 }
 
+/** スマホでは同一タブ遷移（WebViewでUniversal Link発火しやすくする）、PCでは新規タブ */
+function useLineLinkTarget() {
+  const [target, setTarget] = useState<'_self' | '_blank'>('_blank');
+  useEffect(() => {
+    const isMobile = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    setTarget(isMobile ? '_self' : '_blank');
+  }, []);
+  return target;
+}
+
 function CTAButton({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  const lineTarget = useLineLinkTarget();
   return (
     <a
       href={LINE_URL}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={lineTarget}
+      rel={lineTarget === '_blank' ? 'noopener noreferrer' : 'noopener'}
       className={`inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold text-white shadow-lg transition-all bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 ${className}`}
     >
       {children}
@@ -303,6 +315,7 @@ function FAQSection() {
 }
 
 function Footer() {
+  const lineTarget = useLineLinkTarget();
   return (
     <footer className="bg-slate-800 py-10 text-slate-300">
       <Container>
@@ -318,7 +331,7 @@ function Footer() {
             <span className="text-slate-500">|</span>
             <a href="/company" className="underline hover:text-white">運営者情報</a>
             <span className="text-slate-500">|</span>
-            <a href={LINE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">公式LINE</a>
+            <a href={LINE_URL} target={lineTarget} rel={lineTarget === '_blank' ? 'noopener noreferrer' : 'noopener'} className="underline hover:text-white">公式LINE</a>
           </div>
           <p className="mt-6 text-xs text-slate-500">※18歳以上の方のみご利用いただけます</p>
           <p className="mt-2 text-xs text-slate-500">© 2026 あるこ</p>
