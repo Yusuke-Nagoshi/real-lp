@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
-// line.me直接URL（lin.eeリダイレクトを避け、Universal Linkの確実な発火を優先）
-const LINE_URL = 'https://line.me/R/ti/p/sjoYeq5';
+// lin.ee公式短縮URL（正しい友だち追加ページへリダイレクト）
+const LINE_URL = 'https://lin.ee/sjoYeq5';
 
 const GAMES: { name: string; icon: string }[] = [
   { name: 'Pokemon GO', icon: '⚡' },
