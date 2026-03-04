@@ -82,7 +82,7 @@ function Header() {
             </div>
             <div>
               <span className="text-lg font-bold text-slate-900">あるこ</span>
-              <p className="text-[11px] text-slate-500 -mt-0.5 hidden sm:block">歩く系ゲーム仲間が見つかるアプリ</p>
+              <p className="text-[11px] text-slate-500 -mt-0.5 hidden sm:block">位置ゲー専用友達探しアプリ</p>
             </div>
           </div>
           <CTAButton className="px-5 py-2.5 text-sm">友達追加で事前登録</CTAButton>
@@ -209,7 +209,7 @@ function GamesSection() {
           ))}
         </div>
         <p className="mt-8 text-center text-base font-bold text-slate-700 sm:text-lg">
-          他にも様々なウォーク系アプリでご利用いただけます！！
+          他にも様々な位置ゲーアプリでご利用いただけます！！
         </p>
       </Container>
     </section>
@@ -321,7 +321,7 @@ function Footer() {
       <Container>
         <div className="text-center">
           <p className="text-lg font-bold text-white">あるこ</p>
-          <p className="mt-1 text-sm text-slate-400">歩く系ゲーム仲間が見つかるアプリ</p>
+          <p className="mt-1 text-sm text-slate-400">位置ゲー専用友達探しアプリ</p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">
             <a href="/support" className="underline hover:text-white">サポート</a>
             <span className="text-slate-500">|</span>
