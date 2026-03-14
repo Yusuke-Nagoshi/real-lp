@@ -39,7 +39,10 @@ export default function CompanyPage() {
             <section>
               <h2 className="text-xl font-bold text-slate-900 mb-3">所在地</h2>
               <p className="text-slate-700 leading-relaxed">
-                福岡県
+                福岡県小郡市希みが丘６丁目３番地17
+              </p>
+              <p className="mt-1 text-xs text-slate-500">
+                （インターネット異性紹介事業の届出に記載した事業所所在地と同一です。）
               </p>
             </section>
 
