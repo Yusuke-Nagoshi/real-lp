@@ -47,20 +47,6 @@ export default function SupportPage() {
             </div>
           </section>
 
-          {/* 事前登録・その他のご連絡 */}
-          <section className="mb-10">
-            <h2 className="text-xl font-bold text-slate-900 mb-4">事前登録・その他</h2>
-            <p className="text-slate-700 mb-4">
-              アプリの事前登録（待機リストへの登録）や、その他のご連絡は以下のフォームからも受け付けております。
-            </p>
-            <Link
-              href="/go/form"
-              className="inline-flex items-center justify-center px-6 py-3 bg-slate-100 text-slate-800 rounded-lg hover:bg-slate-200 transition-colors font-medium border border-slate-200"
-            >
-              事前登録・お問い合わせフォームへ
-            </Link>
-          </section>
-
           {/* よくある質問 */}
           <section className="mb-10">
             <h2 className="text-xl font-bold text-slate-900 mb-4">よくある質問</h2>
@@ -86,7 +72,7 @@ export default function SupportPage() {
               <li className="pb-2">
                 <h3 className="font-semibold text-slate-800 mb-1">Q. その他の質問がある</h3>
                 <p className="text-slate-600 text-sm">
-                  上記メールアドレスまたはフォームよりお気軽にご連絡ください。
+                  上記メールアドレスよりお気軽にご連絡ください。
                 </p>
               </li>
             </ul>

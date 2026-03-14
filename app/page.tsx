@@ -333,7 +333,7 @@ function Footer() {
             <span className="text-slate-500">|</span>
             <a href={LINE_URL} target={lineTarget} rel={lineTarget === '_blank' ? 'noopener noreferrer' : 'noopener'} className="underline hover:text-white">公式LINE</a>
           </div>
-          <p className="mt-6 text-xs text-slate-500">※18歳以上の方のみご利用いただけます</p>
+          <p className="mt-6 text-xs text-slate-500">※18歳以上の方のみご利用いただけます。メッセージを開始するには本人確認が必要です。</p>
           <p className="mt-2 text-xs text-slate-500">© 2026 あるこ</p>
         </div>
       </Container>

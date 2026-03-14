@@ -39,7 +39,7 @@ export default function PrivacyPage() {
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 mb-3">2.1 アカウント情報（認証）</h3>
                   <ul className="list-disc list-inside text-slate-700 space-y-2 ml-4">
-                    <li>認証プロバイダに関する情報（例：Apple/Google）</li>
+                    <li>認証プロバイダに関する情報（例：Google）</li>
                     <li>Supabase等の認証基盤上のユーザー識別子（UID）</li>
                     <li>（ユーザーが提供する場合）メールアドレス等の連絡先情報</li>
                   </ul>
@@ -72,7 +72,7 @@ export default function PrivacyPage() {
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 mb-3">2.5 端末・通知関連</h3>
                   <ul className="list-disc list-inside text-slate-700 space-y-2 ml-4">
-                    <li>プッシュ通知のためのデバイストークン（APNs）</li>
+                    <li>プッシュ通知のためのデバイストークン</li>
                     <li>OSの通知設定状態（取得可能な範囲）</li>
                   </ul>
                 </div>
@@ -116,8 +116,7 @@ export default function PrivacyPage() {
               <ul className="list-disc list-inside text-slate-700 space-y-2 ml-4">
                 <li><strong>Supabase</strong>：認証、データベース、ストレージ等</li>
                 <li><strong>Google Cloud（Cloud Run等）</strong>：APIのホスティング、ログ等</li>
-                <li><strong>Apple（APNs）</strong>：プッシュ通知配信</li>
-                <li><strong>Apple/Google</strong>：サインイン（認証）</li>
+                <li><strong>Google</strong>：サインイン（認証）</li>
               </ul>
               <p className="text-slate-700 leading-relaxed mt-3">
                 これら外部サービスへの情報の送信は、本サービスの提供に必要な範囲で行われます。
