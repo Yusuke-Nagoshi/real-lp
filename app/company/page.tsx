@@ -39,7 +39,7 @@ export default function CompanyPage() {
             <section>
               <h2 className="text-xl font-bold text-slate-900 mb-3">所在地</h2>
               <p className="text-slate-700 leading-relaxed">
-                東京都
+                福岡県
               </p>
             </section>
 
