@@ -127,11 +127,25 @@ real-lp/
 └── README.md
 ```
 
+## 公式LINEボタンのクリック計測（Vercel Analytics）
+
+LP上の「友だち追加で事前登録」ボタンおよびフッターの「公式LINE」リンクをタップすると、**Vercel Web Analytics** にカスタムイベント `line_friend_cta_click` が送信されます。
+
+### Vercel ダッシュボードでの確認
+
+1. [Vercel](https://vercel.com) で対象プロジェクトを開く
+2. **Analytics** タブを開く（プロジェクトに **Web Analytics** が有効なこと）
+3. **Events**（またはカスタムイベント一覧）で `line_friend_cta_click` を確認
+4. プロパティ `placement` で内訳を確認できます：`header` / `hero` / `recommend` / `early_user` / `faq` / `footer`
+
+※ Web Analytics は Vercel のプランにより利用可否が異なります。未契約の場合はプロジェクト設定から有効化してください。
+
+イベント名を変える場合は `app/page.tsx` の `LINE_CTA_EVENT` を編集してください。
+
 ## 注意事項
 
 - 画像はプレースホルダーとして実装されています。後で実際の画像に差し替えてください。
-- CTAボタンはすべてGoogleフォームに遷移します。
-- フォームURLは `app/page.tsx` の `FORM_URL` 定数で管理されています。
+- CTAは公式LINE（`lin.ee`）へ遷移します。URLは `app/page.tsx` の `LINE_URL` で管理されています。
 
 ## ライセンス
 

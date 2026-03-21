@@ -1,9 +1,17 @@
 'use client';
 
+import { track } from '@vercel/analytics/react';
 import { useEffect, useState } from 'react';
 
 // lin.ee公式短縮URL（正しい友だち追加ページへリダイレクト）
 const LINE_URL = 'https://lin.ee/sjoYeq5';
+
+/** Vercel Web Analytics のカスタムイベント名（ダッシュボードの Analytics → Events で集計） */
+const LINE_CTA_EVENT = 'line_friend_cta_click';
+
+function trackLineCtaClick(placement: string) {
+  track(LINE_CTA_EVENT, { placement });
+}
 
 const GAMES: { name: string; icon: string }[] = [
   { name: 'Pokemon GO', icon: '⚡' },
@@ -35,13 +43,23 @@ function useLineLinkTarget() {
   return target;
 }
 
-function CTAButton({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+function CTAButton({
+  children,
+  className = '',
+  placement,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  /** どの位置のボタンか（Vercel Analytics で内訳表示） */
+  placement: string;
+}) {
   const lineTarget = useLineLinkTarget();
   return (
     <a
       href={LINE_URL}
       target={lineTarget}
       rel={lineTarget === '_blank' ? 'noopener noreferrer' : 'noopener'}
+      onClick={() => trackLineCtaClick(placement)}
       className={`inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold text-white shadow-lg transition-all bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 ${className}`}
     >
       {children}
@@ -85,7 +103,9 @@ function Header() {
               <p className="text-[11px] text-slate-500 -mt-0.5 hidden sm:block">位置ゲー専用友達探しアプリ</p>
             </div>
           </div>
-          <CTAButton className="px-5 py-2.5 text-sm">友達追加で事前登録</CTAButton>
+          <CTAButton className="px-5 py-2.5 text-sm" placement="header">
+            友達追加で事前登録
+          </CTAButton>
         </div>
       </Container>
     </header>
@@ -139,7 +159,7 @@ function HeroSection() {
             <span className="text-slate-600">事前登録は下の公式LINE追加から可能です！</span>
           </p>
           <div className="mb-4">
-            <CTAButton>友だち追加で事前登録</CTAButton>
+            <CTAButton placement="hero">友だち追加で事前登録</CTAButton>
           </div>
           <p className="text-sm font-medium text-slate-600">いつでも解除OK</p>
         </div>
@@ -180,7 +200,7 @@ function RecommendSection() {
             ))}
           </ul>
           <div className="mt-10 text-center">
-            <CTAButton>友だち追加で事前登録</CTAButton>
+            <CTAButton placement="recommend">友だち追加で事前登録</CTAButton>
           </div>
         </div>
       </Container>
@@ -277,7 +297,7 @@ function EarlyUserSection() {
           </div>
 
           <div className="text-center">
-            <CTAButton>友だち追加で事前登録</CTAButton>
+            <CTAButton placement="early_user">友だち追加で事前登録</CTAButton>
           </div>
         </div>
       </Container>
@@ -307,7 +327,7 @@ function FAQSection() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <CTAButton>友だち追加で事前登録</CTAButton>
+          <CTAButton placement="faq">友だち追加で事前登録</CTAButton>
         </div>
       </Container>
     </section>
@@ -331,7 +351,15 @@ function Footer() {
             <span className="text-slate-500">|</span>
             <a href="/company" className="underline hover:text-white">運営者情報</a>
             <span className="text-slate-500">|</span>
-            <a href={LINE_URL} target={lineTarget} rel={lineTarget === '_blank' ? 'noopener noreferrer' : 'noopener'} className="underline hover:text-white">公式LINE</a>
+            <a
+              href={LINE_URL}
+              target={lineTarget}
+              rel={lineTarget === '_blank' ? 'noopener noreferrer' : 'noopener'}
+              onClick={() => trackLineCtaClick('footer')}
+              className="underline hover:text-white"
+            >
+              公式LINE
+            </a>
           </div>
           <p className="mt-6 text-xs text-slate-500">※18歳以上の方のみご利用いただけます。メッセージを開始するには本人確認が必要です。</p>
           <p className="mt-2 text-xs text-slate-500">© 2026 あるこ</p>
