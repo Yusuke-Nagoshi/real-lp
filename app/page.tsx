@@ -1,17 +1,8 @@
 'use client';
 
-import { track } from '@vercel/analytics/react';
 import { useEffect, useState } from 'react';
 
-// lin.ee公式短縮URL（正しい友だち追加ページへリダイレクト）
-const LINE_URL = 'https://lin.ee/sjoYeq5';
-
-/** Vercel Web Analytics のカスタムイベント名（ダッシュボードの Analytics → Events で集計） */
-const LINE_CTA_EVENT = 'line_friend_cta_click';
-
-function trackLineCtaClick(placement: string) {
-  track(LINE_CTA_EVENT, { placement });
-}
+import { lineCtaHref } from '@/lib/line';
 
 const GAMES: { name: string; icon: string }[] = [
   { name: 'Pokemon GO', icon: '⚡' },
@@ -50,16 +41,15 @@ function CTAButton({
 }: {
   children: React.ReactNode;
   className?: string;
-  /** どの位置のボタンか（Vercel Analytics で内訳表示） */
+  /** どの位置のボタンか（計測の内訳用・/go/line のクエリ） */
   placement: string;
 }) {
   const lineTarget = useLineLinkTarget();
   return (
     <a
-      href={LINE_URL}
+      href={lineCtaHref(placement)}
       target={lineTarget}
       rel={lineTarget === '_blank' ? 'noopener noreferrer' : 'noopener'}
-      onClick={() => trackLineCtaClick(placement)}
       className={`inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold text-white shadow-lg transition-all bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 ${className}`}
     >
       {children}
@@ -352,10 +342,9 @@ function Footer() {
             <a href="/company" className="underline hover:text-white">運営者情報</a>
             <span className="text-slate-500">|</span>
             <a
-              href={LINE_URL}
+              href={lineCtaHref('footer')}
               target={lineTarget}
               rel={lineTarget === '_blank' ? 'noopener noreferrer' : 'noopener'}
-              onClick={() => trackLineCtaClick('footer')}
               className="underline hover:text-white"
             >
               公式LINE

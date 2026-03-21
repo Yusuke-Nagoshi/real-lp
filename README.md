@@ -127,20 +127,14 @@ real-lp/
 └── README.md
 ```
 
-## 公式LINEボタンのクリック計測（Vercel Analytics）
+## 公式LINEボタン経由の回数（中継ページ + 通常の Analytics）
 
-LP上の「友だち追加で事前登録」ボタンおよびフッターの「公式LINE」リンクをタップすると、**Vercel Web Analytics** にカスタムイベント `line_friend_cta_click` が送信されます。
+LP全体の訪問数はこれまでどおり **Vercel Web Analytics** のページビューで分かります。
 
-### Vercel ダッシュボードでの確認
+公式LINEへの導線だけを別カウントしたいので、ボタンは一度 **`/go/line?from=（場所）`** を踏んでから `lin.ee` へ飛ぶようにしています。**`/go/line` のページビュー数が「LINE ボタンを押した回数」**に相当します（追加の DB や Pro の Events は不要）。
 
-1. [Vercel](https://vercel.com) で対象プロジェクトを開く
-2. **Analytics** タブを開く（プロジェクトに **Web Analytics** が有効なこと）
-3. **Events**（またはカスタムイベント一覧）で `line_friend_cta_click` を確認
-4. プロパティ `placement` で内訳を確認できます：`header` / `hero` / `recommend` / `early_user` / `faq` / `footer`
-
-※ Web Analytics は Vercel のプランにより利用可否が異なります。未契約の場合はプロジェクト設定から有効化してください。
-
-イベント名を変える場合は `app/page.tsx` の `LINE_CTA_EVENT` を編集してください。
+- Vercel プロジェクトの **Analytics** で、パス別・URL 別の表示を確認してください。
+- `from` クエリ付きで集計される場合は、ボタン位置ごとの内訳も見られます。
 
 ## 注意事項
 
