@@ -22,10 +22,6 @@ const RECOMMEND_LIST = [
 
 const RECRUIT_CASES = [
   {
-    title: 'レイド募集',
-    text: '「このレイドをあと1人と回りたい」「この周辺を30分だけ一緒に周りたい」など、その場の目的に合わせて気軽に募集できます。',
-  },
-  {
     title: '交換募集',
     text: '欲しいモンスターや交換したい内容が決まっている時も、条件を絞って募集。目的が一致する相手だけ見つけやすくなります。',
   },
@@ -137,7 +133,7 @@ function HeroSection() {
     <section className="relative bg-white">
       <div className="relative w-full md:mx-auto md:max-w-xl md:px-4 lg:max-w-2xl lg:px-6">
         <img
-          src="/hero-catchphrase.png"
+          src="/hero-catchphrase-v2.png"
           alt="どんな場面でも一緒にゲームを楽しめる出会いを"
           className="block h-auto w-full"
         />
@@ -145,11 +141,11 @@ function HeroSection() {
       <Container className="relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-xl font-bold leading-relaxed text-slate-900 sm:text-2xl md:text-4xl">
-            1人だと物足りない・
+            「1人だと物足りない」
             <br className="sm:hidden" />
-            人数が必要な時こそ、
+            「人手が必要」
             <br />
-            <span className="text-emerald-600">気軽に募集して一緒に周れる。</span>
+            <span className="text-emerald-600">そんな時に、気軽に募集して一緒に周れる。</span>
           </p>
           <p className="mx-auto mb-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
             レイド、交換、イベント周回。
@@ -240,7 +236,7 @@ function RecruitFeatureSection() {
             今すぐでも週末予定でも、その時の目的に合わせて募集できるから、話が早くて合流しやすくなります。
           </p>
         </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-4xl gap-4 md:grid-cols-2">
           {RECRUIT_CASES.map((item) => (
             <div
               key={item.title}
