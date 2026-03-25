@@ -17,7 +17,7 @@ const RECOMMEND_LIST = [
   'あと1人いれば倒せるレイドなのに、周りに人が足りない',
   'イベント中だけでもいいから、軽く一緒に周れる人がほしい',
   '同じモンスター同士で交換したいのに、ちょうどいい相手が見つからない',
-  'ネットで知り合った人といきなり会うのは少し不安',
+  'ネットで知り合った素性の分からない人と会うのは不安',
 ];
 
 const RECRUIT_CASES = [
@@ -30,15 +30,15 @@ const RECRUIT_CASES = [
     text: '欲しいモンスターや交換したい内容が決まっている時も、条件を絞って募集。目的が一致する相手だけ見つけやすくなります。',
   },
   {
-    title: '気軽に合流',
-    text: 'がっつり友達探しをしなくても大丈夫。まずは軽く一緒に周ってみて、気が合えばまた次も一緒に遊べます。',
+    title: 'レイド・イベント募集',
+    text: '「今ちょっと周りたい」だけでなく、「今週末に誰かとレイド周回したい」みたいな予定ベースの募集にも使えます。',
   },
 ];
 
 const FLOW_STEPS = [
   {
     title: '募集を出す・探す',
-    text: '「今このレイドに行きたい」「交換したい」など、目的ベースで相手を探せます。募集だけでなく、一覧から気になる相手に直接依頼することも可能です。',
+    text: '「今このレイドに行きたい」だけでなく、「今週末にレイド周回したい」もOK。募集だけでなく、一覧から気になる相手に直接依頼することも可能です。',
   },
   {
     title: '相手のプロフィールを確認',
@@ -145,14 +145,20 @@ function HeroSection() {
       <Container className="relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-xl font-bold leading-relaxed text-slate-900 sm:text-2xl md:text-4xl">
-            1人だと集まりにくい時こそ、
+            1人だと物足りない・
+            <br className="sm:hidden" />
+            人数が必要な時こそ、
             <br />
             <span className="text-emerald-600">気軽に募集して一緒に周れる。</span>
           </p>
           <p className="mx-auto mb-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
             レイド、交換、イベント周回。
             <br className="hidden sm:block" />
-            「今ちょっと誰かと回りたい」を、その場で叶えやすくするためのサービスです。
+            「今ちょっと誰かと周りたい」から
+            <br className="sm:hidden" />
+            「今週末に誰かとレイド周回したい」まで、
+            <br className="hidden sm:block" />
+            目的に合う相手を見つけやすくするためのサービスです。
           </p>
           <div className="mx-auto mb-6 max-w-2xl rounded-2xl border border-emerald-100 bg-emerald-50/70 p-5 text-left shadow-sm">
             <p className="text-base font-bold text-slate-900 sm:text-lg">
@@ -206,8 +212,10 @@ function RecommendSection() {
           </ul>
           <p className="mt-6 text-center text-sm leading-relaxed text-slate-600 sm:text-base">
             「ガチの友達探し」よりも、
-            <span className="font-semibold text-slate-900">今この場で一緒に周れる人がほしい</span>
-            時に使いやすい設計です。
+            <span className="font-semibold text-slate-900">今この場で一緒に周れる人</span>
+            や
+            <span className="font-semibold text-slate-900">今週末に一緒に周る相手</span>
+            を見つけたい時に使いやすい設計です。
           </p>
           <div className="mt-10 text-center">
             <CTAButton placement="recommend">友だち追加で事前登録</CTAButton>
@@ -227,9 +235,9 @@ function RecruitFeatureSection() {
             募集機能で、目的が合う相手を見つけやすい
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            レイドを周りたい、交換したい、イベント中だけ一緒に回りたい。
+            レイドを周りたい、交換したい、イベントを一緒に回りたい。
             <br className="hidden sm:block" />
-            あるこでは、その時の目的に合わせて募集できるから、話が早くて合流しやすくなります。
+            今すぐでも週末予定でも、その時の目的に合わせて募集できるから、話が早くて合流しやすくなります。
           </p>
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
