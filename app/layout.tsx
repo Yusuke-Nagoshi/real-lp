@@ -16,25 +16,25 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://real-lp.vercel.app'),
-  title: "あるこ - 位置ゲー専用友達探しアプリ",
-  description: "あるこは、本人確認済みの安心できる友達探しアプリ。位置情報ゲーム好き同士が友達を見つけられます。男女ともに基本無料、事前登録も無料。",
+  title: "あるこ - 位置ゲーで一緒に周れる人が見つかる",
+  description: "あるこは、レイド募集や交換募集で位置ゲーを一緒に周れる相手を見つけやすくするサービスです。まずは気軽に合流して、気が合えばまた一緒に遊べます。",
   openGraph: {
-    title: "あるこ - 位置ゲー専用友達探しアプリ",
-    description: "位置情報ゲーム好きの友達探し。ゲームでつながって、街を歩きながら一緒にプレイできる仲間を見つけよう。",
+    title: "あるこ - 位置ゲーで一緒に周れる人が見つかる",
+    description: "レイド募集や交換募集で、今ちょっと一緒に周れる相手を見つけやすくするサービス。",
     type: "website",
     images: [
       {
         url: '/og-image.png?v=2',
         width: 1200,
         height: 630,
-        alt: 'あるこ - 位置ゲー専用友達探しアプリ',
+        alt: 'あるこ - 位置ゲーで一緒に周れる人が見つかる',
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "あるこ - 位置ゲー専用友達探しアプリ",
-    description: "位置情報ゲーム好きの友達探し。好きなゲームと距離で仲間を探せる。",
+    title: "あるこ - 位置ゲーで一緒に周れる人が見つかる",
+    description: "レイド募集や交換募集で、今ちょっと一緒に周れる相手を見つけやすくするサービス。",
     images: ['/og-image.png?v=2'],
   },
 };

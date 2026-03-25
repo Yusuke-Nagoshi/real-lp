@@ -14,21 +14,52 @@ const GAMES: { name: string; icon: string }[] = [
 ];
 
 const RECOMMEND_LIST = [
-  'レイド周回中にちょっとした寂しさを覚える',
-  '近くに同じゲームやってる人いそうなのに、出会えなくてもどかしい',
-  'ゲームは楽しいけど、1人だと少し物足りないと思う',
-  '一緒に休日や旅先でもゲームのできる友達が欲しい',
+  'あと1人いれば倒せるレイドなのに、周りに人が足りない',
+  'イベント中だけでもいいから、軽く一緒に周れる人がほしい',
+  '同じモンスター同士で交換したいのに、ちょうどいい相手が見つからない',
+  'ネットで知り合った人といきなり会うのは少し不安',
+];
+
+const RECRUIT_CASES = [
+  {
+    title: 'レイド募集',
+    text: '「このレイドをあと1人と回りたい」「この周辺を30分だけ一緒に周りたい」など、その場の目的に合わせて気軽に募集できます。',
+  },
+  {
+    title: '交換募集',
+    text: '欲しいモンスターや交換したい内容が決まっている時も、条件を絞って募集。目的が一致する相手だけ見つけやすくなります。',
+  },
+  {
+    title: '気軽に合流',
+    text: 'がっつり友達探しをしなくても大丈夫。まずは軽く一緒に周ってみて、気が合えばまた次も一緒に遊べます。',
+  },
+];
+
+const FLOW_STEPS = [
+  {
+    title: '募集を出す・探す',
+    text: '「今このレイドに行きたい」「交換したい」など、目的ベースで相手を探せます。',
+  },
+  {
+    title: '相手のプロフィールを確認',
+    text: '合流前にプロフィールを見て雰囲気を確認。メッセージ開始には本人確認が必要です。',
+  },
+  {
+    title: 'まずは軽く一緒に周る',
+    text: 'その場だけの合流でもOK。何度か周って気が合えば、そのまま友達になることもできます。',
+  },
 ];
 
 function Container({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return <div className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>;
 }
 
-/** スマホでは同一タブ遷移（WebViewでUniversal Link発火しやすくする）、PCでは新規タブ */
 function useLineLinkTarget() {
   const [target, setTarget] = useState<'_self' | '_blank'>('_blank');
   useEffect(() => {
-    const isMobile = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    const isMobile =
+      /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+      window.innerWidth <= 768;
     setTarget(isMobile ? '_self' : '_blank');
   }, []);
   return target;
@@ -41,7 +72,6 @@ function CTAButton({
 }: {
   children: React.ReactNode;
   className?: string;
-  /** どの位置のボタンか（計測の内訳用・/go/line のクエリ） */
   placement: string;
 }) {
   const lineTarget = useLineLinkTarget();
@@ -90,11 +120,11 @@ function Header() {
             </div>
             <div>
               <span className="text-lg font-bold text-slate-900">あるこ</span>
-              <p className="text-[11px] text-slate-500 -mt-0.5 hidden sm:block">位置ゲー専用友達探しアプリ</p>
+              <p className="text-[11px] text-slate-500 -mt-0.5 hidden sm:block">位置ゲーで一緒に周れる人が見つかる</p>
             </div>
           </div>
           <CTAButton className="px-5 py-2.5 text-sm" placement="header">
-            友達追加で事前登録
+            友だち追加で事前登録
           </CTAButton>
         </div>
       </Container>
@@ -105,7 +135,6 @@ function Header() {
 function HeroSection() {
   return (
     <section className="relative bg-white">
-      {/* キャッチコピー入りヒーロー画像を最上部にどんと表示（PCでは小さめ） */}
       <div className="relative w-full md:mx-auto md:max-w-xl md:px-4 lg:max-w-2xl lg:px-6">
         <img
           src="/hero-catchphrase.png"
@@ -114,40 +143,33 @@ function HeroSection() {
         />
       </div>
       <Container className="relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="mb-4 text-xl font-bold leading-relaxed text-slate-900 sm:text-2xl md:text-3xl">
-            「またスマホ？」を、
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="mb-4 text-xl font-bold leading-relaxed text-slate-900 sm:text-2xl md:text-4xl">
+            1人だと集まりにくい時こそ、
             <br />
-            <span className="text-emerald-600">「次どこ周る？」</span>
-            に変える出会い。
+            <span className="text-emerald-600">気軽に募集して一緒に周れる。</span>
           </p>
-          <p className="mb-3 text-base leading-relaxed text-slate-600 sm:text-lg">
-            旅先や休日の過ごし方が共通点になる。
-          </p>
-          <p className="mb-6 text-base leading-relaxed text-slate-600 sm:text-lg">
-            １人でのイベントやレイドの寂しい時間とおさらば。
-          </p>
-          <p className="mb-8 text-lg font-bold text-emerald-600 sm:text-xl">
-            あるこで、そんな機会をぜひ提供させてください！！
-          </p>
-          <p className="mx-auto mb-6 text-base leading-relaxed text-slate-700 sm:text-lg">
-            <span className="font-medium text-slate-900">あるこ</span>
-            は、
-            <span className="font-semibold text-emerald-600">Pokemon GO</span>
-            、
-            <span className="font-semibold text-emerald-600">モンハンNow</span>
-            、
-            <span className="font-semibold text-emerald-600">ドラゴンクエストウォーク</span>
-            などの位置情報ゲームが好きな人同士が
+          <p className="mx-auto mb-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+            レイド、交換、イベント周回。
             <br className="hidden sm:block" />
-            <span className="font-semibold text-slate-900">友達を見つけられる</span>
-            サービスです。
-            <br />
-            <span className="font-semibold text-emerald-600">本人確認をしている</span>
-            から、安心して仲間を探せます。
-            <br />
-            <span className="text-slate-600">事前登録は下の公式LINE追加から可能です！</span>
+            「今ちょっと誰かと回りたい」を、その場で叶えやすくするためのサービスです。
           </p>
+          <div className="mx-auto mb-6 max-w-2xl rounded-2xl border border-emerald-100 bg-emerald-50/70 p-5 text-left shadow-sm">
+            <p className="text-base font-bold text-slate-900 sm:text-lg">
+              まずは軽く一緒に周る。
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-slate-700 sm:text-base">
+              あるこは、位置ゲー好き同士が
+              <span className="font-semibold text-emerald-700">目的の合う募集</span>
+              でつながれるサービスです。
+              いきなり「友達作り」を頑張らなくても大丈夫。まずはフラッと合流して、気が合えばまた一緒に遊べます。
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+              合流前にプロフィールを見られて、
+              <span className="font-semibold text-emerald-700">メッセージ開始には本人確認が必要</span>
+              だから、ネット経由で会うのが少し不安な人にも使いやすくしています。
+            </p>
+          </div>
           <div className="mb-4">
             <CTAButton placement="hero">友だち追加で事前登録</CTAButton>
           </div>
@@ -162,33 +184,31 @@ function RecommendSection() {
   return (
     <section className="bg-slate-50 py-14 sm:py-16 md:py-20">
       <Container>
-        {/* 見出し：画像より上側 */}
         <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-          こんなお悩み、ありませんか？
+          こんな時に、あるこが便利です
         </h2>
-        {/* 画像：横幅に合わせて表示（縦伸ばしなし） */}
         <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl">
-          <img
-            src="/recommend-bg.png"
-            alt=""
-            className="block w-full h-auto object-contain"
-          />
+          <img src="/recommend-bg.png" alt="" className="block h-auto w-full object-contain" />
         </div>
-        {/* 悩みのボックス：画像より下側 */}
         <div className="mx-auto mt-10 max-w-2xl">
           <ul className="space-y-3 sm:space-y-4">
             {RECOMMEND_LIST.map((text, i) => (
               <li
                 key={i}
-                className="flex items-start gap-3 rounded-xl bg-slate-50 px-5 py-4 text-left shadow-sm border border-slate-100"
+                className="flex items-start gap-3 rounded-xl border border-slate-100 bg-white px-5 py-4 text-left shadow-sm"
               >
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-xs font-bold">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-600">
                   {i + 1}
                 </span>
                 <span className="text-sm leading-relaxed text-slate-700 sm:text-base">{text}</span>
               </li>
             ))}
           </ul>
+          <p className="mt-6 text-center text-sm leading-relaxed text-slate-600 sm:text-base">
+            「ガチの友達探し」よりも、
+            <span className="font-semibold text-slate-900">今この場で一緒に周れる人がほしい</span>
+            時に使いやすい設計です。
+          </p>
           <div className="mt-10 text-center">
             <CTAButton placement="recommend">友だち追加で事前登録</CTAButton>
           </div>
@@ -198,20 +218,50 @@ function RecommendSection() {
   );
 }
 
-function GamesSection() {
+function RecruitFeatureSection() {
   return (
     <section className="bg-white py-14 sm:py-16 md:py-20">
       <Container>
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+            募集機能で、目的が合う相手を見つけやすい
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+            レイドを周りたい、交換したい、イベント中だけ一緒に回りたい。
+            <br className="hidden sm:block" />
+            あるこでは、その時の目的に合わせて募集できるから、話が早くて合流しやすくなります。
+          </p>
+        </div>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {RECRUIT_CASES.map((item) => (
+            <div
+              key={item.title}
+              className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm"
+            >
+              <p className="text-lg font-bold text-slate-900">{item.title}</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+function GamesSection() {
+  return (
+    <section className="bg-slate-50 py-14 sm:py-16 md:py-20">
+      <Container>
         <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-          こんなゲームをきっかけに繋がれます
+          こんな位置ゲーで募集できます
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
           {GAMES.map((game) => (
             <div
               key={game.name}
-              className="flex flex-col items-center rounded-2xl border border-slate-200 bg-slate-50/50 p-4 sm:p-5 hover:border-emerald-200 hover:bg-emerald-50/50 transition-colors"
+              className="flex flex-col items-center rounded-2xl border border-slate-200 bg-white p-4 transition-colors hover:border-emerald-200 hover:bg-emerald-50/50 sm:p-5"
             >
-              <div className="mb-3 flex h-14 w-14 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 text-2xl sm:text-3xl">
+              <div className="mb-3 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 text-2xl sm:h-16 sm:w-16 sm:text-3xl">
                 {game.icon}
               </div>
               <p className="text-center text-sm font-semibold text-slate-800 sm:text-base">{game.name}</p>
@@ -226,23 +276,54 @@ function GamesSection() {
   );
 }
 
+function FlowSection() {
+  return (
+    <section className="bg-white py-14 sm:py-16 md:py-20">
+      <Container>
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+            気軽に使える流れ
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+            目的が合う人を見つけて、まずは軽く一緒に周る。
+            <br className="hidden sm:block" />
+            テキスト量は多くならないよう、必要な流れだけをシンプルにしています。
+          </p>
+        </div>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {FLOW_STEPS.map((step, index) => (
+            <div key={step.title} className="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-6">
+              <p className="text-sm font-bold text-emerald-700">STEP {index + 1}</p>
+              <p className="mt-2 text-lg font-bold text-slate-900">{step.title}</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 function EarlyUserSection() {
   return (
-    <section className="bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 py-14 sm:py-16 md:py-20 border-y border-emerald-100">
+    <section className="border-y border-emerald-100 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 py-14 sm:py-16 md:py-20">
       <Container>
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+          <h2 className="mb-4 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
             初期ユーザー受付中！
           </h2>
+          <p className="mb-8 text-center text-sm leading-relaxed text-slate-600 sm:text-base">
+            リリース時に優先的にご案内します。
+            <br className="hidden sm:block" />
+            レイド募集・交換募集・気軽な合流を、早めに使い始めたい方は今のうちにどうぞ。
+          </p>
 
-          {/* 先着500名様限定1000いいね：かなり強調 */}
-          <div className="mb-10 rounded-3xl border-4 border-amber-400 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 px-6 py-10 shadow-2xl sm:px-12 sm:py-12 ring-4 ring-amber-200/50 relative overflow-hidden">
-            {/* 先着500名様限定：最上部で大きく目立たせる */}
+          <div className="relative mb-10 overflow-hidden rounded-3xl border-4 border-amber-400 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 px-6 py-10 shadow-2xl ring-4 ring-amber-200/50 sm:px-12 sm:py-12">
             <div className="mb-6 rounded-2xl bg-red-600 px-4 py-5 text-center shadow-xl ring-4 ring-white/40">
-              <p className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight drop-shadow-md">
+              <p className="text-2xl font-black tracking-tight text-white drop-shadow-md sm:text-3xl md:text-4xl">
                 先着500名様限定！！
               </p>
-              <p className="mt-1 text-sm sm:text-base font-bold text-amber-100">
+              <p className="mt-1 text-sm font-bold text-amber-100 sm:text-base">
                 枠が埋まり次第終了
               </p>
             </div>
@@ -256,31 +337,33 @@ function EarlyUserSection() {
               をプレゼント！！
             </p>
             <p className="mt-6 text-center text-lg font-bold text-amber-50">
-              事前登録の<span className="text-yellow-300 underline decoration-4 decoration-yellow-300 underline-offset-2">先着500名様</span>に、リリース後1000いいねを無料でお届け
+              事前登録の
+              <span className="text-yellow-300 underline decoration-4 decoration-yellow-300 underline-offset-2">
+                先着500名様
+              </span>
+              に、リリース後1000いいねを無料でお届け
             </p>
           </div>
 
-          <p className="mb-10 text-center text-slate-600 leading-relaxed">
-            サービスリリース時に優先的にご案内します。<strong className="text-slate-800">基本無料</strong>・<strong className="text-slate-800">事前登録も無料</strong>。友達追加はいつでも解除OKです。
-          </p>
-
-          {/* 料金体系 */}
-          <div className="mb-10 rounded-2xl bg-white p-6 shadow-sm border-2 border-emerald-200">
+          <div className="mb-10 rounded-2xl border-2 border-emerald-200 bg-white p-6 shadow-sm">
             <h3 className="mb-4 text-lg font-bold text-slate-900">料金体系</h3>
             <div className="mb-4 rounded-xl bg-emerald-50 px-4 py-3 text-center">
               <p className="text-xl font-bold text-emerald-700">男女ともに基本無料・事前登録も無料</p>
             </div>
             <ul className="space-y-3 text-slate-700">
               <li className="flex items-start gap-2">
-                <span className="text-emerald-600 font-bold">✓</span>
-                <span><strong className="text-slate-900">男女ともに基本無料</strong>で利用できます</span>
+                <span className="font-bold text-emerald-600">✓</span>
+                <span>
+                  <strong className="text-slate-900">男女ともに基本無料</strong>
+                  で利用できます
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-emerald-600 font-bold">✓</span>
+                <span className="font-bold text-emerald-600">✓</span>
                 <span>ログインで1日1いいね配布</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-emerald-600 font-bold">✓</span>
+                <span className="font-bold text-emerald-600">✓</span>
                 <span>10いいね 500円で購入可能</span>
               </li>
             </ul>
@@ -297,9 +380,22 @@ function EarlyUserSection() {
 
 function FAQSection() {
   const faqs = [
-    { q: 'どのゲームに対応していますか？', a: 'Pokemon GO、モンハンNow、ドラゴンクエストウォークなどを想定しています。順次対応タイトルを増やしていきます。' },
-    { q: '本当に無料ですか？', a: 'はい。男女ともに基本無料で、事前登録も無料です。アプリはログインで1日1いいねがもらえ、追加で10いいね500円の購入も可能です。' },
-    { q: '問い合わせ先はありますか？', a: 'サポートページからメールでお問い合わせいただけます。' },
+    {
+      q: 'どういう使い方を想定していますか？',
+      a: 'レイドをあと1人だけ集めたい時、交換相手を探したい時、イベント中に軽く一緒に周れる人を見つけたい時などを想定しています。まずはその場の目的でつながり、気が合えばまた一緒に遊べるサービスです。',
+    },
+    {
+      q: 'ネットで知り合った相手と会うのが少し不安です。',
+      a: '合流前に相手のプロフィールを確認できます。また、メッセージを開始するには本人確認が必要なので、素性が分からないままやり取りが始まる形を避けやすくしています。',
+    },
+    {
+      q: '本当に無料ですか？',
+      a: 'はい。男女ともに基本無料で、事前登録も無料です。アプリはログインで1日1いいねがもらえ、追加で10いいね500円の購入も可能です。',
+    },
+    {
+      q: '問い合わせ先はありますか？',
+      a: 'サポートページからメールでお問い合わせいただけます。',
+    },
   ];
 
   return (
@@ -331,7 +427,7 @@ function Footer() {
       <Container>
         <div className="text-center">
           <p className="text-lg font-bold text-white">あるこ</p>
-          <p className="mt-1 text-sm text-slate-400">位置ゲー専用友達探しアプリ</p>
+          <p className="mt-1 text-sm text-slate-400">位置ゲーで一緒に周れる人が見つかる</p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">
             <a href="/support" className="underline hover:text-white">サポート</a>
             <span className="text-slate-500">|</span>
@@ -350,7 +446,9 @@ function Footer() {
               公式LINE
             </a>
           </div>
-          <p className="mt-6 text-xs text-slate-500">※18歳以上の方のみご利用いただけます。メッセージを開始するには本人確認が必要です。</p>
+          <p className="mt-6 text-xs text-slate-500">
+            ※18歳以上の方のみご利用いただけます。メッセージを開始するには本人確認が必要です。
+          </p>
           <p className="mt-2 text-xs text-slate-500">© 2026 あるこ</p>
         </div>
       </Container>
@@ -365,7 +463,9 @@ export default function Home() {
       <main>
         <HeroSection />
         <RecommendSection />
+        <RecruitFeatureSection />
         <GamesSection />
+        <FlowSection />
         <EarlyUserSection />
         <FAQSection />
       </main>
