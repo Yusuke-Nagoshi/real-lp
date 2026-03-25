@@ -145,7 +145,7 @@ function HeroSection() {
             <br className="sm:hidden" />
             「人手が必要」
             <br />
-            <span className="text-emerald-600">そんな時に、気軽に募集して一緒に周れる。</span>
+            <span className="text-emerald-600">そんな時、気軽に募集して一緒に周れる。</span>
           </p>
           <p className="mx-auto mb-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
             レイド、交換、イベント周回。
@@ -154,7 +154,7 @@ function HeroSection() {
             <br className="sm:hidden" />
             「今週末に誰かとレイド周回したい」まで、
             <br />
-            目的に合う相手を見つけやすくするためのサービスです。
+            目的に合う相手を見つけるためのサービスです。
           </p>
           <div className="mx-auto mb-6 max-w-2xl rounded-2xl border border-emerald-100 bg-emerald-50/70 p-5 text-left shadow-sm">
             <p className="text-base font-bold text-slate-900 sm:text-lg">
@@ -290,11 +290,6 @@ function FlowSection() {
           <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
             気軽に使える流れ
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            目的が合う人を見つけて、まずは軽く一緒に周る。
-            <br className="hidden sm:block" />
-            テキスト量は多くならないよう、必要な流れだけをシンプルにしています。
-          </p>
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {FLOW_STEPS.map((step, index) => (
