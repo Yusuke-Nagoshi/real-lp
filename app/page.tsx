@@ -149,11 +149,11 @@ function HeroSection() {
           </p>
           <p className="mx-auto mb-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
             レイド、交換、イベント周回。
-            <br className="hidden sm:block" />
+            <br />
             「今ちょっと誰かと周りたい」から
             <br className="sm:hidden" />
             「今週末に誰かとレイド周回したい」まで、
-            <br className="hidden sm:block" />
+            <br />
             目的に合う相手を見つけやすくするためのサービスです。
           </p>
           <div className="mx-auto mb-6 max-w-2xl rounded-2xl border border-emerald-100 bg-emerald-50/70 p-5 text-left shadow-sm">
@@ -228,7 +228,9 @@ function RecruitFeatureSection() {
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-            募集機能で、目的が合う相手を見つけやすい
+            募集機能で、
+            <br />
+            目的が合う相手を見つけやすい
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
             レイドを周りたい、交換したい、イベントを一緒に回りたい。
