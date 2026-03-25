@@ -38,7 +38,7 @@ const RECRUIT_CASES = [
 const FLOW_STEPS = [
   {
     title: '募集を出す・探す',
-    text: '「今このレイドに行きたい」「交換したい」など、目的ベースで相手を探せます。',
+    text: '「今このレイドに行きたい」「交換したい」など、目的ベースで相手を探せます。募集だけでなく、一覧から気になる相手に直接依頼することも可能です。',
   },
   {
     title: '相手のプロフィールを確認',
@@ -120,7 +120,7 @@ function Header() {
             </div>
             <div>
               <span className="text-lg font-bold text-slate-900">あるこ</span>
-              <p className="text-[11px] text-slate-500 -mt-0.5 hidden sm:block">位置ゲーで一緒に周れる人が見つかる</p>
+              <p className="text-[11px] text-slate-500 -mt-0.5 hidden sm:block">位置ゲー専用仲間探しアプリ</p>
             </div>
           </div>
           <CTAButton className="px-5 py-2.5 text-sm" placement="header">
@@ -427,7 +427,7 @@ function Footer() {
       <Container>
         <div className="text-center">
           <p className="text-lg font-bold text-white">あるこ</p>
-          <p className="mt-1 text-sm text-slate-400">位置ゲーで一緒に周れる人が見つかる</p>
+          <p className="mt-1 text-sm text-slate-400">位置ゲー専用仲間探しアプリ</p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">
             <a href="/support" className="underline hover:text-white">サポート</a>
             <span className="text-slate-500">|</span>
