@@ -14,36 +14,10 @@ const GAMES: { name: string; icon: string }[] = [
 ];
 
 const RECOMMEND_LIST = [
-  'あと1人いれば倒せるレイドなのに、周りに人が足りない',
-  'イベント中だけでもいいから、軽く一緒に周れる人がほしい',
-  '同じモンスター同士で交換したいのに、ちょうどいい相手が見つからない',
-  'ネットで知り合った素性の分からない人と会うのは不安',
-];
-
-const RECRUIT_CASES = [
-  {
-    title: '交換募集',
-    text: '欲しいモンスターや交換したい内容が決まっている時も、条件を絞って募集。目的が一致する相手だけ見つけやすくなります。',
-  },
-  {
-    title: 'レイド・イベント募集',
-    text: '「今ちょっと周りたい」だけでなく、「今週末に誰かとレイド周回したい」みたいな予定ベースの募集にも使えます。',
-  },
-];
-
-const FLOW_STEPS = [
-  {
-    title: '募集を出す・探す',
-    text: '「今このレイドに行きたい」だけでなく、「今週末にレイド周回したい」もOK。募集だけでなく、一覧から気になる相手に直接依頼することも可能です。',
-  },
-  {
-    title: '相手のプロフィールを確認',
-    text: '合流前にプロフィールを見て雰囲気を確認。メッセージ開始には本人確認が必要です。',
-  },
-  {
-    title: 'まずは軽く一緒に周る',
-    text: 'その場だけの合流でもOK。何度か周って気が合えば、そのまま友達になることもできます。',
-  },
+  'やりたいレイドや交換があるけど、1人じゃ厳しい、、',
+  '位置ゲーに対して同じ熱量で語れる友達がほしい！',
+  '旅先でもゲームをしたいけど、1人じゃ物足りない',
+  'ポケGO婚などの趣味を通しての関係に憧れがある',
 ];
 
 function Container({ children, className = '' }: { children: React.ReactNode; className?: string }) {
@@ -140,37 +114,19 @@ function HeroSection() {
       </div>
       <Container className="relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-4 text-xl font-bold leading-relaxed text-slate-900 sm:text-2xl md:text-4xl">
-            「1人だと物足りない」
-            <br className="sm:hidden" />
-            「人手が必要」
-            <br />
-            <span className="text-emerald-600">そんな時、気軽に募集して一緒に周れる。</span>
-          </p>
-          <p className="mx-auto mb-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-            レイド、交換、イベント周回。
-            <br />
-            「今ちょっと誰かと周りたい」から
-            <br className="sm:hidden" />
-            「今週末に誰かとレイド周回したい」まで、
-            <br />
-            目的に合う相手を見つけるためのサービスです。
-          </p>
-          <div className="mx-auto mb-6 max-w-2xl rounded-2xl border border-emerald-100 bg-emerald-50/70 p-5 text-left shadow-sm">
-            <p className="text-base font-bold text-slate-900 sm:text-lg">
-              まずは軽く一緒に周る。
+          <div className="mx-auto mb-8 max-w-2xl rounded-2xl border border-emerald-100 bg-emerald-50/70 px-5 py-6 shadow-sm">
+            <p className="text-lg font-bold leading-relaxed text-slate-900 sm:text-2xl">
+              「ちょっと今人手が必要！」から
+              <br className="sm:hidden" />
+              <br className="hidden sm:block" />
+              「旅先でもゲームを楽しめる友達探し」まで！
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-slate-700 sm:text-base">
-              あるこは、位置ゲー好き同士が
-              <span className="font-semibold text-emerald-700">目的の合う募集</span>
-              でつながれるサービスです。
-              いきなり「友達作り」を頑張らなくても大丈夫。まずはフラッと合流して、気が合えばまた一緒に遊べます。
+            <p className="mt-4 text-base font-medium leading-relaxed text-slate-700 sm:text-lg">
+              レイド・交換・イベントなどの
+              <br className="sm:hidden" />
+              様々な目的で位置ゲー仲間と出会えます！
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-              合流前にプロフィールを見られて、
-              <span className="font-semibold text-emerald-700">メッセージ開始には本人確認が必要</span>
-              だから、ネット経由で会うのが少し不安な人にも使いやすくしています。
-            </p>
+            <p className="mt-4 text-lg font-bold text-emerald-700 sm:text-xl">以上で十分！</p>
           </div>
           <div className="mb-4">
             <CTAButton placement="hero">友だち追加で事前登録</CTAButton>
@@ -202,52 +158,52 @@ function RecommendSection() {
                 <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-600">
                   {i + 1}
                 </span>
-                <span className="text-sm leading-relaxed text-slate-700 sm:text-base">{text}</span>
+                <div>
+                  <span className="text-sm leading-relaxed text-slate-700 sm:text-base">{text}</span>
+                  {i === 3 && (
+                    <p className="mt-1 text-xs text-slate-400">(④入れるか要検討！)</p>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-center text-sm leading-relaxed text-slate-600 sm:text-base">
-            「ガチの友達探し」よりも、
-            <span className="font-semibold text-slate-900">今この場で一緒に周れる人</span>
-            や
-            <span className="font-semibold text-slate-900">今週末に一緒に周る相手</span>
-            を見つけたい時に使いやすい設計です。
-          </p>
-          <div className="mt-10 text-center">
-            <CTAButton placement="recommend">友だち追加で事前登録</CTAButton>
-          </div>
         </div>
       </Container>
     </section>
   );
 }
 
-function RecruitFeatureSection() {
+function FeatureSection() {
   return (
     <section className="bg-white py-14 sm:py-16 md:py-20">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-            募集機能で、
-            <br />
-            目的が合う相手を見つけやすい
+            ２つの機能で仲間を探せます！
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            レイドを周りたい、交換したい、イベントを一緒に回りたい。
-            <br className="hidden sm:block" />
-            今すぐでも週末予定でも、その時の目的に合わせて募集できるから、話が早くて合流しやすくなります。
-          </p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-4xl gap-4 md:grid-cols-2">
-          {RECRUIT_CASES.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm"
-            >
-              <p className="text-lg font-bold text-slate-900">{item.title}</p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{item.text}</p>
+        <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <p className="text-lg font-bold text-slate-900">募集機能</p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+              募集機能では、やりたいレイドや交換など、その場での困りごとを解決します！
+            </p>
+            <div className="mt-5 rounded-2xl border-2 border-dashed border-slate-300 bg-white px-4 py-10 text-center text-sm leading-relaxed text-slate-500">
+              (募集機能イメージのスクリーンショットを載せよう！)
             </div>
-          ))}
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <p className="text-lg font-bold text-slate-900">探す機能</p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+              探す機能では、全ユーザーからお好きな相手を選んで、お互いに承認することで会話が可能になります。気の合う友達探しにお使いください！
+            </p>
+            <div className="mt-5 rounded-2xl border-2 border-dashed border-slate-300 bg-white px-4 py-10 text-center text-sm leading-relaxed text-slate-500">
+              (探す画面のイメージのスクリーンショットを載せよう！)
+            </div>
+          </div>
+        </div>
+        <div className="mt-10 text-center">
+          <CTAButton placement="recommend">友だち追加で事前登録</CTAButton>
         </div>
       </Container>
     </section>
@@ -277,29 +233,6 @@ function GamesSection() {
         <p className="mt-8 text-center text-base font-bold text-slate-700 sm:text-lg">
           他にも様々な位置ゲーアプリでご利用いただけます！！
         </p>
-      </Container>
-    </section>
-  );
-}
-
-function FlowSection() {
-  return (
-    <section className="bg-white py-14 sm:py-16 md:py-20">
-      <Container>
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-            気軽に使える流れ
-          </h2>
-        </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {FLOW_STEPS.map((step, index) => (
-            <div key={step.title} className="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-6">
-              <p className="text-sm font-bold text-emerald-700">STEP {index + 1}</p>
-              <p className="mt-2 text-lg font-bold text-slate-900">{step.title}</p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{step.text}</p>
-            </div>
-          ))}
-        </div>
       </Container>
     </section>
   );
@@ -464,9 +397,8 @@ export default function Home() {
       <main>
         <HeroSection />
         <RecommendSection />
-        <RecruitFeatureSection />
+        <FeatureSection />
         <GamesSection />
-        <FlowSection />
         <EarlyUserSection />
         <FAQSection />
       </main>
