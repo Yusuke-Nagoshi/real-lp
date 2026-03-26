@@ -195,7 +195,23 @@ function FeatureSection() {
           </h2>
         </div>
         <div className="mt-10 -mx-4 px-4 sm:mx-0 sm:px-0">
-          <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [-webkit-overflow-scrolling:touch] md:mx-auto md:max-w-4xl md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0">
+          <div className="mb-3 flex items-center justify-between text-xs font-semibold text-slate-500 md:hidden">
+            <span className="inline-flex items-center gap-1">
+              <span aria-hidden="true">←</span>
+              募集機能
+            </span>
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold text-slate-600">
+              左右にスワイプ
+            </span>
+            <span className="inline-flex items-center gap-1">
+              探す機能
+              <span aria-hidden="true">→</span>
+            </span>
+          </div>
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-white/0 md:hidden" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white to-white/0 md:hidden" />
+            <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [-webkit-overflow-scrolling:touch] md:mx-auto md:max-w-4xl md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0">
             <div className="w-[min(88vw,340px)] shrink-0 snap-center rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm sm:w-[min(85vw,360px)] md:w-auto md:min-w-0 md:max-w-none md:snap-none">
               <p className="text-lg font-bold text-slate-900">募集機能</p>
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
@@ -213,6 +229,7 @@ function FeatureSection() {
               <div className="mt-5 rounded-2xl border-2 border-dashed border-slate-300 bg-white px-4 py-10 text-center text-sm leading-relaxed text-slate-500">
                 (探す画面のイメージのスクリーンショットを載せよう！)
               </div>
+            </div>
             </div>
           </div>
         </div>
