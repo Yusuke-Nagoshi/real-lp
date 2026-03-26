@@ -291,7 +291,7 @@ function GamesSection() {
     <section className="bg-slate-50 py-14 sm:py-16 md:py-20">
       <Container>
         <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-          こんな位置ゲーで募集できます
+          こんな位置ゲーで出会えます
         </h2>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
           {GAMES.map((game) => (
