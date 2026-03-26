@@ -252,11 +252,11 @@ function FeatureSection() {
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
                 募集機能では、やりたいレイドや交換など、その場での困りごとを解決します！
               </p>
-              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+              <div className="mt-5 aspect-[9/16] overflow-hidden rounded-2xl border border-slate-200 bg-white">
                 <img
                   src="/feature-recruit.png"
                   alt="募集機能のスクリーンショット"
-                  className="block h-auto w-full"
+                  className="block h-full w-full object-contain"
                   loading="lazy"
                 />
               </div>
@@ -266,11 +266,11 @@ function FeatureSection() {
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
                 探す機能では、全ユーザーからお好きな相手を選んで、お互いに承認することで会話が可能になります。気の合う友達探しにお使いください！
               </p>
-              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+              <div className="mt-5 aspect-[9/16] overflow-hidden rounded-2xl border border-slate-200 bg-white">
                 <img
                   src="/feature-search.png"
                   alt="探す機能のスクリーンショット"
-                  className="block h-auto w-full"
+                  className="block h-full w-full object-contain"
                   loading="lazy"
                 />
               </div>
@@ -358,7 +358,11 @@ function EarlyUserSection() {
           <div className="mb-10 rounded-2xl border-2 border-emerald-200 bg-white p-6 shadow-sm">
             <h3 className="mb-4 text-lg font-bold text-slate-900">料金体系</h3>
             <div className="mb-4 rounded-xl bg-emerald-50 px-4 py-3 text-center">
-              <p className="text-xl font-bold text-emerald-700">男女ともに基本無料・事前登録も無料</p>
+              <p className="text-xl font-bold text-emerald-700">
+                男女ともに
+                <br />
+                基本無料・事前登録も無料
+              </p>
             </div>
             <ul className="space-y-3 text-slate-700">
               <li className="flex items-start gap-2">
