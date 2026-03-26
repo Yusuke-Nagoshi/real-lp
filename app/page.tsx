@@ -252,8 +252,13 @@ function FeatureSection() {
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
                 募集機能では、やりたいレイドや交換など、その場での困りごとを解決します！
               </p>
-              <div className="mt-5 rounded-2xl border-2 border-dashed border-slate-300 bg-white px-4 py-10 text-center text-sm leading-relaxed text-slate-500">
-                (募集機能イメージのスクリーンショットを載せよう！)
+              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                <img
+                  src="/feature-recruit.png"
+                  alt="募集機能のスクリーンショット"
+                  className="block h-auto w-full"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div className="w-[min(88vw,340px)] shrink-0 snap-center rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm sm:w-[min(85vw,360px)] md:w-auto md:min-w-0 md:max-w-none md:snap-none">
@@ -261,8 +266,13 @@ function FeatureSection() {
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
                 探す機能では、全ユーザーからお好きな相手を選んで、お互いに承認することで会話が可能になります。気の合う友達探しにお使いください！
               </p>
-              <div className="mt-5 rounded-2xl border-2 border-dashed border-slate-300 bg-white px-4 py-10 text-center text-sm leading-relaxed text-slate-500">
-                (探す画面のイメージのスクリーンショットを載せよう！)
+              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                <img
+                  src="/feature-search.png"
+                  alt="探す機能のスクリーンショット"
+                  className="block h-auto w-full"
+                  loading="lazy"
+                />
               </div>
             </div>
             </div>
