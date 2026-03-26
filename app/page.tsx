@@ -126,19 +126,19 @@ function HeroSection() {
       </div>
       <Container className="relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto mb-8 max-w-2xl px-2 text-center">
-            <p className="text-lg font-bold leading-relaxed text-emerald-600 sm:text-2xl">
+          <div className="mx-auto mb-8 max-w-2xl px-3 text-center sm:px-2">
+            <p className="text-base font-bold leading-snug text-emerald-600 sm:text-2xl sm:leading-relaxed">
               「ちょっと今人手が必要！」から
+              <br />
+              「旅先でもゲームを楽しめる友達探し」
               <br className="sm:hidden" />
-              <br className="hidden sm:block" />
-              「旅先でもゲームを楽しめる友達探し」まで！
+              <span className="sm:whitespace-nowrap">まで！</span>
             </p>
-            <p className="mt-4 text-base font-bold leading-relaxed text-emerald-600 sm:text-lg">
+            <p className="mt-4 text-base font-bold leading-relaxed text-slate-800 sm:text-lg">
               レイド・交換・イベントなどの
               <br className="sm:hidden" />
               様々な目的で位置ゲー仲間と出会えます！
             </p>
-            <p className="mt-4 text-lg font-bold text-emerald-700 sm:text-xl">以上で十分！</p>
           </div>
           <div className="mb-4">
             <CTAButton placement="hero">友だち追加で事前登録</CTAButton>
@@ -194,23 +194,25 @@ function FeatureSection() {
             の機能で仲間を探せます！
           </h2>
         </div>
-        <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-            <p className="text-lg font-bold text-slate-900">募集機能</p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-              募集機能では、やりたいレイドや交換など、その場での困りごとを解決します！
-            </p>
-            <div className="mt-5 rounded-2xl border-2 border-dashed border-slate-300 bg-white px-4 py-10 text-center text-sm leading-relaxed text-slate-500">
-              (募集機能イメージのスクリーンショットを載せよう！)
+        <div className="mt-10 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [-webkit-overflow-scrolling:touch] md:mx-auto md:max-w-4xl md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0">
+            <div className="w-[min(88vw,340px)] shrink-0 snap-center rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm sm:w-[min(85vw,360px)] md:w-auto md:min-w-0 md:max-w-none md:snap-none">
+              <p className="text-lg font-bold text-slate-900">募集機能</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+                募集機能では、やりたいレイドや交換など、その場での困りごとを解決します！
+              </p>
+              <div className="mt-5 rounded-2xl border-2 border-dashed border-slate-300 bg-white px-4 py-10 text-center text-sm leading-relaxed text-slate-500">
+                (募集機能イメージのスクリーンショットを載せよう！)
+              </div>
             </div>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-            <p className="text-lg font-bold text-slate-900">探す機能</p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-              探す機能では、全ユーザーからお好きな相手を選んで、お互いに承認することで会話が可能になります。気の合う友達探しにお使いください！
-            </p>
-            <div className="mt-5 rounded-2xl border-2 border-dashed border-slate-300 bg-white px-4 py-10 text-center text-sm leading-relaxed text-slate-500">
-              (探す画面のイメージのスクリーンショットを載せよう！)
+            <div className="w-[min(88vw,340px)] shrink-0 snap-center rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm sm:w-[min(85vw,360px)] md:w-auto md:min-w-0 md:max-w-none md:snap-none">
+              <p className="text-lg font-bold text-slate-900">探す機能</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+                探す機能では、全ユーザーからお好きな相手を選んで、お互いに承認することで会話が可能になります。気の合う友達探しにお使いください！
+              </p>
+              <div className="mt-5 rounded-2xl border-2 border-dashed border-slate-300 bg-white px-4 py-10 text-center text-sm leading-relaxed text-slate-500">
+                (探す画面のイメージのスクリーンショットを載せよう！)
+              </div>
             </div>
           </div>
         </div>
