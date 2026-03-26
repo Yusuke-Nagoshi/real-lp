@@ -14,10 +14,22 @@ const GAMES: { name: string; icon: string }[] = [
 ];
 
 const RECOMMEND_LIST = [
-  'やりたいレイドや交換があるけど、1人じゃ厳しい、、',
-  '位置ゲーに対して同じ熱量で語れる友達がほしい！',
-  '旅先でもゲームをしたいけど、1人じゃ物足りない',
-  'ポケGO婚などの趣味を通しての関係に憧れがある',
+  {
+    first: 'やりたいレイドや交換があるけど、',
+    second: '1人じゃ厳しい、、',
+  },
+  {
+    first: '位置ゲーに対して同じ熱量で',
+    second: '語れる友達がほしい！',
+  },
+  {
+    first: '旅先でもゲームをしたいけど、',
+    second: '1人じゃ物足りない',
+  },
+  {
+    first: 'ポケGO婚などの趣味を通しての',
+    second: '関係に憧れがある',
+  },
 ];
 
 function Container({ children, className = '' }: { children: React.ReactNode; className?: string }) {
@@ -114,14 +126,14 @@ function HeroSection() {
       </div>
       <Container className="relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto mb-8 max-w-2xl rounded-2xl border border-emerald-100 bg-emerald-50/70 px-5 py-6 shadow-sm">
-            <p className="text-lg font-bold leading-relaxed text-slate-900 sm:text-2xl">
+          <div className="mx-auto mb-8 max-w-2xl px-2 text-center">
+            <p className="text-lg font-bold leading-relaxed text-emerald-600 sm:text-2xl">
               「ちょっと今人手が必要！」から
               <br className="sm:hidden" />
               <br className="hidden sm:block" />
               「旅先でもゲームを楽しめる友達探し」まで！
             </p>
-            <p className="mt-4 text-base font-medium leading-relaxed text-slate-700 sm:text-lg">
+            <p className="mt-4 text-base font-bold leading-relaxed text-emerald-600 sm:text-lg">
               レイド・交換・イベントなどの
               <br className="sm:hidden" />
               様々な目的で位置ゲー仲間と出会えます！
@@ -158,11 +170,10 @@ function RecommendSection() {
                 <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-600">
                   {i + 1}
                 </span>
-                <div>
-                  <span className="text-sm leading-relaxed text-slate-700 sm:text-base">{text}</span>
-                  {i === 3 && (
-                    <p className="mt-1 text-xs text-slate-400">(④入れるか要検討！)</p>
-                  )}
+                <div className="text-[15px] leading-relaxed text-slate-700 sm:text-base">
+                  <span>{text.first}</span>
+                  <br className="sm:hidden" />
+                  <span>{text.second}</span>
                 </div>
               </li>
             ))}
@@ -179,7 +190,8 @@ function FeatureSection() {
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-            ２つの機能で仲間を探せます！
+            <span className="text-emerald-700">２つ</span>
+            の機能で仲間を探せます！
           </h2>
         </div>
         <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
