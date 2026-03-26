@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { lineCtaHref } from '@/lib/line';
 
@@ -185,6 +185,35 @@ function RecommendSection() {
 }
 
 function FeatureSection() {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  // 0: 募集機能側 / 1: 探す機能側
+  const [activeCardIndex, setActiveCardIndex] = useState<0 | 1>(0);
+
+  useEffect(() => {
+    const update = () => {
+      const el = scrollRef.current;
+      if (!el) return;
+      const maxScrollLeft = el.scrollWidth - el.clientWidth;
+      if (maxScrollLeft <= 0) {
+        setActiveCardIndex(0);
+        return;
+      }
+      const progress = el.scrollLeft / maxScrollLeft;
+      setActiveCardIndex(progress > 0.5 ? 1 : 0);
+    };
+
+    update();
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => update();
+    el.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      el.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', update);
+    };
+  }, []);
+
   return (
     <section className="bg-white py-14 sm:py-16 md:py-20">
       <Container>
@@ -195,23 +224,29 @@ function FeatureSection() {
           </h2>
         </div>
         <div className="mt-10 -mx-4 px-4 sm:mx-0 sm:px-0">
-          <div className="mb-3 flex items-center justify-between text-xs font-semibold text-slate-500 md:hidden">
-            <span className="inline-flex items-center gap-1">
-              <span aria-hidden="true">←</span>
-              募集機能
-            </span>
+          <div className="mb-3 flex items-center justify-center gap-2 text-xs font-semibold text-slate-600 md:hidden">
+            {activeCardIndex === 0 ? (
+              <>
+                <span aria-hidden="true">→</span>
+                <span className="font-bold text-slate-800">探す機能</span>
+              </>
+            ) : (
+              <>
+                <span aria-hidden="true">←</span>
+                <span className="font-bold text-slate-800">募集機能</span>
+              </>
+            )}
             <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold text-slate-600">
               左右にスワイプ
-            </span>
-            <span className="inline-flex items-center gap-1">
-              探す機能
-              <span aria-hidden="true">→</span>
             </span>
           </div>
           <div className="relative">
             <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-white/0 md:hidden" />
             <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white to-white/0 md:hidden" />
-            <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [-webkit-overflow-scrolling:touch] md:mx-auto md:max-w-4xl md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0">
+            <div
+              ref={scrollRef}
+              className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [-webkit-overflow-scrolling:touch] md:mx-auto md:max-w-4xl md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0"
+            >
             <div className="w-[min(88vw,340px)] shrink-0 snap-center rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm sm:w-[min(85vw,360px)] md:w-auto md:min-w-0 md:max-w-none md:snap-none">
               <p className="text-lg font-bold text-slate-900">募集機能</p>
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
