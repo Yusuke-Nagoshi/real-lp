@@ -252,11 +252,11 @@ function FeatureSection() {
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
                 募集機能では、やりたいレイドや交換など、その場での困りごとを解決します！
               </p>
-              <div className="mt-5 aspect-[9/16] overflow-hidden rounded-2xl border border-slate-200 bg-white">
+              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white">
                 <img
                   src="/feature-recruit.png"
                   alt="募集機能のスクリーンショット"
-                  className="block h-full w-full object-contain"
+                  className="block h-auto w-full"
                   loading="lazy"
                 />
               </div>
@@ -266,11 +266,11 @@ function FeatureSection() {
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
                 探す機能では、全ユーザーからお好きな相手を選んで、お互いに承認することで会話が可能になります。気の合う友達探しにお使いください！
               </p>
-              <div className="mt-5 aspect-[9/16] overflow-hidden rounded-2xl border border-slate-200 bg-white">
+              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white">
                 <img
                   src="/feature-search.png"
                   alt="探す機能のスクリーンショット"
-                  className="block h-full w-full object-contain"
+                  className="block h-auto w-full"
                   loading="lazy"
                 />
               </div>
