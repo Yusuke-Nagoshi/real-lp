@@ -241,8 +241,6 @@ function FeatureSection() {
             </span>
           </div>
           <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-white/0 md:hidden" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white to-white/0 md:hidden" />
             <div
               ref={scrollRef}
               className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [-webkit-overflow-scrolling:touch] md:mx-auto md:max-w-4xl md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0"
@@ -276,6 +274,18 @@ function FeatureSection() {
               </div>
             </div>
             </div>
+          </div>
+          <div className="mt-3 flex items-center justify-center gap-2 md:hidden" aria-hidden="true">
+            <span
+              className={`h-2 w-2 rounded-full transition-colors ${
+                activeCardIndex === 0 ? 'bg-slate-700' : 'bg-slate-300'
+              }`}
+            />
+            <span
+              className={`h-2 w-2 rounded-full transition-colors ${
+                activeCardIndex === 1 ? 'bg-slate-700' : 'bg-slate-300'
+              }`}
+            />
           </div>
         </div>
         <div className="mt-10 text-center">
@@ -322,11 +332,6 @@ function EarlyUserSection() {
           <h2 className="mb-4 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
             初期ユーザー受付中！
           </h2>
-          <p className="mb-8 text-center text-sm leading-relaxed text-slate-600">
-            インターネット異性紹介事業として福岡県警へ届出済みです。
-            <br />
-            事業所：福岡県小郡市希みが丘6丁目3番地17
-          </p>
 
           <div className="relative mb-10 overflow-hidden rounded-3xl border-4 border-amber-400 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 px-6 py-10 shadow-2xl ring-4 ring-amber-200/50 sm:px-12 sm:py-12">
             <div className="mb-6 rounded-2xl bg-red-600 px-4 py-5 text-center shadow-xl ring-4 ring-white/40">
@@ -462,6 +467,11 @@ function Footer() {
           </div>
           <p className="mt-6 text-xs text-slate-500">
             ※18歳以上の方のみご利用いただけます。メッセージを開始するには本人確認が必要です。
+          </p>
+          <p className="mt-2 text-xs leading-relaxed text-slate-500">
+            インターネット異性紹介事業として福岡県警へ届出済みです。
+            <br />
+            事業所：福岡県小郡市希みが丘6丁目3番地17
           </p>
           <p className="mt-2 text-xs text-slate-500">© 2026 あるこ</p>
         </div>
