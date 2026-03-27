@@ -322,10 +322,10 @@ function EarlyUserSection() {
           <h2 className="mb-4 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
             初期ユーザー受付中！
           </h2>
-          <p className="mb-8 text-center text-sm leading-relaxed text-slate-600 sm:text-base">
-            リリース時に優先的にご案内します。
-            <br className="hidden sm:block" />
-            レイド募集・交換募集・気軽な合流を、早めに使い始めたい方は今のうちにどうぞ。
+          <p className="mb-8 text-center text-sm leading-relaxed text-slate-600">
+            インターネット異性紹介事業として福岡県警へ届出済みです。
+            <br />
+            事業所：福岡県小郡市希みが丘6丁目3番地17
           </p>
 
           <div className="relative mb-10 overflow-hidden rounded-3xl border-4 border-amber-400 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 px-6 py-10 shadow-2xl ring-4 ring-amber-200/50 sm:px-12 sm:py-12">
