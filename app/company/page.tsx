@@ -19,7 +19,7 @@ export default function CompanyPage() {
             <section>
               <h2 className="text-xl font-bold text-slate-900 mb-3">運営者名</h2>
               <p className="text-slate-700 leading-relaxed">
-                あるこ運営チーム
+                あるこ運営チーム（名越祐介）
               </p>
             </section>
 
