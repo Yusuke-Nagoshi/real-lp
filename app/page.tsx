@@ -105,9 +105,7 @@ function Header() {
               <p className="text-[11px] text-slate-500 -mt-0.5 hidden sm:block">位置ゲー専用仲間探しアプリ</p>
             </div>
           </div>
-          <CTAButton className="px-5 py-2.5 text-sm" placement="header">
-            友だち追加で事前登録
-          </CTAButton>
+          <CTAButton className="px-5 py-2.5 text-sm" placement="header">友だち追加で新規登録</CTAButton>
         </div>
       </Container>
     </header>
@@ -141,7 +139,7 @@ function HeroSection() {
             </p>
           </div>
           <div className="mb-4">
-            <CTAButton placement="hero">友だち追加で事前登録</CTAButton>
+            <CTAButton placement="hero">友だち追加で新規登録</CTAButton>
           </div>
           <p className="text-sm font-medium text-slate-600">いつでも解除OK</p>
         </div>
@@ -289,7 +287,7 @@ function FeatureSection() {
           </div>
         </div>
         <div className="mt-10 text-center">
-          <CTAButton placement="recommend">友だち追加で事前登録</CTAButton>
+          <CTAButton placement="recommend">友だち追加で新規登録</CTAButton>
         </div>
       </Container>
     </section>
@@ -343,7 +341,7 @@ function EarlyUserSection() {
               </p>
             </div>
             <p className="mb-3 text-center text-base font-extrabold text-amber-100 sm:text-lg">
-              ★ 事前登録いただいた方だけの特別特典 ★
+              ★ 新規登録いただいた方だけの特別特典 ★
             </p>
             <p className="text-center text-5xl font-black text-white drop-shadow-lg sm:text-6xl md:text-7xl">
               1000いいね
@@ -352,7 +350,7 @@ function EarlyUserSection() {
               をプレゼント！！
             </p>
             <p className="mt-6 text-center text-lg font-bold text-amber-50">
-              事前登録の
+              新規登録の
               <span className="text-yellow-300 underline decoration-4 decoration-yellow-300 underline-offset-2">
                 先着500名様
               </span>
@@ -366,7 +364,7 @@ function EarlyUserSection() {
               <p className="text-xl font-bold text-emerald-700">
                 男女ともに
                 <br />
-                基本無料・事前登録も無料
+                基本無料・新規登録も無料
               </p>
             </div>
             <ul className="space-y-3 text-slate-700">
@@ -389,7 +387,7 @@ function EarlyUserSection() {
           </div>
 
           <div className="text-center">
-            <CTAButton placement="early_user">友だち追加で事前登録</CTAButton>
+            <CTAButton placement="early_user">友だち追加で新規登録</CTAButton>
           </div>
         </div>
       </Container>
@@ -409,7 +407,7 @@ function FAQSection() {
     },
     {
       q: '本当に無料ですか？',
-      a: 'はい。男女ともに基本無料で、事前登録も無料です。アプリはログインで1日1いいねがもらえ、追加で10いいね500円の購入も可能です。',
+      a: 'はい。男女ともに基本無料で、新規登録も無料です。アプリはログインで1日1いいねがもらえ、追加で10いいね500円の購入も可能です。',
     },
     {
       q: '問い合わせ先はありますか？',
@@ -432,7 +430,7 @@ function FAQSection() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <CTAButton placement="faq">友だち追加で事前登録</CTAButton>
+          <CTAButton placement="faq">友だち追加で新規登録</CTAButton>
         </div>
       </Container>
     </section>
