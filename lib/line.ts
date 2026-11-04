@@ -7,3 +7,7 @@ export const LINE_GO_PATH = '/go/line';
 export function lineCtaHref(placement: string): string {
   return `${LINE_GO_PATH}?from=${encodeURIComponent(placement)}`;
 }
+
+/** 外部ブラウザ起動後に /go/line へ戻ったことを示すクエリ */
+export const LINE_EXT_PARAM = 'ext';
+export const LINE_EXT_VALUE = '1';
