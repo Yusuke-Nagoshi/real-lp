@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { isInAppBrowser, toExternalBrowserUrl, withExternalOpenedFlag } from '@/lib/browser';
 import { lineCtaHref } from '@/lib/line';
 
 const GAMES: { name: string; icon: string }[] = [
@@ -37,32 +36,16 @@ function Container({ children, className = '' }: { children: React.ReactNode; cl
   return <div className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>;
 }
 
-/**
- * 通常: /go/line（計測）へ。
- * TikTok 等のアプリ内 WebView: 計測ページを Safari / 標準ブラウザで開くスキームを href にする
- *（タップ＝ユーザー操作が必要なため、<a href> で渡す）
- */
-function useLineCtaLink(placement: string) {
-  const [href, setHref] = useState(lineCtaHref(placement));
+function useLineLinkTarget() {
   const [target, setTarget] = useState<'_self' | '_blank'>('_blank');
-
   useEffect(() => {
-    const path = lineCtaHref(placement);
     const isMobile =
       /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
       window.innerWidth <= 768;
-
-    if (isInAppBrowser()) {
-      setHref(toExternalBrowserUrl(withExternalOpenedFlag(path)));
-      setTarget('_self');
-      return;
-    }
-
-    setHref(path);
+    // 常に通常の https で /go/line へ（カスタムスキームは TikTok に握りつぶされる）
     setTarget(isMobile ? '_self' : '_blank');
-  }, [placement]);
-
-  return { href, target };
+  }, []);
+  return target;
 }
 
 function CTAButton({
@@ -74,12 +57,12 @@ function CTAButton({
   className?: string;
   placement: string;
 }) {
-  const { href, target } = useLineCtaLink(placement);
+  const lineTarget = useLineLinkTarget();
   return (
     <a
-      href={href}
-      target={target}
-      rel={target === '_blank' ? 'noopener noreferrer' : 'noopener'}
+      href={lineCtaHref(placement)}
+      target={lineTarget}
+      rel={lineTarget === '_blank' ? 'noopener noreferrer' : 'noopener'}
       className={`inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold text-white shadow-lg transition-all bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 ${className}`}
     >
       {children}
@@ -456,7 +439,7 @@ function FAQSection() {
 }
 
 function Footer() {
-  const { href: lineHref, target: lineTarget } = useLineCtaLink('footer');
+  const lineTarget = useLineLinkTarget();
   return (
     <footer className="bg-slate-800 py-10 text-slate-300">
       <Container>
@@ -473,7 +456,7 @@ function Footer() {
             <a href="/company" className="underline hover:text-white">運営者情報</a>
             <span className="text-slate-500">|</span>
             <a
-              href={lineHref}
+              href={lineCtaHref('footer')}
               target={lineTarget}
               rel={lineTarget === '_blank' ? 'noopener noreferrer' : 'noopener'}
               className="underline hover:text-white"

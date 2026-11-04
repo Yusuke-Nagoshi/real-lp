@@ -1,56 +1,84 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useEffect, useState, type MouseEvent } from 'react';
 
-import { isInAppBrowser, toExternalBrowserUrl, withExternalOpenedFlag } from '@/lib/browser';
-import { LINE_EXT_PARAM, LINE_EXT_VALUE, LINE_FINAL_URL } from '@/lib/line';
+import {
+  detectInAppBrowser,
+  isAndroid,
+  openInExternalBrowser,
+  primaryEscapeHref,
+} from '@/lib/browser';
+import { LINE_FINAL_URL } from '@/lib/line';
 
 /**
  * 流れ:
- * 1. TikTok 等のアプリ内 WebView なら、この計測ページを Safari / 標準ブラウザで開かせる
- * 2. 外部ブラウザで開かれたら（または元から通常ブラウザなら）公式 LINE へ遷移
- * このページの表示＝Vercel Analytics のページビューとしてカウント
+ * 1. TikTok 等のアプリ内 WebView なら、外部ブラウザ起動 UI を出す（自動ではほぼ失敗する）
+ * 2. ユーザーが「ブラウザで開く」をタップ → Safari / Chrome でこの計測ページが開く
+ * 3. 通常ブラウザなら公式 LINE へ遷移
  */
 export default function GoLineClient() {
-  const searchParams = useSearchParams();
-  const alreadyExternal = searchParams.get(LINE_EXT_PARAM) === LINE_EXT_VALUE;
-  const [ui, setUi] = useState<'loading' | 'escape'>('loading');
-  const [escapeHref, setEscapeHref] = useState('');
+  const [mode, setMode] = useState<'loading' | 'escape' | 'redirect'>('loading');
+  const [escapeHref, setEscapeHref] = useState('#');
+  const [appName, setAppName] = useState<string>('アプリ');
 
   useEffect(() => {
-    const inApp = isInAppBrowser();
+    const kind = detectInAppBrowser();
 
-    if (!alreadyExternal && inApp) {
-      const target = withExternalOpenedFlag(window.location.href);
-      const escapeUrl = toExternalBrowserUrl(target);
-      setEscapeHref(escapeUrl);
-      setUi('escape');
-      // Android 等では自動で効くことがある。TikTok iOS 等は下のボタン（ユーザー操作）が必要
-      window.location.href = escapeUrl;
+    // アプリ内にいる限りは必ず脱出 UI（ext=1 でも WebView 内なら脱出継続）
+    if (kind) {
+      setAppName(
+        kind === 'tiktok'
+          ? 'TikTok'
+          : kind === 'instagram'
+            ? 'Instagram'
+            : kind === 'facebook'
+              ? 'Facebook'
+              : 'このアプリ',
+      );
+      setEscapeHref(primaryEscapeHref(window.location.href));
+      setMode('escape');
+
+      // Android だけ intent の自動試行（iOS/TikTok の JS 遷移はブロックされる）
+      if (isAndroid()) {
+        openInExternalBrowser(window.location.href);
+      }
       return;
     }
 
+    setMode('redirect');
     const timer = window.setTimeout(() => {
       window.location.replace(LINE_FINAL_URL);
     }, 400);
     return () => window.clearTimeout(timer);
-  }, [alreadyExternal]);
+  }, []);
 
-  if (ui === 'escape') {
+  const onOpenBrowser = (event: MouseEvent<HTMLAnchorElement>) => {
+    // カスタムスキームをユーザー操作の文脈で発火させる
+    event.preventDefault();
+    openInExternalBrowser(window.location.href);
+  };
+
+  if (mode === 'escape') {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-white px-4 text-center text-slate-600">
-        <p className="text-base font-medium text-slate-800">ブラウザで開いてください</p>
-        <p className="max-w-sm text-sm text-slate-500">
-          TikTok などのアプリ内画面では公式 LINE が開けないことがあります。下のボタンから Safari
-          などのブラウザで開いたあと、友だち追加へ進みます。
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-white px-4 text-center text-slate-700">
+        <p className="text-lg font-bold text-slate-900">ブラウザで開いてください</p>
+        <p className="max-w-sm text-sm leading-relaxed text-slate-500">
+          {appName} のアプリ内ブラウザでは公式 LINE の友だち追加がうまくいかないことがあります。下のボタンで
+          Safari / Chrome などのブラウザアプリを開いてから進みます。
         </p>
         <a
           href={escapeHref}
-          className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 px-8 py-4 text-base font-bold text-white shadow-lg"
+          onClick={onOpenBrowser}
+          className="inline-flex w-full max-w-xs items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 px-8 py-4 text-base font-bold text-white shadow-lg"
         >
           ブラウザで開く
         </a>
+        {appName === 'TikTok' && (
+          <p className="max-w-sm text-xs leading-relaxed text-slate-400">
+            ボタンで開かない場合は、画面右上の「…」→「ブラウザで開く」を選んでください。開いた先で自動的に公式
+            LINE へ進みます。
+          </p>
+        )}
         <a href={LINE_FINAL_URL} className="text-xs text-slate-400 underline">
           うまくいかない場合はこちら（公式 LINE）
         </a>
