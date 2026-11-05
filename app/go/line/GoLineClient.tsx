@@ -6,6 +6,7 @@ import {
   copyText,
   detectInAppBrowser,
   lineOpenHref,
+  tryOpenLineWithoutLeaving,
   type InAppKind,
 } from '@/lib/browser';
 import { LINE_FINAL_URL } from '@/lib/line';
@@ -22,9 +23,10 @@ function appLabel(kind: InAppKind): string {
 }
 
 /**
- * 1. まず自動で LINE 起動を試す
- * 2. 画面に残っていたら（＝失敗）開き方ガイドを大きく表示
- * 3. 通常ブラウザならそのまま公式 LINE へ
+ * アプリ内:
+ * 1. ページを離れずに LINE 起動だけ自動で試す（iframe）
+ * 2. だめなら同じページ上で開き方ガイドを表示
+ * 通常ブラウザ: 公式 LINE へ遷移
  */
 export default function GoLineClient() {
   const [mode, setMode] = useState<Mode>('trying');
@@ -47,33 +49,15 @@ export default function GoLineClient() {
       return () => window.clearTimeout(timer);
     }
 
-    // アプリ内: 自動で一度だけ試す（タップなしでも Android intent 等が効く場合がある）
+    // アプリ内: location では飛ばない（LINE Web に行って戻れなくなる）
     setMode('trying');
-    const jump = window.setTimeout(() => {
-      window.location.href = href;
-    }, 200);
+    tryOpenLineWithoutLeaving(LINE_FINAL_URL);
 
-    // まだこのページにいる＝起動失敗 → ガイド表示
-    const fail = window.setTimeout(() => {
-      if (document.visibilityState === 'visible') {
-        setMode('guide');
-      }
-    }, 1400);
+    const showGuide = window.setTimeout(() => {
+      setMode('guide');
+    }, 900);
 
-    const onVisible = () => {
-      if (document.visibilityState === 'visible') {
-        window.setTimeout(() => {
-          if (document.visibilityState === 'visible') setMode('guide');
-        }, 600);
-      }
-    };
-    document.addEventListener('visibilitychange', onVisible);
-
-    return () => {
-      window.clearTimeout(jump);
-      window.clearTimeout(fail);
-      document.removeEventListener('visibilitychange', onVisible);
-    };
+    return () => window.clearTimeout(showGuide);
   }, []);
 
   const onCopy = async () => {
@@ -95,7 +79,7 @@ export default function GoLineClient() {
               公式LINEの開き方
             </h1>
             <p className="mt-3 text-sm leading-relaxed text-slate-500">
-              {name}内からは自動でLINEを開けませんでした。
+              {name}内からは自動でLINEアプリを開けませんでした。
               <br />
               下の手順で開いてください。
             </p>
@@ -171,7 +155,7 @@ export default function GoLineClient() {
               href={lineHref}
               className="flex w-full items-center justify-center rounded-full bg-[#06C755] px-6 py-4 text-base font-bold text-white shadow-md shadow-emerald-600/20"
             >
-              もう一度 LINE で開く
+              LINEで友だち追加を開く
             </a>
             <button
               type="button"
@@ -194,11 +178,8 @@ export default function GoLineClient() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-3 bg-white px-4 text-center">
       <div className="h-10 w-10 animate-spin rounded-full border-4 border-emerald-500 border-t-transparent" />
-      <p className="text-sm font-medium text-slate-700">公式LINEを開いています…</p>
-      <p className="text-xs text-slate-400">しばらくお待ちください</p>
-      <a href={lineHref} className="mt-4 text-xs text-emerald-700 underline">
-        開かない場合はこちらをタップ
-      </a>
+      <p className="text-sm font-medium text-slate-700">公式LINEを確認しています…</p>
+      <p className="text-xs text-slate-400">この画面のままお待ちください</p>
     </div>
   );
 }

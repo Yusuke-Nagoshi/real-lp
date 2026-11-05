@@ -49,6 +49,26 @@ export function lineOpenHref(lineHttpsUrl: string): string {
   return lineHttpsUrl;
 }
 
+/**
+ * 今のページを離れずに LINE 起動だけを試す。
+ * location 遷移は使わない（失敗時にガイドへ戻れなくなるため）。
+ */
+export function tryOpenLineWithoutLeaving(lineHttpsUrl: string): void {
+  try {
+    const iframe = document.createElement('iframe');
+    iframe.style.cssText = 'position:fixed;width:0;height:0;border:0;opacity:0;pointer-events:none';
+    iframe.setAttribute('aria-hidden', 'true');
+    // https のまま。intent を iframe に入れると親が遷移することがあるので使わない
+    iframe.src = lineHttpsUrl;
+    document.body.appendChild(iframe);
+    window.setTimeout(() => {
+      iframe.remove();
+    }, 2500);
+  } catch {
+    // ignore
+  }
+}
+
 export async function copyText(text: string): Promise<boolean> {
   try {
     if (navigator.clipboard?.writeText) {
