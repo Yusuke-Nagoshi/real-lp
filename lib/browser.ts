@@ -13,7 +13,6 @@ export function detectInAppBrowser(
   if (/FBAN|FBAV|FB_IAB|Messenger/i.test(ua)) return 'facebook';
   if (/Line\//i.test(ua)) return 'line';
   if (/Twitter|LinkedInApp|Snapchat|Pinterest/i.test(ua)) return 'other';
-  // Android 汎用 WebView
   if (/Android/i.test(ua) && /; wv\)/i.test(ua)) return 'other';
 
   return null;
@@ -31,83 +30,47 @@ export function isIOS(userAgent = typeof navigator !== 'undefined' ? navigator.u
   return /iPhone|iPad|iPod/i.test(userAgent || '');
 }
 
-function toAbsoluteHttps(url: string): string {
-  if (url.startsWith('http')) return url;
-  if (typeof window !== 'undefined') return new URL(url, window.location.origin).toString();
-  return url;
-}
-
-/** Android: デフォルトブラウザへ渡す intent */
-export function androidIntentUrl(httpsUrl: string): string {
-  const absolute = toAbsoluteHttps(httpsUrl);
-  const u = new URL(absolute);
+/**
+ * Android で LINE アプリを直接起動する intent。
+ * 外部ブラウザ起動より TikTok WebView では通りやすい。
+ */
+export function lineAndroidIntentUrl(lineHttpsUrl: string): string {
+  const u = new URL(lineHttpsUrl);
   return (
-    `intent://${u.host}${u.pathname}${u.search}${u.hash}` +
-    `#Intent;scheme=https;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;` +
-    `S.browser_fallback_url=${encodeURIComponent(absolute)};end`
+    `intent://${u.host}${u.pathname}${u.search}` +
+    `#Intent;scheme=https;package=jp.naver.line.android;` +
+    `S.browser_fallback_url=${encodeURIComponent(lineHttpsUrl)};end`
   );
 }
 
-/** iOS: Safari へ（TikTok は JS 自動遷移をブロック。ユーザーのタップが必要） */
-export function iosSafariUrl(httpsUrl: string): string {
-  const absolute = toAbsoluteHttps(httpsUrl);
-  return `x-safari-${absolute}`;
+/** 端末に応じた「LINEを開く」用 href（ユーザーのタップで発火させる） */
+export function lineOpenHref(lineHttpsUrl: string): string {
+  if (isAndroid()) return lineAndroidIntentUrl(lineHttpsUrl);
+  return lineHttpsUrl;
 }
 
-/**
- * iOS Shortcuts 経由のフォールバック。
- * 存在しないショートカット名を実行 → エラーコールバックで https が標準ブラウザで開く。
- * （Shortcuts アプリが一瞬開く副作用あり）
- */
-export function iosShortcutsEscapeUrl(httpsUrl: string): string {
-  const absolute = toAbsoluteHttps(httpsUrl);
-  const name =
-    typeof crypto !== 'undefined' && 'randomUUID' in crypto
-      ? crypto.randomUUID()
-      : `escape-${Date.now()}`;
-  return `shortcuts://x-callback-url/run-shortcut?name=${encodeURIComponent(name)}&x-error=${encodeURIComponent(absolute)}`;
-}
-
-/** 計測ページを「外部ブラウザで開いた後」と分かるよう ext=1 を付与した絶対 URL */
-export function withExternalOpenedFlag(url: string): string {
-  const u =
-    typeof window !== 'undefined' ? new URL(url, window.location.origin) : new URL(url, 'https://example.com');
-  u.searchParams.set('ext', '1');
-  return u.toString();
-}
-
-/**
- * ユーザー操作付きで外部ブラウザを開く。
- * TikTok iOS は x-safari だけでは失敗しがちなので Shortcuts も併用する。
- */
-export function openInExternalBrowser(httpsUrl: string): void {
-  const absolute = withExternalOpenedFlag(toAbsoluteHttps(httpsUrl));
-  const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
-
-  if (isAndroid(ua)) {
-    window.location.href = androidIntentUrl(absolute);
-    return;
+export async function copyText(text: string): Promise<boolean> {
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch {
+    // fall through
   }
 
-  if (isIOS(ua)) {
-    // 1) Shortcuts（比較的通りやすい）→ 失敗時に x-safari を試す
-    const shortcuts = iosShortcutsEscapeUrl(absolute);
-    const safari = iosSafariUrl(absolute);
-    window.location.href = shortcuts;
-    window.setTimeout(() => {
-      window.location.href = safari;
-    }, 400);
-    return;
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch {
+    return false;
   }
-
-  window.open(absolute, '_blank', 'noopener,noreferrer');
-}
-
-/** <a href> 用の第一候補（タップでそのまま使える URL） */
-export function primaryEscapeHref(httpsUrl: string): string {
-  const absolute = withExternalOpenedFlag(toAbsoluteHttps(httpsUrl));
-  const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
-  if (isAndroid(ua)) return androidIntentUrl(absolute);
-  if (isIOS(ua)) return iosSafariUrl(absolute);
-  return absolute;
 }
