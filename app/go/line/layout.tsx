@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '公式LINEへ移動中 | あるこ',
+  title: '公式LINEの開き方 | あるこ',
   robots: { index: false, follow: false },
 };
 

@@ -5,123 +5,199 @@ import { useEffect, useState } from 'react';
 import {
   copyText,
   detectInAppBrowser,
-  isAndroid,
   lineOpenHref,
+  type InAppKind,
 } from '@/lib/browser';
 import { LINE_FINAL_URL } from '@/lib/line';
 
+type Mode = 'trying' | 'guide' | 'redirect';
+
+function appLabel(kind: InAppKind): string {
+  if (kind === 'tiktok') return 'TikTok';
+  if (kind === 'instagram') return 'Instagram';
+  if (kind === 'facebook') return 'Facebook';
+  if (kind === 'line') return 'LINE';
+  if (kind === 'other') return 'アプリ';
+  return 'アプリ';
+}
+
 /**
- * TikTok は外部ブラウザの強制起動をほぼ塞いでいる。
- * 代わりに:
- * 1. 計測ページを表示（PV）
- * 2. アプリ内なら「LINEアプリを直接開く」＋コピー＋メニュー案内
- * 3. 通常ブラウザなら公式 LINE へ自動遷移
+ * 1. まず自動で LINE 起動を試す
+ * 2. 画面に残っていたら（＝失敗）開き方ガイドを大きく表示
+ * 3. 通常ブラウザならそのまま公式 LINE へ
  */
 export default function GoLineClient() {
-  const [mode, setMode] = useState<'loading' | 'inapp' | 'redirect'>('loading');
-  const [appName, setAppName] = useState('アプリ');
+  const [mode, setMode] = useState<Mode>('trying');
+  const [kind, setKind] = useState<InAppKind>(null);
   const [lineHref, setLineHref] = useState(LINE_FINAL_URL);
   const [copied, setCopied] = useState(false);
-  const [pageUrl, setPageUrl] = useState('');
 
   useEffect(() => {
-    const kind = detectInAppBrowser();
-    setLineHref(lineOpenHref(LINE_FINAL_URL));
-    setPageUrl(window.location.href);
+    const detected = detectInAppBrowser();
+    const href = lineOpenHref(LINE_FINAL_URL);
+    setKind(detected);
+    setLineHref(href);
 
-    if (kind) {
-      setAppName(
-        kind === 'tiktok'
-          ? 'TikTok'
-          : kind === 'instagram'
-            ? 'Instagram'
-            : kind === 'facebook'
-              ? 'Facebook'
-              : 'このアプリ',
-      );
-      setMode('inapp');
-      return;
+    // 通常ブラウザ: 計測後にそのまま LINE へ
+    if (!detected) {
+      setMode('redirect');
+      const timer = window.setTimeout(() => {
+        window.location.replace(LINE_FINAL_URL);
+      }, 400);
+      return () => window.clearTimeout(timer);
     }
 
-    setMode('redirect');
-    const timer = window.setTimeout(() => {
-      window.location.replace(LINE_FINAL_URL);
-    }, 400);
-    return () => window.clearTimeout(timer);
+    // アプリ内: 自動で一度だけ試す（タップなしでも Android intent 等が効く場合がある）
+    setMode('trying');
+    const jump = window.setTimeout(() => {
+      window.location.href = href;
+    }, 200);
+
+    // まだこのページにいる＝起動失敗 → ガイド表示
+    const fail = window.setTimeout(() => {
+      if (document.visibilityState === 'visible') {
+        setMode('guide');
+      }
+    }, 1400);
+
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') {
+        window.setTimeout(() => {
+          if (document.visibilityState === 'visible') setMode('guide');
+        }, 600);
+      }
+    };
+    document.addEventListener('visibilitychange', onVisible);
+
+    return () => {
+      window.clearTimeout(jump);
+      window.clearTimeout(fail);
+      document.removeEventListener('visibilitychange', onVisible);
+    };
   }, []);
 
-  const onCopyLine = async () => {
+  const onCopy = async () => {
     const ok = await copyText(LINE_FINAL_URL);
     setCopied(ok);
     if (ok) window.setTimeout(() => setCopied(false), 2500);
   };
 
-  const onCopyPage = async () => {
-    const ok = await copyText(pageUrl || window.location.href);
-    setCopied(ok);
-    if (ok) window.setTimeout(() => setCopied(false), 2500);
-  };
+  if (mode === 'guide') {
+    const name = appLabel(kind);
+    const isTikTok = kind === 'tiktok';
 
-  if (mode === 'inapp') {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-5 bg-white px-5 py-10 text-center text-slate-700">
-        <div className="space-y-2">
-          <p className="text-lg font-bold text-slate-900">公式LINEで友だち追加</p>
-          <p className="mx-auto max-w-sm text-sm leading-relaxed text-slate-500">
-            {appName} 内ではブラウザを自動で開けません。下のボタンから LINE アプリを直接開いてください。
-          </p>
-        </div>
+      <div className="min-h-screen bg-[#f7fafc] px-4 py-10 text-slate-800">
+        <div className="mx-auto w-full max-w-md">
+          <header className="mb-8 text-center">
+            <p className="text-sm font-semibold tracking-wide text-sky-700">あるこ 公式</p>
+            <h1 className="mt-2 text-2xl font-bold leading-tight text-slate-900">
+              公式LINEの開き方
+            </h1>
+            <p className="mt-3 text-sm leading-relaxed text-slate-500">
+              {name}内からは自動でLINEを開けませんでした。
+              <br />
+              下の手順で開いてください。
+            </p>
+          </header>
 
-        <a
-          href={lineHref}
-          className="inline-flex w-full max-w-xs items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 px-8 py-4 text-base font-bold text-white shadow-lg"
-        >
-          LINEアプリで開く
-        </a>
-
-        <button
-          type="button"
-          onClick={onCopyLine}
-          className="inline-flex w-full max-w-xs items-center justify-center rounded-full border border-slate-300 bg-white px-8 py-3.5 text-sm font-semibold text-slate-800"
-        >
-          {copied ? 'コピーしました' : '友だち追加リンクをコピー'}
-        </button>
-
-        <div className="mx-auto max-w-sm space-y-2 rounded-2xl bg-slate-50 px-4 py-4 text-left text-xs leading-relaxed text-slate-500">
-          <p className="font-semibold text-slate-700">うまく開かないとき</p>
-          <ol className="list-decimal space-y-1.5 pl-4">
-            {appName === 'TikTok' && (
-              <li>
-                画面右上の「…」→「ブラウザで開く」を選ぶと、Safari / Chrome でこのページが開き、そのまま公式
-                LINE へ進みます。
-              </li>
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            {isTikTok ? (
+              <ol className="divide-y divide-slate-100">
+                <li className="flex gap-4 px-5 py-5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-600 text-sm font-bold text-white">
+                    1
+                  </span>
+                  <div className="min-w-0 pt-0.5 text-left">
+                    <p className="text-base font-bold text-slate-900">右上の「･･･」をタップ</p>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-500">
+                      TikTokの画面・右上にある点が3つのボタンです。
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4 px-5 py-5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-600 text-sm font-bold text-white">
+                    2
+                  </span>
+                  <div className="min-w-0 pt-0.5 text-left">
+                    <p className="text-base font-bold text-slate-900">「ブラウザで開く」を選ぶ</p>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-500">
+                      メニューの中から「ブラウザで開く」または「Open in browser」をタップします。
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4 bg-emerald-50/80 px-5 py-5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-sm font-bold text-white">
+                    3
+                  </span>
+                  <div className="min-w-0 pt-0.5 text-left">
+                    <p className="text-base font-bold text-emerald-900">Safari / Chrome が開きます</p>
+                    <p className="mt-1 text-sm leading-relaxed text-emerald-800/80">
+                      開いた先で自動的に公式LINEの友だち追加へ進みます。
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            ) : (
+              <ol className="divide-y divide-slate-100">
+                <li className="flex gap-4 px-5 py-5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-600 text-sm font-bold text-white">
+                    1
+                  </span>
+                  <div className="min-w-0 pt-0.5 text-left">
+                    <p className="text-base font-bold text-slate-900">メニューからブラウザで開く</p>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-500">
+                      画面右上の「･･･」などから「ブラウザで開く」を選んでください。
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4 bg-emerald-50/80 px-5 py-5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-sm font-bold text-white">
+                    2
+                  </span>
+                  <div className="min-w-0 pt-0.5 text-left">
+                    <p className="text-base font-bold text-emerald-900">公式LINEへ進みます</p>
+                    <p className="mt-1 text-sm leading-relaxed text-emerald-800/80">
+                      Safari / Chrome で開いたあと、自動で友だち追加画面に移動します。
+                    </p>
+                  </div>
+                </li>
+              </ol>
             )}
-            <li>
-              「リンクをコピー」したあと、LINE のトーク検索や Safari
-              のアドレス欄に貼り付けて開いてください。
-            </li>
-            {isAndroid() && <li>Android では「LINEアプリで開く」が一番確実です。</li>}
-          </ol>
-          {appName === 'TikTok' && (
+          </div>
+
+          <div className="mt-6 space-y-3">
+            <a
+              href={lineHref}
+              className="flex w-full items-center justify-center rounded-full bg-[#06C755] px-6 py-4 text-base font-bold text-white shadow-md shadow-emerald-600/20"
+            >
+              もう一度 LINE で開く
+            </a>
             <button
               type="button"
-              onClick={onCopyPage}
-              className="mt-2 text-left font-medium text-emerald-700 underline"
+              onClick={onCopy}
+              className="flex w-full items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800"
             >
-              このページのURLもコピーする
+              {copied ? 'コピーしました ✓' : '友だち追加リンクをコピー'}
             </button>
-          )}
+            <p className="px-2 text-center text-xs leading-relaxed text-slate-400">
+              リンクをコピーした場合は、Safari を開いてアドレス欄に貼り付けてください。
+            </p>
+          </div>
+
+          <p className="mt-10 text-center text-xs text-slate-400">あるこ サポート案内</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-2 bg-white px-4 text-center text-slate-600">
-      <p className="text-sm">公式LINEへ移動しています…</p>
+    <div className="flex min-h-screen flex-col items-center justify-center gap-3 bg-white px-4 text-center">
+      <div className="h-10 w-10 animate-spin rounded-full border-4 border-emerald-500 border-t-transparent" />
+      <p className="text-sm font-medium text-slate-700">公式LINEを開いています…</p>
       <p className="text-xs text-slate-400">しばらくお待ちください</p>
-      <a href={LINE_FINAL_URL} className="mt-4 text-xs text-slate-400 underline">
-        自動で開かない場合はこちら
+      <a href={lineHref} className="mt-4 text-xs text-emerald-700 underline">
+        開かない場合はこちらをタップ
       </a>
     </div>
   );
